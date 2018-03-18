@@ -1,0 +1,7 @@
+http://codex.cs.yale.edu/avi/db-book/db6/practice-exer-dir/
+
+Database System Concepts Sixth Edition
+
+Avi Silberschatz
+Henry F. Korth
+S. Sudarshan
