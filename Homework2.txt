@@ -1,0 +1,167 @@
+--SELECT ename 
+--FROM nikovits.emp
+--WHERE sal >(SELECT sal FROM nikovits.emp WHERE empno=7521);
+--SELECT deptno, round(avg(sal)) FROM nikovits.emp GROUP BY deptno;
+
+--SELECT d.deptno, loc, round(avg(sal)) 
+--FROM nikovits.emp e, nikovits.dept d
+--WHERE d.deptno=e.deptno 
+--GROUP BY d.deptno, loc;
+
+--SELECT deptno, loc, round(avg(sal)) 
+--FROM nikovits.emp NATURAL JOIN nikovits.dept 
+--GROUP BY deptno, loc;
+
+--SELECT deptno, count(empno) FROM nikovits.emp GROUP BY deptno;
+
+--SELECT deptno, avg(sal) FROM  nikovits.emp  GROUP BY deptno HAVING avg(sal) > 2000;
+
+--SELECT deptno, avg(sal) FROM nikovits.emp GROUP BY deptno HAVING count(empno) >= 4;
+
+--SELECT d.deptno, loc, avg(sal) FROM nikovits.emp e, nikovits.dept d
+--WHERE d.deptno=e.deptno 
+--GROUP BY d.deptno, loc 
+--HAVING count(empno) >= 4;
+
+--SELECT dname, loc 
+--FROM nikovits.emp d, nikovits.dept o
+--WHERE d.deptno=o.deptno 
+--GROUP BY dname, loc 
+--HAVING avg(sal) >= 2000;
+
+--SELECT category 
+--FROM nikovits.emp, nikovits.sal_cat
+--WHERE sal BETWEEN lowest_sal AND highest_sal
+--GROUP BY category 
+--HAVING count(*) = 3;
+
+--SELECT category 
+--FROM nikovits.emp JOIN nikovits.sal_cat ON (sal BETWEEN lowest_sal AND highest_sal)
+--GROUP BY category 
+--HAVING count(*) = 3;
+
+--SELECT category 
+--FROM nikovits.emp, nikovits.sal_cat
+--WHERE sal BETWEEN lowest_sal AND highest_sal
+--GROUP BY category 
+--HAVING count(distinct deptno) = 1;
+
+--select * from NIKOVITS.SAL_CAT
+
+--SELECT count(DISTINCT job) FROM nikovits.emp;
+
+--SELECT count(*) FROM nikovits.emp WHERE sal > 2000
+
+--SELECT deptno, round(avg(sal)) FROM nikovits.emp GROUP BY deptno;
+
+--SELECT category FROM nikovits.emp JOIN nikovits.sal_cat ON (sal BETWEEN lowest_sal AND highest_sal)
+--GROUP BY category HAVING count(*) = 3;
+
+
+--SELECT category 
+--FROM nikovits.emp, nikovits.sal_cat
+--WHERE sal BETWEEN lowest_sal AND highest_sal
+--GROUP BY category 
+--HAVING count(DISTINCT deptno) = 1;
+
+--SELECT category FROM nikovits.emp, nikovits.sal_cat
+--WHERE sal BETWEEN lowest_sal AND highest_sal
+--GROUP BY category HAVING count(distinct deptno) = 1;
+
+--SELECT DISTINCT dname, loc,sal FROM nikovits.emp e, nikovits.dept d, nikovits.sal_cat s
+--WHERE d.deptno=e.deptno AND sal BETWEEN lowest_sal AND highest_sal AND category = 1;
+
+--SELECT DISTINCT dname, loc FROM nikovits.emp e, nikovits.dept d, nikovits.sal_cat s
+--WHERE d.deptno=e.deptno AND sal BETWEEN lowest_sal AND highest_sal AND category = 1
+--GROUP BY dname, loc HAVING count(distinct empno) >1;
+
+
+--SELECT decode(mod(empno, 2), 0, 'even', 1, 'odd') parity, count(empno) num_of_emps 
+--FROM nikovits.emp GROUP BY mod(empno, 2);
+
+-- List the number of employees and average salary by jobs. Print the average salary with a character string 
+-- containing '#'-s where one '#' denotes 200. So if the average is 600 print '###'.
+--SELECT job, count(empno), round(avg(sal)), rpad('#', round(avg(sal)/200), '#')
+--FROM nikovits.emp 
+--GROUP BY job;
+
+
+--SELECT count(comm), count(*), count(sal), count(distinct sal), 
+   --    sum(sal), sum(distinct sal), trunc(avg(sal)), avg(distinct sal)
+--FROM nikovits.emp WHERE ename like '%O%';
+
+--select * from LIKES2
+
+--SELECT distinct d.deptno, dname, loc,sal 
+--FROM nikovits.emp e, nikovits.dept d, nikovits.sal_cat s
+--WHERE d.deptno=e.deptno AND sal BETWEEN lowest_sal AND highest_sal AND category = 1
+
+
+
+--4.
+--List the employees who have maximal salary within their own department. Give the department
+--number, employee name and salary for them. (deptno, ename, sal)
+
+--SELECT * -- or whatever is your columns list.
+--  FROM nikovits.emp e JOIN nikovits.dept d ON d.deptno=e.deptno
+-- WHERE (e.deptno, e.sal) IN (SELECT deptno, MAX(sal)
+--                                         FROM nikovits.emp
+--                                     GROUP BY deptno)
+
+--select *
+--from emp e join dept d on e.deptno = d.deptno
+--where (e.deptno,e.sal) in ( select deptno, max(sal)
+--                            from emp
+--                            group by deptno)
+--https://stackoverflow.com/questions/16799640/employees-with-largest-salary-in-department
+
+--SELECT deptno,ename, sal, category
+ --FROM  nikovits.emp, nikovits.sal_cat
+ --WHERE sal IN
+ --( SELECT max(sal)
+ --FROM  nikovits.emp
+ --GROUP BY deptno ) and sal BETWEEN lowest_sal AND highest_sal 
+ 
+ -- 4.
+--List the employees who have maximal salary within their own department. Give the department
+--number, employee name and salary for them. (deptno, ename, sal) 
+-- SELECT deptno,ename, sal 
+-- FROM  nikovits.emp 
+-- WHERE sal IN
+-- ( SELECT max(sal)
+-- FROM  nikovits.emp
+-- GROUP BY deptno );
+ 
+--SELECT dname, AVG(sal) + 100 sal_plus
+--FROM nikovits.emp e, nikovits.dept d
+--WHERE e.deptno = d.deptno
+--GROUP BY dname
+--HAVING COUNT(empno) > 3
+--ORDER BY dname;
+
+ --SELECT distinct d.deptno, dname, loc,sal 
+ --FROM nikovits.emp e, nikovits.dept d, nikovits.sal_cat s
+ --WHERE d.deptno=e.deptno AND sal BETWEEN lowest_sal AND highest_sal AND category != 1
+ 
+ --SELECT  job, SUM(sal) , deptno
+ --FROM nikovits.emp
+ --GROUP BY  deptno,job ;
+
+--Select the names of departments with more than two employees.
+--SELECT dname
+--FROM nikovits.emp e,nikovits.dept d
+--WHERE  d.deptno=e.deptno
+--GROUP BY  dname
+--HAVING COUNT(*) > 2;
+
+--3.
+--List the department number, department name and location for the departments having at least
+--two employees with salary category 1. (deptno, dname, loc)
+--  SELECT e.deptno,dname,d.loc
+--  FROM  nikovits.emp e,nikovits.dept d,nikovits.sal_cat
+--  WHERE  d.deptno=e.deptno AND sal BETWEEN lowest_sal AND highest_sal AND category = 1
+--  GROUP BY e.deptno,dname,d.loc
+--  HAVING COUNT(*) >=2;
+
+--SELECT * FROM  nikovits.emp NATURAL JOIN nikovits.dept;
+--SELECT * FROM  nikovits.emp CROSS JOIN nikovits.dept;
