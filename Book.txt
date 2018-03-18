@@ -5,3 +5,92 @@ Database System Concepts Sixth Edition
 Avi Silberschatz
 Henry F. Korth
 S. Sudarshan
+
+Chapter	Exercises	
+Last Updated
+1. Introduction	
+pdf
+Mar 20, 2010
+Part 1: Relational Databases
+2. Relational Model	
+pdf
+Mar 20, 2010
+3. SQL	
+pdf
+Mar 20, 2010
+4. Intermediate SQL	
+pdf
+Mar 25, 2010
+5. Advanced SQL	
+pdf
+Apr 17, 2010
+6. Other Relational Languages	
+pdf
+May 31, 2010
+Part 2: Database Design
+7. Database Design and the E-R Model	
+pdf
+Apr 23, 2010
+8. Relational-Database Design	
+pdf
+Apr 17, 2010
+9. Application Design and Development	
+pdf
+May 31, 2010
+Part 3: Data Storage and Querying
+10. Storage and File Structure	
+pdf
+Apr 17, 2010
+11. Indexing and Hashing	
+pdf
+Apr 17, 2010
+12. Query Processing	
+pdf
+June 17, 2010
+13. Query Optimization	
+pdf
+June 17, 2010
+Part 4: Transaction Management
+14. Transactions	
+pdf
+Apr 21, 2010
+15. Concurrency Control	
+pdf
+Apr 21, 2010
+16. Recovery System	
+pdf
+June 17, 2010
+Part 5: Database System Architecture
+17. Database System Architectures	
+pdf
+Apr 21, 2010
+18. Parallel Databases	
+pdf
+Apr 21, 2010
+19. Distributed Databases	
+pdf
+June 23, 2010
+Part 6: Data Warehousing, Mining, and IR
+20. Data Analysis and Mining	
+pdf
+Apr 21, 2010
+21. Information Retrieval	
+pdf
+Apr 21, 2010
+Part 7: Specialty Databases
+22. Object-based Databases	
+pdf
+Apr 21, 2010
+23. XML	
+pdf
+Apr 21, 2010
+Part 8: Advanced Topics
+24. Advanced Application Development	
+pdf
+Apr 21, 2010
+25. Advanced Data Types and New Applications	
+pdf
+Apr 21, 2010
+26. Advanced Transaction Processing	
+pdf
+Apr 21, 2010
