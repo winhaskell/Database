@@ -1,0 +1,46 @@
+--select * from likes2
+
+--select deptno,dname,loc
+--from NIKOVITS.DEPT
+--where deptno not IN
+  ---   ( SELECT deptno
+     --  from NIKOVITS.EMP,NIKOVITS.SAL_CAT
+    --   where NIKOVITS.SAL_CAT.CATEGORY =1 and 
+     --  NIKOVITS.EMP.SAL between lowest_sal and highest_sal
+    -- )
+     
+--SELECT minsal, category FROM NIKOVITS.sal_cat,
+--(SELECT MIN(sal) minsal
+---FROM NIKOVITS.emp NATURAL JOIN (SELECT mgr empno FROM NIKOVITS.emp)) t
+--WHERE t.minsal BETWEEN lowest_sal AND highest_sal;
+
+--SELECT name FROM NIKOVITS.likes
+--MINUS
+--SELECT DISTINCT name FROM
+--(SELECT DISTINCT l1.name, l2.fruits FROM NIKOVITS.likes l1, NIKOVITS.likes l2
+ --MINUS
+--SELECT name, fruits FROM NIKOVITS.likes) NotLikes;
+
+(SELECT COUNT(DISTINCT fruits) FROM NIKOVITS.likes);
+
+SELECT name FROM NIKOVITS.likes
+GROUP BY name
+HAVING COUNT(fruits) = (SELECT COUNT(DISTINCT fruits) FROM NIKOVITS.likes);
+
+SELECT DISTINCT job, dname FROM NIKOVITS.emp NATURAL JOIN NIKOVITS.dept
+WHERE job IN
+ (SELECT job FROM NIKOVITS.emp
+ GROUP BY job HAVING COUNT(DISTINCT deptno) = 1);
+ 
+ 
+ select * from nikovits.emp;
+  (SELECT job, deptno FROM NIKOVITS.emp
+ GROUP BY job,deptno HAVING COUNT(DISTINCT deptno) = 1); 
+ 
+ SELECT DISTINCT e.job, d.dname FROM NIKOVITS.emp e ,NIKOVITS.dept d
+WHERE e.deptno = d.deptno and job 
+IN
+ (SELECT job FROM NIKOVITS.emp
+ GROUP BY job HAVING COUNT(DISTINCT deptno) = 1);
+ 
+ 
