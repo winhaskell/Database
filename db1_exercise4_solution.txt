@@ -1,0 +1,96 @@
+Aggregating, Grouping
+---------------------
+
+-- Study the following query and its result.
+-- You can see the behaviour of aggregating functions. 
+SELECT count(comm), count(*), count(sal), count(distinct sal), 
+       sum(sal), sum(distinct sal), trunc(avg(sal)), avg(distinct sal)
+FROM nikovits.emp WHERE ename like '%O%';
+
+
+Queries for the following tables (see description of the columns in previous exrcises)
+--------------------------------
+NIKOVITS.EMP (empno, ename, job, mgr, hiredate, sal, comm, deptno)
+NIKOVITS.DEPT(deptno, dname, loc)
+NIKOVITS.SAL_CAT(category, lowest_sal, highest_sal)
+---------------------------------------------------
+
+
+-- Give the maximal salary.
+SELECT max(sal) FROM emp;
+
+-- Give the sum of all salaries.
+SELECT sum(sal) FROM emp;
+
+-- Give the summarized salary and average salary on department 20.
+SELECT sum(sal), avg(sal) FROM emp WHERE deptno=20;
+
+-- How many different jobs we have in emp table?
+SELECT count(DISTINCT job) FROM emp;
+
+-- Give the number of employees whose salary is greater than 2000.
+SELECT count(*) FROM emp WHERE sal > 2000;
+
+-- Give the average salary by departments. (deptno, avg_sal)
+SELECT deptno, round(avg(sal)) FROM emp GROUP BY deptno;
+
+-- Give the location, average salary by departments. (deptno, loc, avg_sal)
+SELECT d.deptno, loc, round(avg(sal)) 
+FROM emp e, dept d
+WHERE d.deptno=e.deptno 
+GROUP BY d.deptno, loc;
+-- other syntax (NATURAL JOIN):
+SELECT deptno, loc, round(avg(sal)) 
+FROM emp NATURAL JOIN dept 
+GROUP BY deptno, loc;
+
+-- Give the number of employees by departments. (deptno, num_emp)
+SELECT deptno, count(empno) FROM emp GROUP BY deptno;
+
+-- Give the average salary by departments where this average is greater than 2000. (deptno, avg_sal)
+SELECT deptno, avg(sal) FROM emp GROUP BY deptno HAVING avg(sal) > 2000;
+
+-- Give the average salary by departments where the department has at least 4 employees. (deptno, avg_sal)
+SELECT deptno, avg(sal) FROM emp GROUP BY deptno HAVING count(empno) >= 4;
+
+-- Give the average salary and location by departments where the department has at least 4 employees.
+SELECT d.deptno, loc, avg(sal) FROM emp e, dept d
+WHERE d.deptno=e.deptno 
+GROUP BY d.deptno, loc HAVING count(empno) >= 4;
+
+-- Give the name and location of departments where the average salary is greater than 2000. (dname, loc)
+SELECT dname, loc FROM emp d, dept o
+WHERE d.deptno=o.deptno 
+GROUP BY dname, loc HAVING avg(sal) >= 2000;
+
+-- Give the salary categories where we can find exactly 3 employees.
+SELECT category FROM emp, sal_cat
+WHERE sal BETWEEN lowest_sal AND highest_sal
+GROUP BY category HAVING count(*) = 3;
+-- other syntax (JOIN ON):
+SELECT category FROM emp JOIN sal_cat ON (sal BETWEEN lowest_sal AND highest_sal)
+GROUP BY category HAVING count(*) = 3;
+
+-- Give the salary categories where the employees in this category work on the same department.
+SELECT category FROM emp, sal_cat
+WHERE sal BETWEEN lowest_sal AND highest_sal
+GROUP BY category HAVING count(distinct deptno) = 1;
+
+-- Give the name and location of the department(s) which has an employee with salary category 1.
+SELECT DISTINCT dname, loc FROM emp e, dept d, sal_cat s
+WHERE d.deptno=e.deptno AND sal BETWEEN lowest_sal AND highest_sal AND category = 1;
+
+-- Give the name and location of the department(s) which has at least 2 employees with salary category 1.
+SELECT DISTINCT dname, loc FROM emp e, dept d, sal_cat s
+WHERE d.deptno=e.deptno AND sal BETWEEN lowest_sal AND highest_sal AND category = 1
+GROUP BY dname, loc HAVING count(distinct empno) > 1;
+
+-- List the number of employees whose empno is an even number and whose empno is odd. (parity, num_of_emps)
+SELECT decode(mod(empno, 2), 0, 'even', 1, 'odd') parity, count(empno) num_of_emps 
+FROM emp GROUP BY mod(empno, 2);
+
+-- List the number of employees and average salary by jobs. Print the average salary with a character string 
+-- containing '#'-s where one '#' denotes 200. So if the average is 600 print '###'.
+SELECT job, count(empno), round(avg(sal)),
+      rpad('#', round(avg(sal)/200), '#') 
+FROM emp GROUP BY job;
