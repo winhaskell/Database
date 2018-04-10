@@ -1,0 +1,51 @@
+Exercise A6, B5
+-- Give the lower and higher bound of salary categories for which it is true that all the employees 
+-- within this category have the same job. (lowest_sal, highest_sal)
+SELECT category, lowest_sal, highest_sal FROM sal_cat, emp 
+WHERE sal BETWEEN lowest_sal AND highest_sal
+GROUP BY category, lowest_sal, highest_sal HAVING count(distinct job)=1;
+--------------------
+1	700	1200
+3	1401	2000
+
+Exercise A7, B6
+-- List the jobs where this job occurs on exactly three departments, and give the names of these 
+-- departments too. (job, dname)
+SELECT DISTINCT job, dname FROM emp NATURAL JOIN dept
+WHERE job IN
+  (SELECT job FROM emp 
+   GROUP BY job HAVING COUNT(DISTINCT deptno) = 3);
+----------------------------
+CLERK	ACCOUNTING
+CLERK	RESEARCH
+CLERK	SALES
+MANAGER	ACCOUNTING
+MANAGER	RESEARCH
+MANAGER	SALES
+
+Exercise A8, B7
+-- Give the salary and salary category of the employee who has the highest salary among the employees 
+-- not having a subordinate. (sal, category) 
+-- (Not having a subordinate means: he is not the manager of anybody.)
+SELECT maxsal, category FROM sal_cat,
+(SELECT MAX(sal) maxsal FROM emp WHERE empno NOT IN (SELECT NVL(mgr,0) FROM emp)) t
+WHERE t.maxsal BETWEEN lowest_sal AND highest_sal;
+---------
+1600	3
+
+Exercise A5, B8
+-- Give the month names (January, February etc.) in which at least two employees started to work 
+-- (hiredate shows the start of work), and give the number of such employees by month. (Month_name, Num_emps)
+alter session set nls_date_language='english';  -- if you want English month names
+SELECT to_char(hiredate, 'month'), count(*) 
+FROM emp
+GROUP BY to_char(hiredate, 'month') 
+HAVING COUNT(*) >= 2;
+-----------------
+february 	2
+december 	4
+september	2
+january  	2
+
+
+
