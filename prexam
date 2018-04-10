@@ -1,0 +1,41 @@
+select to_char(hiredate,'month') "Month_name", count(empno) "Num_emps" from emp group by to_char(hiredate,'month') having count(empno)>1;
+
+Month_name                             Num_emps
+------------------------------------ ----------
+february                                      2
+december                                      4
+september                                     2
+january                                       2
+
+
+Exercise 6
+
+select lowest_sal, highest_sal from sal_cat where category in (select category from emp, sal_cat where (sal between lowest_sal and highest_sal) group by category having count(distinct job)<2);
+
+LOWEST_SAL HIGHEST_SAL
+---------- -----------
+       700        1200
+      1401        2000
+
+
+Exercise 7
+
+select distinct job, dname from emp natural join dept where job in (select job from (select job, count(distinct dname) num_depts from emp natural join dept group by job) where num_depts=3);
+
+JOB                         DNAME                                     
+--------------------------- ------------------------------------------
+MANAGER                     RESEARCH                                  
+MANAGER                     ACCOUNTING                                
+CLERK                       RESEARCH                                  
+CLERK                       ACCOUNTING                                
+MANAGER                     SALES                                     
+CLERK                       SALES                
+
+
+Exercise 8
+
+select sal, category from emp, sal_cat where sal=(select max(sal) from (select * from emp minus select e1.* from emp e1, emp e2 where e1.empno=e2.mgr)) and sal between lowest_sal and highest_sal;
+
+       SAL   CATEGORY
+---------- ----------
+      1600          3
