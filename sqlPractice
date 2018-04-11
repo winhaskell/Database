@@ -1,0 +1,26 @@
+https://www.hackerrank.com/challenges/revising-the-select-query/problem
+
+Query all columns for all American cities in CITY with populations larger than 100000. The CountryCode for America is USA.
+Input Format
+The CITY table is described as follows:
+
+SELECT *
+FROM CITY
+WHERE POPULATION > 100000 AND COUNTRYCODE = 'USA';
+
+Congratulations, you passed the sample test case.
+Click the Submit Code button to run your code against all the test cases.
+
+Your Output (stdout)
+3878 Scottsdale USA Arizona 202705 
+3965 Corona USA California 124966 
+3973 Concord USA California 121780 
+3977 Cedar Rapids USA Iowa 120758 
+3982 Coral Springs USA Florida 117549 
+
+Expected Output
+3878 Scottsdale USA Arizona 202705 
+3965 Corona USA California 124966 
+3973 Concord USA California 121780 
+3977 Cedar Rapids USA Iowa 120758 
+3982 Coral Springs USA Florida 117549 
