@@ -24,3 +24,27 @@ Expected Output
 3973 Concord USA California 121780 
 3977 Cedar Rapids USA Iowa 120758 
 3982 Coral Springs USA Florida 117549 
+
+
+Query the names of all American cities in CITY with populations larger than 120000. The CountryCode for America is USA.
+ 
+SELECT name
+FROM CITY
+WHERE POPULATION > 120000 AND COUNTRYCODE = 'USA';
+
+Testcase 0
+Congratulations, you passed the sample test case.
+
+Click the Submit Code button to run your code against all the test cases.
+
+Your Output (stdout)
+Scottsdale 
+Corona 
+Concord 
+Cedar Rapids 
+
+Expected Output
+Scottsdale
+Corona
+Concord
+Cedar Rapids
