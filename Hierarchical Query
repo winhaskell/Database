@@ -52,3 +52,33 @@ MANAGER_ID              NUMBER(6)
 DEPARTMENT_ID           NUMBER(4)    
 
 select * from nikovits.employees
+
+SELECT last_name, employee_id, manager_id, LEVEL
+      FROM nikovits.employees
+      START WITH employee_id = 100
+      CONNECT BY PRIOR employee_id = manager_id
+      ORDER SIBLINGS BY last_name;
+
+
+select * from nikovits.dept;
+select * from  nikovits.employees;
+
+
+
+describe dept2;
+select * from dept2;
+
+UPDATE dept2
+SET    deptno = deptno + 1;
+
+select * from dept2;
+describe emp2;
+select * from emp2;
+
+UPDATE emp2
+SET   sal = sal + 1000
+where empno =7499;
+describe emp2;
+select * from emp2;
+
+
