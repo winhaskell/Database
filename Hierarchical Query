@@ -1,0 +1,31 @@
+https://docs.oracle.com/cd/B19306_01/server.102/b14200/queries003.htm
+
+SELECT last_name, employee_id, manager_id, LEVEL
+      FROM nikovits.employees
+      START WITH employee_id = 100
+      CONNECT BY PRIOR employee_id = manager_id
+      ORDER SIBLINGS BY last_name;
+      
+      
+   SELECT employee_id, last_name, manager_id
+   FROM nikovits.employees
+   CONNECT BY PRIOR employee_id = manager_id;
+   
+
+describe nikovits.employees
+    
+    Name           Null?    Type         
+-------------- -------- ------------ 
+EMPLOYEE_ID             NUMBER(6)    
+FIRST_NAME              VARCHAR2(20) 
+LAST_NAME      NOT NULL VARCHAR2(25) 
+EMAIL          NOT NULL VARCHAR2(25) 
+PHONE_NUMBER            VARCHAR2(20) 
+HIRE_DATE      NOT NULL DATE         
+JOB_ID         NOT NULL VARCHAR2(10) 
+SALARY                  NUMBER(8,2)  
+COMMISSION_PCT          NUMBER(2,2)  
+MANAGER_ID              NUMBER(6)    
+DEPARTMENT_ID           NUMBER(4)    
+
+select * from nikovits.employees
