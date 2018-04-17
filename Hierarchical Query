@@ -5,11 +5,34 @@ SELECT last_name, employee_id, manager_id, LEVEL
       START WITH employee_id = 100
       CONNECT BY PRIOR employee_id = manager_id
       ORDER SIBLINGS BY last_name;
-      
+
+EMPLOYEE_ID LAST_NAME                 MANAGER_ID
+----------- ------------------------- ----------
+        101 Kochhar                          100
+        108 Greenberg                        101
+        109 Faviet                           108
+        110 Chen                             108
+        111 Sciarra                          108
+        112 Urman                            108
+        113 Popp                             108
+        200 Whalen                           101
+        ...
       
    SELECT employee_id, last_name, manager_id
    FROM nikovits.employees
    CONNECT BY PRIOR employee_id = manager_id;
+   
+   EMPLOYEE_ID LAST_NAME                 MANAGER_ID      LEVEL
+----------- ------------------------- ---------- ----------
+        101 Kochhar                          100          1
+        108 Greenberg                        101          2
+        109 Faviet                           108          3
+        110 Chen                             108          3
+        111 Sciarra                          108          3
+        112 Urman                            108          3
+        113 Popp                             108          3
+        ...
+        
    
 
 describe nikovits.employees
