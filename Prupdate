@@ -23,11 +23,14 @@ DELETE
 -- Delete the employees whose commission is null.
 
 -- Delete the employees whose hiredate is before 1982.01.01.
-   delete * from emp2 where hiredate<'01-jan-1982'
+   delete from emp3 where hiredate<'01-jan-1982'
+   select * from emp3;
 
 -- Delete the employees whose department's location is DALLAS.
 
 -- Delete the employees whose salary is less than the average salary.
+  delete from emp3 where sal < (select avg(sal) from emp3);
+  select * from emp3;
 
 -- Delete the employees whose salary is less than the average salary on his department.
 
@@ -108,3 +111,20 @@ select *
 from dept3 natural join emp3
 where LOC = 'DALLAS';
  
+ 
+ SELECT COUNT(*) AS NumberOfEmployees,
+       AVG(Sal) AS AverageSalary
+  FROM nikovits.emp
+  
+  
+  (select avg(sal) from emp3);
+  2173.214285714285714285714285714285714286
+  
+  select * from emp3 where sal < (select avg(sal) from emp3);
+  delete from emp3 where sal < (select avg(sal) from emp3);
+  select * from emp3;
+  
+  
+SELECT *  
+from dept4 natural join emp4
+where LOC = 'DALLAS';
