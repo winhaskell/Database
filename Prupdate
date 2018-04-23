@@ -23,6 +23,7 @@ DELETE
 -- Delete the employees whose commission is null.
 
 -- Delete the employees whose hiredate is before 1982.01.01.
+   delete * from emp2 where hiredate<'01-jan-1982'
 
 -- Delete the employees whose department's location is DALLAS.
 
@@ -90,6 +91,20 @@ SELECT * FROM emp2
  WHERE rownum <=1;
 
 
+SELECT * FROM emp2
+ WHERE hiredate >= DATE'1981-01-01' AND hiredate < DATE'1982-01-01';
+ 
+delete * from emp2 where hiredate<'01-dec-1982'
 
-  
+
+CREATE TABLE emp2 AS SELECT * FROM nikovits.emp;
+CREATE TABLE dept2 AS SELECT * FROM nikovits.dept;
+
+select * from emp2;
+CREATE TABLE emp3 AS SELECT * FROM nikovits.emp;
+CREATE TABLE dept3 AS SELECT * FROM nikovits.dept;
+
+select * 
+from dept3 natural join emp3
+where LOC = 'DALLAS';
  
