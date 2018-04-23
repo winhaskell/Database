@@ -1,0 +1,95 @@
+DELETE, INSERT, UPDATE
+
+Exercises for DELETE, INSERT, UPDATE
+------------------------------------
+
+NIKOVITS.EMP (empno, ename, job, mgr, hiredate, sal, comm, deptno)
+NIKOVITS.DEPT(deptno, dname, loc)
+NIKOVITS.SAL_CAT(category, lowest_sal, highest_sal)
+
+/* You should create a copy of the tables before modifying the data
+
+CREATE TABLE emp2 AS SELECT * FROM nikovits.emp;
+CREATE TABLE dept2 AS SELECT * FROM nikovits.dept;
+UPDATE emp2 ...
+Check the data after modification: SELECT * FROM emp2; SELECT * FROM dept2;         
+Drop the modified tables: DROP TABLE emp2; DROP TABLE emp2;
+
+*/
+
+
+DELETE
+
+-- Delete the employees whose commission is null.
+
+-- Delete the employees whose hiredate is before 1982.01.01.
+
+-- Delete the employees whose department's location is DALLAS.
+
+-- Delete the employees whose salary is less than the average salary.
+
+-- Delete the employees whose salary is less than the average salary on his department.
+
+-- Delete the employee (employees) whose salary is the greatest.
+
+-- Delete the departments which has an employee with salary category 2.
+
+-- Delete the departments which has at least two employees with salary category 2.
+
+
+INSERT
+
+-- Insert a new employee with the following values:
+   empno=1, ename='Smith', deptno=10, hiredate=sysdate, salary=average salary in department 10.
+   All the other columns should be NULL.
+a) Insert the row with the 'VALUES' keyword
+b) Insert the row with a SELECT query without 'VALUES' keyword.
+
+
+UPDATE
+
+-- Increase the salary of the employees in department 20 with 20%.
+
+-- Increase the salary with 500 of the employees whose commission is NULL or whose salary is less than the average.
+
+-- Increase the commission of all employees with the maximal commission.
+   If an employee has NULL commission, treat it as 0.
+
+-- Modify the name of the employee with the lowest salary to 'Poor'.
+
+-- Increase the commission with 3000 of the employees, who has at least 2 direct subordinates.
+   If an employee has NULL commission, treat it as 0.
+
+-- Increase the salary of those employees who has a subordinate. The increment is the minimal salary.
+
+-- Increase the salary of the employees who don't have a subordinate. The increment is
+   the average salary of their own department.
+
+
+
+SELECT hiredate 
+from emp2;
+
+SELECT * FROM emp2
+ WHERE hiredate >= DATE'1981-01-01' AND hiredate < DATE'1982-01-01';
+
+ SELECT * FROM 
+ (
+   SELECT * 
+   FROM emp2
+   ORDER BY hiredate
+ )
+ WHERE rownum <=2;
+
+ SELECT * FROM 
+ (
+   SELECT * 
+   FROM emp2
+   ORDER BY hiredate
+ )
+ WHERE rownum <=1;
+
+
+
+  
+ 
