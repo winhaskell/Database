@@ -251,10 +251,36 @@ WHERE empno NOT IN (SELECT coalesce(mgr,0) FROM emp);
 
 
 
+create or replace PROCEDURE fib(n integer) IS
+ v1  integer := 0;
+ v2  integer := 1;
+ v_next integer;
+BEGIN
+  IF n <= 1 THEN v_next:=v1; ELSIF n=2 THEN v_next:=v2; END IF; 
+  FOR i IN 3 .. n LOOP
+    v_next := v1+v2;
+    v1 := v2; v2 := v_next; 
+  END LOOP;
+  DBMS_OUTPUT. PUT_LINE(TO_CHAR(v_next));
+END;
 
 
 
 
 
   
- 
+ create or replace PROCEDURE fib(n integer) IS
+ v1  integer := 0;
+ v2  integer := 1;
+ v_next integer;
+BEGIN
+  IF n <= 1 THEN v_next:=v1; ELSIF n=2 THEN v_next:=v2; END IF; 
+  FOR i IN 3 .. n LOOP
+    v_next := v1+v2;
+    v1 := v2; v2 := v_next; 
+  END LOOP;
+  DBMS_OUTPUT. PUT_LINE(TO_CHAR(v_next));
+END;
+/
+
+execute fib(10); 
