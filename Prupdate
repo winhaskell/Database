@@ -128,3 +128,17 @@ where LOC = 'DALLAS';
 SELECT *  
 from dept4 natural join emp4
 where LOC = 'DALLAS';
+
+
+DECLARE
+ v_date    date := SYSDATE + 1;
+BEGIN
+  FOR rec IN (SELECT * FROM dept3 for update) LOOP
+    dbms_output.put(to_char(sysdate, 'hh24:mi:ss')||' --> ');
+    dbms_output.put_line(rec.deptno);
+    SELECT SYSDATE + 2/(24*60*60) INTO v_date FROM dual; -- 2 second
+    WHILE sysdate < v_date LOOP  NULL;   END LOOP;   
+    update dept3 set deptno = deptno+1;
+  END LOOP;
+END;
+select * from dept3;
