@@ -1,0 +1,109 @@
+/* Write a function which decides if the parameter number is prime or not. 
+   In case of yes/no the function returns 1/0 
+*/
+CREATE OR REPLACE FUNCTION prim(n integer) RETURN number IS
+...
+SELECT prim(26388279066623) from dual;
+---------------------------------------------------------
+create or replace FUNCTION prim(n integer) RETURN number IS
+ ret_val NUMBER(1) := 1;
+ v_limit NUMBER(38);
+BEGIN
+ IF n < 0 OR trunc(n) <> n THEN RETURN -1; END IF;
+  v_limit := trunc(sqrt(n));
+  FOR i IN 2..v_limit loop
+  IF mod(n, i) = 0 THEN ret_val := 0; exit; END IF;
+ END loop;
+ RETURN ret_val;
+END;
+=========================================================
+/* Write a procedure which prints out the n-th Fibonacchi number. 
+   fib1 = 0, fib2 = 1, fib3 = 1, fib4 = 2 ... stb.
+*/
+CREATE OR REPLACE PROCEDURE fib(n integer) IS
+...
+set serveroutput on
+execute fib(10);  -- you can call the procedure with -> call fib(10);
+---------------------------------------------------------
+create or replace PROCEDURE fib(n integer) IS
+ v1  integer := 0;
+ v2  integer := 1;
+ v_next integer;
+BEGIN
+  IF n <= 1 THEN v_next:=v1; ELSIF n=2 THEN v_next:=v2; END IF; 
+  FOR i IN 3 .. n LOOP
+    v_next := v1+v2;
+    v1 := v2; v2 := v_next; 
+  END LOOP;
+  DBMS_OUTPUT. PUT_LINE(TO_CHAR(v_next));
+END;
+=========================================================
+
+/* SELECT ... INTO ...
+Write a function which returns the average salary within a salary category (parameter).
+*/
+CREATE OR REPLACE FUNCTION cat_avg(categ integer) RETURN number IS
+...
+SELECT cat_avg(2) FROM dual;
+----------------------------------------------------------------
+/* SELECT ... INTO ...
+Write a procedure which prints out the number of employees and average salary of the employees 
+whose hiredate was the day which is the parameter of the procedure (e.g. 'Monday'). 
+*/
+CREATE OR REPLACE PROCEDURE day_avg(d varchar2) IS
+...
+set serveroutput on
+call day_avg('Thursday'); -- output example: 3 - 2500
+
+some hint: 1. to_char(hiredate, 'Day', 'nls_date_language=english')
+           2. take care of the length of the day name
+----------------------------------------------------------------
+/* Cursor
+Write a procedure which takes the employees working on the parameter department
+in alphabetical order, and prints out the jobs of the employees in a concatenated string.
+*/
+CREATE OR REPLACE PROCEDURE jobs(d_name varchar2) IS
+...
+set serveroutput on
+call jobs('ACCOUNTING');  -- output example: CLERK-ANALYST-SALESMAN
+----------------------------------------------------------------
+/* Associative array
+Write a procedure which takes the first n (n is the parameter) prime numbers and puts them into 
+an associative array. The procedure should print out the last prime and the total sum of the prime numbers.
+*/
+CREATE OR REPLACE PROCEDURE primes(n integer) IS
+...
+set serveroutput on
+call primes(100);
+----------------------------------------------------------------
+/* Cursor and associative array
+Write a plsql procedure which takes the employees in alphabetical order
+and puts every second employee's name (1st, 3rd, 5th etc.) and salary into an associative array.
+The program should print out the last but one (the one before the last) values from the array.
+*/
+CREATE OR REPLACE PROCEDURE proc9 IS
+...
+set serveroutput on
+call proc9();
+----------------------------------------------------------------
+/* Insert, Delete, Update
+Write a procedure which increases the salary of the employees who has salary category p (p is parameter).
+The increment should be the minimal salary of the employee's own department.
+After executing the update statement, the procedure should print out the average salary of all employees.
+*/
+CREATE OR REPLACE PROCEDURE upd_cat(p integer) IS
+...
+set serveroutput on
+call upd_cat(2);
+----------------------------------------------------------------
+/* Update with cursor
+Write a procedure which updates the salaries on a department (parameter: department number).
+The update should increase the salary with n*10000, where n is the number of vowels (A,E,I,O,U)
+in the name of the employee. (For ALLEN it is 2, for KING it is 1.)
+The procedure should print out the name and new salary of the modified employees.
+*/
+CREATE OR REPLACE PROCEDURE curs_upd(dno INTEGER) IS 
+...
+set serveroutput on
+call curs_upd(10);
+----------------------------------------------------------------
