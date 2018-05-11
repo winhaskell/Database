@@ -40,3 +40,31 @@ Procedure FIB compiled
 set serveroutput on
  execute fib(10); 
  34
+
+
+
+CREATE FUNCTION gcd (x INTEGER, y INTEGER) RETURN INTEGER AS
+-- Find greatest common divisor of x and y. For example, if
+-- (8,12) is input, the greatest common divisor is 4.
+-- This will be used in normalizing (simplifying) fractions.
+-- (You need not try to understand how this code works, unless
+--  you are a math wizard. It does.)
+--
+   ans INTEGER;
+BEGIN
+   IF (y <= x) AND (x MOD y = 0) THEN
+      ans := y;
+   ELSIF x < y THEN 
+      ans := gcd(y, x);  -- Recursive call
+   ELSE
+      ans := gcd(y, x MOD y);  -- Recursive call
+   END IF;
+   RETURN ans;
+END;
+/
+
+SELECT gcd(3570,7293) FROM dual;
+51
+
+SELECT gcd(999,99) FROM dual;
+9
