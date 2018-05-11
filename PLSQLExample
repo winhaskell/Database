@@ -83,3 +83,11 @@ CREATE OR REPLACE FUNCTION Factorial(p_MyNum INTEGER)
  SELECT Factorial(10) FROM dual;
  3628800
  
+ 
+CREATE TABLE emp6 AS SELECT * FROM nikovits.emp;
+CREATE TABLE dept6 AS SELECT * FROM nikovits.dept;
+  
+  DELETE FROM emp6 WHERE comm IS NULL;
+  DELETE FROM emp6 WHERE hiredate < TO_DATE('1982.01.01', 'yyyy.mm.dd');
+  
+  select * from emp6;
