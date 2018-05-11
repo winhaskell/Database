@@ -68,3 +68,18 @@ SELECT gcd(3570,7293) FROM dual;
 
 SELECT gcd(999,99) FROM dual;
 9
+
+CREATE OR REPLACE FUNCTION Factorial(p_MyNum INTEGER)
+   RETURN NUMBER AS
+    BEGIN -- Start of Factorial Function
+         IF p_MyNum = 1 THEN -- Checking for last value to process of n-1
+           RETURN 1;
+        ELSE
+           RETURN(p_MyNum * Factorial(p_MyNum-1)); -- Recursive
+        END IF;
+    END;
+  /
+ 
+ SELECT Factorial(10) FROM dual;
+ 3628800
+ 
