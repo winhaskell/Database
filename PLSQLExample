@@ -1,0 +1,42 @@
+create or replace FUNCTION prim(n integer) RETURN number IS
+ ret_val NUMBER(1) := 1;
+ v_limit NUMBER(38);
+BEGIN
+ IF n < 0 OR trunc(n) <> n THEN RETURN -1; END IF;
+  v_limit := trunc(sqrt(n));
+  FOR i IN 2..v_limit loop
+  IF mod(n, i) = 0 THEN ret_val := 0; exit; END IF;
+ END loop;
+ RETURN ret_val;
+END;
+/
+
+PRIM Compiled 
+
+set serveroutput on
+SELECT prim(26388279066623) from dual;
+
+
+
+
+
+create or replace PROCEDURE fib(n integer) IS
+ v1  integer := 0;
+ v2  integer := 1;
+ v_next integer;
+BEGIN
+  IF n <= 1 THEN v_next:=v1; ELSIF n=2 THEN v_next:=v2; END IF; 
+  FOR i IN 3 .. n LOOP
+    v_next := v1+v2;
+    v1 := v2; v2 := v_next; 
+  END LOOP;
+  DBMS_OUTPUT. PUT_LINE(TO_CHAR(v_next));
+END;
+/
+
+FIB Compiled 
+Procedure FIB compiled
+ 
+set serveroutput on
+ execute fib(10); 
+ 34
