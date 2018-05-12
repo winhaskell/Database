@@ -286,4 +286,28 @@ v1= 3
 PL/SQL procedure successfully completed.
 
 
+create or replace function adder(n1 in number, n2 in number)    
+return number    
+is     
+n3 number(8);    
+begin    
+n3 :=n1+n2;    
+return n3;    
+end;    
+/   
 
+SET SERVEROUTPUT ON
+DECLARE    
+   n3 number(2);    
+BEGIN    
+   n3 := adder(11,22);    
+   dbms_output.put_line('Addition is: ' || n3);    
+END;    
+/    
+
+PL/SQL procedure successfully completed.
+
+Addition is: 33
+
+
+PL/SQL procedure successfully completed.
