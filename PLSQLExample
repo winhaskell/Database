@@ -268,3 +268,22 @@ FROM dual;
          
          
          
+         
+SET SERVEROUTPUT ON
+DECLARE
+v1  NUMBER(3);
+
+BEGIN
+   v1 := 3;
+   DBMS_OUTPUT.PUT_LINE('v1= ' || v1); 
+END;
+/
+
+PL/SQL procedure successfully completed.
+
+v1= 3
+
+PL/SQL procedure successfully completed.
+
+
+
