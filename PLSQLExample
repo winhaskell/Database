@@ -232,3 +232,30 @@ FROM dual;
 SELECT num_times ('ab c ab ab de ab fg', 'ab') FROM dual;
 
 select deptno,sum(sal) from NIKOVITS.emp group by deptno;
+
+SQL查询特定字串出现的次数
+ SELECT
+  T.STRING ,
+  (LENGTH(T.STRING) - LENGTH(REPLACE(T.STRING,'x',''))) / LENGTH('x') AS TIMES
+FROM  (
+    SELECT '123x456x123x456'  STRING  FROM DUAL
+  )  T;
+--3
+
+SQL查询特定字串出现的次数
+SELECT REGEXP_COUNT ('ab c ab ab de ab fg', 'ab')
+FROM dual;
+--4
+
+
+STRING               TIMES
+--------------- ----------
+123x456x123x456          3
+
+
+REGEXP_COUNT('ABCABABDEABFG','AB')
+----------------------------------
+                                 4
+                                 
+                                 
+                                 
