@@ -194,3 +194,16 @@ WHERE empno IN (SELECT mgr FROM emp);
 UPDATE emp e1 SET sal = sal + (SELECT avg(sal) FROM emp e2 WHERE e2.deptno = e1.deptno)
 WHERE empno NOT IN (SELECT coalesce(mgr,0) FROM emp);
 
+
+DECLARE 
+  myDate DATE;
+    BEGIN
+    myDate := TO_DATE('January 01, 2000','Month DD, YYYY');
+    DBMS_OUTPUT.PUT_LINE(myDate);
+  END;
+ /
+ 
+01-JAN-00
+
+
+PL/SQL procedure successfully completed.
