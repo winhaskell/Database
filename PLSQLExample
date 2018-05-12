@@ -258,4 +258,13 @@ REGEXP_COUNT('ABCABABDEABFG','AB')
                                  4
                                  
                                  
-                                 
+SELECT REGEXP_COUNT ('TechOnTheNet is a great resource', 't') as num_times 
+FROM dual;
+--2
+
+ NUM_TIMES
+----------
+         2
+         
+         
+         
