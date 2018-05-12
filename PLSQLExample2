@@ -166,3 +166,26 @@ end;
 
 PL/SQL procedure successfully completed.
 
+
+
+
+ CREATE OR REPLACE PROCEDURE today_is AS
+BEGIN
+-- display the current system date in long format
+  DBMS_OUTPUT.PUT_LINE( 'Today is ' || TO_CHAR(SYSDATE, 'DL') );
+END today_is;
+/
+-- to call the procedure today_is, you can use the following block
+BEGIN
+  today_is(); -- the parentheses are optional here
+END;
+/
+set serveroutput on
+execute today_is;
+
+PL/SQL procedure successfully completed.
+
+Today is Sunday 12 May 2018
+
+
+PL/SQL procedure successfully completed.
