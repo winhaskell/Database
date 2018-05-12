@@ -207,3 +207,28 @@ DECLARE
 
 
 PL/SQL procedure successfully completed.
+
+
+SELECT TO_CHAR(ADD_MONTHS(hiredate,1)),'DD-MM-YYYY' "Next month"FROM emp WHERE ename = 'SMITH'
+ 
+SELECT REGEXP_REPLACE ('Anderson', 'a|e|i|o|u', 'G')
+FROM dual;
+
+SELECT REGEXP_COUNT ('TechOnTheNet is a great resource', 't')
+FROM dual;
+--2
+
+SELECT REGEXP_COUNT ('TechOntptptptptptp', 'tp')
+FROM dual;
+--6
+
+CREATE OR REPLACE FUNCTION num_times(p1 VARCHAR2, p2 VARCHAR2) RETURN integer IS
+
+SELECT REGEXP_COUNT ('ab c ab ab de ab fg', 'ab')
+FROM dual;
+--4
+
+
+SELECT num_times ('ab c ab ab de ab fg', 'ab') FROM dual;
+
+select deptno,sum(sal) from NIKOVITS.emp group by deptno;
