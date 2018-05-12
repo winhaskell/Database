@@ -29,3 +29,65 @@ Factorial 6 is 720
 
 
 PL/SQL procedure successfully completed.
+
+
+
+
+declare
+	n number(5);
+	i number(5);
+	a number(5);
+begin
+	n:=&n;
+	i:=1;
+	a:=1;
+	while(i<=n)
+	loop
+		dbms_output.put_line(a);
+		i:=i+1;
+		a:=a+2;
+	end loop;
+end;
+/
+
+
+old:declare
+	n number(5);
+	i number(5);
+	a number(5);
+begin
+	n:=&n;
+	i:=1;
+	a:=1;
+	while(i<=n)
+	loop
+		dbms_output.put_line(a);
+		i:=i+1;
+		a:=a+2;
+	end loop;
+end;
+
+new:declare
+	n number(5);
+	i number(5);
+	a number(5);
+begin
+	n:=8;
+	i:=1;
+	a:=1;
+	while(i<=n)
+	loop
+		dbms_output.put_line(a);
+		i:=i+1;
+		a:=a+2;
+	end loop;
+end;
+1
+3
+5
+7
+9
+11
+13
+15
+
