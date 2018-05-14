@@ -29,7 +29,30 @@ PL/SQL procedure successfully completed.
 
 
 
+-- CURSOR
+set serveroutput on
+DECLARE 
+  CURSOR curs1 IS SELECT deptno, ename FROM nikovits.emp WHERE deptno = 10;
+  rec curs1%ROWTYPE;
+BEGIN
+  OPEN curs1;
+  LOOP
+    FETCH curs1 INTO rec;
+    EXIT WHEN curs1%NOTFOUND;
+    dbms_output.put_line(to_char(rec.deptno)||' - '||rec.ename);
+  END LOOP;
+  CLOSE curs1;
+END;
+/
 
+PL/SQL procedure successfully completed.
+
+10 - CLARK
+10 - KING
+10 - MILLER
+
+
+PL/SQL procedure successfully completed.
 
 
 
