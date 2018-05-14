@@ -1,0 +1,35 @@
+-- SELECT data from a table into variable
+set serveroutput on
+DECLARE
+  bonus   NUMBER(7,2);
+BEGIN
+  SELECT sal * 0.10 INTO bonus
+  FROM emp                        -- you need table EMP !!!
+  WHERE empno = 7900;
+  DBMS_OUTPUT.PUT_LINE('bonus = ' || TO_CHAR(bonus));
+END;
+/
+
+set serveroutput on
+DECLARE
+  bonus   NUMBER(7,2);
+BEGIN
+  SELECT sal * 0.10 INTO bonus
+  FROM nikovits.emp                        -- you need table EMP !!!
+  WHERE empno = 7900;
+  DBMS_OUTPUT.PUT_LINE('bonus = ' || TO_CHAR(bonus));
+END;
+/
+
+bonus = 95
+
+
+PL/SQL procedure successfully completed.
+
+
+
+
+
+
+
+
