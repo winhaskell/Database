@@ -135,3 +135,26 @@ END;
 select * FROM nikovits.EMP;
 select get_hire_date(7521) from dual;
 --22-FEB-81
+
+
+
+select * FROM nikovits.Sal_cat;
+
+CREATE OR REPLACE FUNCTION cat_avg2(categ NUMBER) RETURN number IS
+avge number;
+BEGIN
+    SELECT (lowest_sal+highest_sal)/2 INTO avge
+    FROM nikovits.Sal_cat
+    WHERE CATEGORY = categ;
+    RETURN TO_CHAR(avge);
+END;
+/
+
+SELECT cat_avg2(2) FROM dual;
+
+Function CAT_AVG2 compiled
+
+
+CAT_AVG2(2)
+-----------
+     1300.5
