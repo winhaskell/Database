@@ -1,0 +1,19 @@
+CREATE OR REPLACE PROCEDURE day_avg(d varchar2) IS
+avgnumber number;
+result1 number;
+begin
+select count(*),avg(sal) into result1,avgnumber
+from nikovits.emp
+where to_char(hiredate, 'Day', 'nls_date_language=english') like d||'%'
+group by to_char(hiredate, 'Day', 'nls_date_language=english');
+dbms_output.put_line(result1||'-'||avgnumber);
+end;
+/
+set serveroutput on
+execute day_avg('Thursday');
+
+4-2481.25
+
+
+PL/SQL procedure successfully completed.
+
