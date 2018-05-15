@@ -1,0 +1,138 @@
+http://sila.hajas.elte.hu/edu18feb/DB1L.html
+
+ Lecture Course Material/weeks: 
+   i. DATABASE QUERIES: Relational algebra, SQL SELECT statement
+     | #L1. Feb.16. | #L2. Feb.23. | #L3. Mar.02. | #L4. Mar.09. | --Break | 
+         --- 2018. Mar.15-16. (Thu-Fri) --Two days Hungarian National Holidays  
+         --- 2018. Mar.28. (Wed) - Apr.03. (Tue) --One week Spring Holiday 
+  ii. SQL: SQL DML, SQL DDL, SQL/PSM (PL/SQL), Datalog, Recursion, DBMS
+     | #L5. Mar.23. | --Break | #L6. Apr.06. | #L7. Apr.13. | #L8. Apr.20. |
+ iii. DATABASE DESIGN: Entity/Relationship model, Normalization
+     | #L9. Apr.27. | #10. May.04. | --Break: ELTE days | #12. May.18. | 
+     
+  Databases-1 Exams:  FRIDAY 10:15-11:45  South B.  Room 2-502 
+  (1) 01 June | (2) 08 June  | (3) 15 June  | (4) 22 June | (5) 29 June 
+  Exam prerequisites: Computer lab practice [Oracle SQL, PL/SQL] 
+  Writing Test: Topic of the Writing Test and [A Sample Writing Test]
+     
+  Book: Database Systems: The Complete Book (2nd ed) 
+             by Garcia-Molina, Jeff Ullman and Jennifer Widom
+           - Table of Contents 
+           - Sample chapters in PDF: Chapter1 and Chapter2  
+           - Jeff Ullman's Slides (Stanford University CS145)
+           
+  Course Material (Lecture) 
+  
+   week#1. Feb.16. 
+        > Relational Model, Relational Algebra 
+        > Lect_01_RelAlgebra.pdf --- pp.1-35 (Chapter 2.1-2.4)
+           next week to be continued 
+  
+   week#2. Feb.23. 
+        > Queries in Relational Algebra --- pp.36-43
+        > Lect_01_RelAlgebra.pdf --- pp.36-43 (Chapter 2.1-2.4)
+        > Exercises for Rel.Algebra (Chapter 2.4) 
+           Exercises1/Fruits [+create table] [help //solution Rel.Alg]   
+           -- [ Extra points (non-compulsury homework) exercises:  
+                 Book Ex.2.4.5.-2.4.10. (Ch.2.4) + Rel.Alg.Operators ]
+   
+        > SQL Query: SELECT statement (WHERE conditions)  
+        > Lect_02_SQL_Select.pdf --pp.1-21 (Chapter 6.1-6.2)
+           next week to be continued 
+    
+   week#3. Mar.02. 
+        > SQL Query: SELECT statement (Join expressions, Subqueries) 
+        > Lect_02_SQL_Select.pdf --pp.22-50 (Chapter 6.3) 
+           next week to be continued 
+     
+   week#4. Mar.09. 
+        > SQL Query: SELECT statement (Grouping, Aggregation) 
+        > Lect_02_SQL_Select.pdf --pp.51-65 (Chapter 6.4) 
+        > Extended Relational Algebra (Bags, Grouping, Outerjoins)
+        > Lect_03_SQL_ExtRelAlg.pdf --pp.1-29 (Chapter 5.1-5.2) 
+   
+   --- 2018. Mar.15-16. (Thu-Fri) Hungarian National Holidays --- 
+  
+   week#5. Mar.23. 
+        > Exercises for Rel.Algebra and SQL SELECT (Ch.6.1-6.3)
+        > SQL Query: SELECT statement  [+create table] 
+           Exercises2/Products [+create products] [//solution]   
+    
+        > SQL Modification: SQL DML 
+        > Lect_04_SQL_Modification.pdf --pp.1-17 (Chapter 6.5)
+   
+    --- 2018. Mar.28- Apr.03. (Wed-Tue) Spring Holiday --- 
+   
+   week#6. Apr.06. 
+        > SQL Tables, Constraints, Views, Triggers 
+        > Lect_05_SQL_DDL.pdf (Chapter 7, and 8)    
+
+   week#7. Apr.13. 
+        > Datalog and Recursion (Datalog)
+        > Lect_06_Datalog_Recursion.pdf (Chapter 5.3-5.4)
+           next week to be continued 
+    
+   week#8. Apr.20. 
+        > Datalog and Recursion (Recursion)
+        > Lect_06_Datalog_Recursion.pdf (Chapter 11.2)
+        > Lect_07_SQL/PSM.pdf (Chapter 9.3)
+        > Overview of SQL/PSM and Oracle PL/SQL
+        > Flights_Excercises: Datalog, with recursive, PL/SQL 
+         
+   week#9. Apr.27. 
+        > Entity Relationship Model 
+        > Lect_08_ERmodel.pdf (Chapter 4.1-4.6)
+   
+   week#10. May.04. 
+        > Relational Design Theory, Part-1: FD's, BCNF
+        > Lect_09_FDs.pdf (Chapter 3.1-3.3) 
+           next week to be continued 
+   
+   --- 2018. May.10-11. (Thu-Fri) ELTE IK: Neumann days --- 
+   
+   week#11. May.18. 
+        > Relational Design Theory, Part-2: Chase, 3NF
+        > Lect_10_NFs.pdf (Chapter 3.3-3.5)
+        > Overview of DBMS (Chapter 1)
+    
+  Databases-1 Exams:  FRIDAY 10:15-11:45  South B.  Room 2-502 
+  (1) 01 June | (2) 08 June  | (3) 15 June  | (4) 22 June | (5) 29 June 
+  Exam prerequisites: Computer lab practice [Oracle SQL, PL/SQL] 
+  Topic of the Writing Test  +plus A Sample Writing Test
+   
+  Databases-1 Exam (Writing Test) 
+  --- Topic-1: Relational Algebra and SQL SELECT (6)
+  #Q1.)  2.4 Relational Algebra
+  #Q2.)  6.1 Simple Queries in SQL
+  #Q3.)  6.2 Queries Involving More Than One Relation
+  #Q4.)  6.3 Subqueries
+  #Q5.)  6.4 Full-Relation Operations
+  #Q6.)  5.1-5.2 Extended Relational Algebra
+  --- Topic-1: SQL DML, DDL, PL/SQL, Recursion (6)
+  #Q7.)  6.5 Database Modifications
+  #Q8.)  7.1-7.2 Keys and Foreign Keys, Constraints
+  #Q9.)  8.1-8.2 Views
+  #Q10.) 9.3 Cursors, Queries in PSM (Oracle: PL/SQL) 
+  #Q11.) 9.4 PSM Stored Procedures(Oracle: PL/SQL)
+  #Q12.) 10.2 Recursion 
+  --- Topic-3: Data Models and Relational Design Theory (6)
+  #Q13.) 4.1-4.4 The Entity/Relationship Model
+  #Q14.) 4.5-4.6 From E/R Diagrams to Relations
+  #Q15.) 3.1-3.2. Functional Dependencies, X+ Closure Algorithm
+  #Q16.) 3.3. Design Theory (Boyce-Codd Normal Form Decomp.) 
+  #Q17.) 3.4. Decomposition (The Chase Test for Lossless Join) 
+  #Q18.) 3.5. Third Normal Form (3NF Decomp, Depend.Preserv)
+    
+ 
+  --- (i) From this semester topic: Databases 1 - query languages
+     Relational model, entity-relationship model, transformation from ER to relational model.
+     Relational algebra, SQL, Datalog. Recursion in query languages. Procedural elements
+     in query languages (variables, control structures, subprograms, cursors, exceptions).
+     
+  --- (ii) From the next semester topic: Databases 2 - query execution
+     Index structures, sparse and dense index, B+ tree, bitmap index, dynamic hashing.
+     One pass and two pass algorithms, sort based and hash based algorithms.
+     Join methods, cost of operations, query execution plans.
+     
+     >>> Hajas Csilla © ELTE IK Információs Rendszerek Tanszék
+     
