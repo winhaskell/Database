@@ -118,3 +118,20 @@ select fibonacci (30) from dual;
 --514229
 
 
+
+
+CREATE OR REPLACE FUNCTION get_hire_date (emp_id NUMBER) RETURN VARCHAR
+ RESULT_CACHE
+IS
+  date_hired DATE;
+BEGIN
+  SELECT hiredate INTO date_hired
+    FROM nikovits.EMP
+      WHERE EMPNO = emp_id;
+  RETURN TO_CHAR(date_hired);
+END;
+/
+
+select * FROM nikovits.EMP;
+select get_hire_date(7521) from dual;
+--22-FEB-81
