@@ -17,3 +17,20 @@ execute day_avg('Thursday');
 
 PL/SQL procedure successfully completed.
 
+
+
+CREATE OR REPLACE FUNCTION catt_avg(categ NUMBER) RETURN number IS
+avge number;
+BEGIN
+    SELECT avg(sal) INTO avge
+    FROM nikovits.Sal_cat,nikovits.emp
+    WHERE sal between lowest_sal and highest_sal and CATEGORY = categ;
+    RETURN TO_CHAR(avge);
+END;
+/
+
+SELECT catt_avg(2) FROM dual;
+-- 1266.666666666666666666666666666666666667
+
+
+
