@@ -138,6 +138,13 @@ select get_hire_date(7521) from dual;
 
 
 
+/* SELECT ... INTO ...
+Write a function which returns the average salary within a salary category (parameter).
+*/
+CREATE OR REPLACE FUNCTION cat_avg(categ integer) RETURN number IS
+...
+SELECT cat_avg(2) FROM dual;
+
 select * FROM nikovits.Sal_cat;
 
 CREATE OR REPLACE FUNCTION cat_avg2(categ NUMBER) RETURN number IS
