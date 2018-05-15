@@ -1,0 +1,568 @@
+-- examples for cursors (implicit and explicit cursor)
+
+set serveroutput on
+DECLARE 
+  CURSOR curs1 IS SELECT deptno, ename FROM emp WHERE deptno = 10;
+  rec curs1%ROWTYPE;
+BEGIN
+  OPEN curs1;
+  LOOP
+    FETCH curs1 INTO rec;
+    EXIT WHEN curs1%NOTFOUND;
+    dbms_output.put_line(to_char(rec.deptno)||' - '||rec.ename);
+  END LOOP;
+  CLOSE curs1;
+END;
+/
+
+Cursor attributes:
+  %ISOPEN    
+  %FOUND     
+  %NOTFOUND  
+  %ROWCOUNT  
+
+-- Implicit cursor (DELETE utasításhoz)
+set serveroutput on
+DECLARE
+  v_rows_deleted VARCHAR2(30);
+  v_job emp.job%TYPE := 'SALESMAN';
+BEGIN
+  DELETE FROM emp WHERE job = v_job;
+  v_rows_deleted := (SQL%ROWCOUNT ||' row(s) deleted.');
+  DBMS_OUTPUT.PUT_LINE (v_rows_deleted);
+  ROLLBACK;
+END;
+/
+
+-- Explicit cursors, 3 forms of cursor usage and cursors with parameter
+set serveroutput on
+DECLARE 
+  CURSOR curs1(p_deptno NUMBER DEFAULT 10) IS SELECT ename, sal FROM emp WHERE deptno = p_deptno;
+  CURSOR curs2(p_deptno NUMBER) IS SELECT ename, sal from emp where deptno = p_deptno;
+  rec curs1%ROWTYPE;
+BEGIN
+  OPEN curs1();            -- default parameter
+  LOOP
+    FETCH curs1 INTO rec;
+    EXIT WHEN curs1%NOTFOUND;
+    dbms_output.put_line('curs1: '||rec.ename||' - '||to_char(rec.sal));
+  END LOOP;
+  CLOSE curs1;
+
+  FOR rec IN curs2(20) LOOP   -- parameter
+    dbms_output.put_line('curs2: '||rec.ename||' - '||to_char(rec.sal));
+  END LOOP;
+
+  FOR rec IN (SELECT ename, sal FROM emp WHERE deptno=30) LOOP
+    dbms_output.put_line('curs3: '||rec.ename||' - '||to_char(rec.sal));
+  END LOOP;
+END;
+/
+
+-- Update with a cursor  -> WHERE CURRENT OF
+-- FOR UPDATE locks rows in the table
+DECLARE 
+  CURSOR curs1 IS SELECT ename, sal FROM emp WHERE deptno = 10 FOR UPDATE;
+  rec curs1%ROWTYPE;
+BEGIN
+  OPEN curs1;
+  LOOP
+    FETCH curs1 INTO rec;
+    EXIT WHEN curs1%NOTFOUND;
+    UPDATE emp SET sal = sal+1 WHERE CURRENT OF curs1;
+    dbms_output.put_line(rec.ename||' - '||to_char(rec.sal));
+  END LOOP;
+  CLOSE curs1;
+END;
+/
+select * from emp where deptno=10;
+ROLLBACK;
+
+
+-- What happens when we update the table during cursor loop?
+-- answer: cursor doesn't see the new values
+-- result set will be fixed when opening cursor
+set serveroutput on
+DECLARE
+ v_date    date := SYSDATE + 1;
+BEGIN
+  FOR rec IN (SELECT * FROM dept for update) LOOP
+    dbms_output.put(to_char(sysdate, 'hh24:mi:ss')||' --> ');
+    dbms_output.put_line(rec.deptno);
+    SELECT SYSDATE + 2/(24*60*60) INTO v_date FROM dual; -- 2 second
+    WHILE sysdate < v_date LOOP  NULL;   END LOOP;   
+    update dept set deptno = deptno+1;
+  END LOOP;
+END;
+/
+Result
+---------------
+23:05:00 --> 10
+23:05:02 --> 20
+23:05:04 --> 30
+23:05:06 --> 40
+
+select * from dept;
+rollback;
+
+
+-- Cursor update for a join
+-- LOC column will be updated in each step of iteration
+-- Result set of the cursor:
+-- TURNER  SALES
+-- MARTIN  SALES
+-- WARD    SALES
+-- ALLEN   SALES
+
+DECLARE
+  CURSOR c1 IS  SELECT ename, dname  FROM emp, dept
+    WHERE emp.deptno = dept.deptno AND job = 'SALESMAN' FOR UPDATE OF loc;
+BEGIN
+  FOR rec IN c1 LOOP
+   -- UPDATE emp SET sal = sal + 1 WHERE CURRENT OF c1;
+    UPDATE dept SET loc = loc|| '1' WHERE CURRENT OF c1;
+  END LOOP;
+END;
+/
+SELECT * FROM dept;
+...
+30 SALES CHICAGO1111
+...
+
+rollback;
+
+-- cursor variable
+-- can be strongly typed (with return type) or weakly typed (without return type)
+DECLARE 
+  TYPE empcurtyp IS REF CURSOR RETURN emp%ROWTYPE;  -- strong
+  TYPE genericcurtyp IS REF CURSOR;                 -- weak
+  TYPE t_cur IS REF CURSOR;
+  v_cur t_cur;
+  
+  PROCEDURE cursor_open(p_cur IN OUT t_cur) IS
+  BEGIN
+    OPEN p_cur FOR SELECT ename FROM emp WHERE sal > 3000;
+  END;
+  
+  FUNCTION read_cursor(p_cur IN t_cur) RETURN varchar2 IS
+    v emp.ename%TYPE;
+  BEGIN
+    FETCH p_cur INTO v;
+    RETURN v;
+  END;
+BEGIN
+  cursor_open(v_cur);
+  dbms_output.put_line(read_cursor(v_cur));
+  CLOSE v_cur;
+END;
+/
+
+
+set serveroutput on
+DECLARE 
+  CURSOR curs1 IS SELECT deptno, ename FROM nikovits.emp WHERE deptno = 10;
+  rec curs1%ROWTYPE;
+BEGIN
+  OPEN curs1;
+  LOOP
+    FETCH curs1 INTO rec;
+    EXIT WHEN curs1%NOTFOUND;
+    dbms_output.put_line(to_char(rec.deptno)||' - '||rec.ename);
+  END LOOP;
+  CLOSE curs1;
+END;
+/
+
+10 - CLARK
+10 - KING
+10 - MILLER
+
+
+PL/SQL procedure successfully completed.
+
+
+-- Parts of a PL/SQL block: declaration, executable, exception handling
+set serveroutput on  -- required if we want output
+DECLARE                 
+  v NUMBER := 0;
+BEGIN
+  DBMS_OUTPUT.PUT_LINE('It''s ok ...');  -- notice the double quotes
+  v := 1/v;
+  DBMS_OUTPUT.PUT_LINE('It is not ...');
+EXCEPTION
+  WHEN ZERO_DIVIDE THEN
+    DBMS_OUTPUT.PUT_LINE('Division by zero');
+END;
+/        -- !!! Always end PL/SQL blocks with a '/' character !!!
+output
+----------------
+It's ok ...
+Division by zero
+
+
+/***************
+Lexical elements of the PL/SQL language: delimiters, identifiers, literals, comments
+
+examples for delimiters:
++   Addition operator
+:=  Assignment operator
+<<  Label delimiter (begin)
+>>  Label delimiter (end)
+!=  Relational operator (not equal)
+
+Identifiers can denote the following PL/SQL objects:
+Constants, Cursors,  Exceptions, Keywords, Labels,  Packages
+Reserved words, Subprograms, Variables, Types
+
+Predefined identifiers in STANDARD package, e.g. ZERO_DIVIDE exception
+
+Literals (numeric, character, string, logical, date)
+integer:       12
+real:          12.0
+char:          'a'
+string:      'abc', ''  (null string, actually NULL)
+logical:     TRUE, FALSE, NULL
+date:        DATE '2011-12-25' 
+
+comments: one line and multiline
+***************/
+
+-- one line comment
+/* multiline
+   comment
+*/
+
+
+-- we cannot put a space into delimiters ( := )
+BEGIN
+  count := count + 1;   -- correct
+  count : = count + 1;  -- incorrect
+END;
+/
+
+-- DATETIME and INTERVAL literals
+DECLARE
+  d1 DATE      := DATE '1998-12-25';
+  t1 TIMESTAMP := TIMESTAMP '1997-10-22 13:01:01';
+  t2 TIMESTAMP WITH TIME ZONE :=   TIMESTAMP '1997-01-31 09:26:56.66 +02:00';
+  
+  -- Three years and two months
+  -- For greater precision, use the day-to-second interval
+  i1 INTERVAL YEAR TO MONTH := INTERVAL '3-2' YEAR TO MONTH;
+ 
+  -- Five days, four hours, three minutes, two and 1/100 seconds
+   i2 INTERVAL DAY TO SECOND := INTERVAL '5 04:03:02.01' DAY TO SECOND;
+BEGIN
+  NULL;
+END;
+/
+
+-- variable declarations
+DECLARE
+  part_number       NUMBER(6);     -- SQL data type
+  part_name         VARCHAR2(20);  -- SQL data type
+  in_stock          BOOLEAN;       -- PL/SQL-only data type
+  part_price        NUMBER(6,2);   -- SQL data type
+  part_description  VARCHAR2(50);  -- SQL data type
+BEGIN
+  NULL;
+END;
+/
+
+-- Constant declarations
+DECLARE
+  credit_limit     CONSTANT REAL    := 5000.00;  -- SQL data type
+  max_days_in_year CONSTANT INTEGER := 366;      -- SQL data type
+  urban_legend     CONSTANT BOOLEAN := FALSE     -- PL/SQL-only data type;
+BEGIN
+  NULL;
+END;
+/
+
+-- Initialization
+DECLARE
+  hours_worked    INTEGER := 40;
+  employee_count  INTEGER := 0;
+  pi     CONSTANT REAL := 3.14159;
+  radius          REAL := 1;
+  area            REAL := (pi * radius**2);
+BEGIN
+  NULL;
+END;
+/
+
+-- Default initializations
+DECLARE
+  counter INTEGER;  -- initial value is NULL by default
+BEGIN
+  counter := counter + 1;  -- NULL + 1 is still NULL
+  IF counter IS NULL THEN
+    DBMS_OUTPUT.PUT_LINE('counter is NULL.');
+  END IF;
+END;
+/
+
+-- All variables will be NULL
+DECLARE
+  null_string  VARCHAR2(80) := TO_CHAR('');
+  address      VARCHAR2(80);
+  zip_code     VARCHAR2(80) := SUBSTR(address, 25, 0);
+  name         VARCHAR2(80);
+  valid        BOOLEAN      := (name != '');
+BEGIN
+  NULL;
+END;
+/
+
+-- %TYPE type inheritance from a column or from other variable
+-- in case of columnd it doesn't inherit constraint, only data type
+DECLARE
+  v_name  emp.ename%TYPE;
+BEGIN
+  DBMS_OUTPUT.PUT_LINE('name=' || v_name);
+END;
+/
+
+DECLARE
+  name     VARCHAR(25) NOT NULL := 'Smith';
+  surname  name%TYPE := 'Jones';               -- inherits NOT NULL constraint too
+BEGIN
+  DBMS_OUTPUT.PUT_LINE('name=' || name);
+  DBMS_OUTPUT.PUT_LINE('surname=' || surname);
+END;
+/
+
+-- %ROWTYPE record type inheritance (from table, view, cursor, record)
+CREATE TABLE employees_temp (
+  empid NUMBER(6) NOT NULL PRIMARY KEY,
+  deptid NUMBER(6) CONSTRAINT c_employees_temp_deptid CHECK (deptid BETWEEN 100 AND 200),
+  deptname VARCHAR2(30) DEFAULT 'Sales' );
+
+DECLARE
+  emprec  employees_temp%ROWTYPE;
+BEGIN
+  emprec.empid := NULL;         -- NOT Null constraint not inherited
+  emprec.deptid := 50;          -- Check constraint not inherited
+  DBMS_OUTPUT.PUT_LINE ('emprec.deptname: ' || emprec.deptname);  -- Initial value not inherited
+END;
+/
+
+-- Error if identical names within a PL/SQL unit
+DECLARE
+  id  BOOLEAN;
+  id  VARCHAR2(5);  -- duplicate identifier
+BEGIN
+  id := FALSE;
+END;
+/
+
+/* PL/SQL units are the following:
+- PL/SQL anonymous block
+- FUNCTION
+- LIBRARY
+- PACKAGE
+- PACKAGE BODY
+- PROCEDURE
+- TRIGGER
+- TYPE
+- TYPE BODY
+*/
+
+-- qualified names (within the procedure refers to local identifier)
+-- 'echo' -> name of a label and a procedure
+<<echo>>    -- name of a label
+DECLARE
+  x  NUMBER := 5;
+  
+  PROCEDURE echo AS   -- name of a procedure
+    x  NUMBER := 0;
+  BEGIN
+    DBMS_OUTPUT.PUT_LINE('x = ' || x);             -- 0
+    DBMS_OUTPUT.PUT_LINE('echo.x = ' || echo.x);   -- 0 (variable of the procedure)
+  END;
+ 
+BEGIN
+  echo;
+END;
+/
+
+-- initialization of logical variable
+DECLARE
+  done    BOOLEAN;               -- Initial value is NULL by default
+  counter NUMBER := 0;
+BEGIN
+  done := FALSE;                 -- Assign literal value
+  WHILE done != TRUE             -- Compare to literal value
+  LOOP
+    counter := counter + 1;
+    done := (counter > 500);     -- Assign value of BOOLEAN expression
+  END LOOP;
+  DBMS_OUTPUT.PUT_LINE(counter);  -- 501
+END;
+/
+
+-- SELECT data from a table into variable
+set serveroutput on
+DECLARE
+  bonus   NUMBER(7,2);
+BEGIN
+  SELECT sal * 0.10 INTO bonus
+  FROM emp                        -- you need table EMP !!!
+  WHERE empno = 7900;
+  DBMS_OUTPUT.PUT_LINE('bonus = ' || TO_CHAR(bonus));
+END;
+/
+
+
+-- Two NULLs are not equal. Neither != is TRUE for them.
+set serveroutput on
+DECLARE
+  a NUMBER := NULL;
+  b NUMBER := NULL;
+BEGIN
+  IF a = b THEN                         -- yields NULL, not TRUE
+    DBMS_OUTPUT.PUT_LINE('a = b');      -- not run
+  ELSIF a != b THEN                     -- yields NULL, not TRUE
+    DBMS_OUTPUT.PUT_LINE('a != b');     -- not run
+  ELSE
+    DBMS_OUTPUT.PUT_LINE('Can''t tell if two NULLs are equal');
+  END IF;
+END;
+/
+Result
+---------------------------------
+Can't tell if two NULLs are equal
+
+-- Concatenation operator ignores NULL.
+set serveroutput on
+BEGIN
+  DBMS_OUTPUT.PUT_LINE ('apple' || NULL || NULL || 'sauce');  -- applesauce
+END;
+/
+
+-- use brackets
+DECLARE
+  a INTEGER := 2**2*3**2;
+  b INTEGER := (2**2)*(3**2);
+BEGIN
+  DBMS_OUTPUT.PUT_LINE('a = ' || TO_CHAR(a));   -- 36
+  DBMS_OUTPUT.PUT_LINE('b = ' || TO_CHAR(b));   -- 36
+END;
+/
+
+-- lazy evaluation
+DECLARE
+  on_hand  INTEGER := 0;
+  on_order INTEGER := 100;
+BEGIN 
+  IF (on_hand = 0) OR ((on_order / on_hand) < 5) THEN   -- Will not cause ZERO_DIVIDE exception
+    DBMS_OUTPUT.PUT_LINE('On hand quantity is zero.');
+  END IF;
+END;
+/
+
+-- simple CASE expression (this is not a statement!)
+set serveroutput on
+DECLARE
+  grade CHAR(1) := 'B';
+  appraisal VARCHAR2(20);
+BEGIN
+  appraisal :=
+    CASE grade
+      WHEN 'A' THEN 'Excellent'
+      WHEN 'B' THEN 'Very Good'
+      WHEN 'C' THEN 'Good'
+      WHEN 'D' THEN 'Fair'
+      WHEN 'F' THEN 'Poor'
+      ELSE 'No such grade'
+    END;
+    DBMS_OUTPUT.PUT_LINE ('Grade ' || grade || ' is ' || appraisal);  -- Very Good
+END;
+/
+Result
+--------------------
+Grade B is Very Good
+
+-- grade = NULL will not be TRUE !!!
+-- use the other form, see in next example
+set serveroutput on
+DECLARE
+  grade CHAR(1); -- NULL by default
+  appraisal VARCHAR2(20);
+BEGIN
+  appraisal :=
+  CASE grade
+    WHEN NULL THEN 'No grade assigned'
+    WHEN 'A' THEN 'Excellent'
+    WHEN 'B' THEN 'Very Good'
+    WHEN 'C' THEN 'Good'
+    WHEN 'D' THEN 'Fair'
+    WHEN 'F' THEN 'Poor'
+    ELSE 'No such grade'
+  END;
+  DBMS_OUTPUT.PUT_LINE ('Grade ' || grade || ' is ' || appraisal);  -- No such grade
+END;
+/
+Result
+-----------------------
+Grade  is No such grade
+
+-- logical expressions after WHEN
+-- First TRUE condition will be returned
+set serveroutput on
+DECLARE
+  grade CHAR(1); -- NULL by default
+  appraisal VARCHAR2(20);
+BEGIN
+  appraisal :=
+    CASE
+      WHEN grade IS NULL THEN 'No grade assigned'
+      WHEN grade = 'A' THEN 'Excellent'
+      WHEN grade = 'B' THEN 'Very Good'
+      WHEN grade = 'C' THEN 'Good'
+      WHEN grade = 'D' THEN 'Fair'
+      WHEN grade = 'F' THEN 'Poor'
+      ELSE 'No such grade'
+    END;
+    DBMS_OUTPUT.PUT_LINE ('Grade ' || grade || ' is ' || appraisal);  -- No grade assigned
+END;
+/
+Result
+---------------------------
+Grade  is No grade assigned
+
+-- index of FOR loop is local within the loop
+set serveroutput on
+<<main>>  -- Label block.
+DECLARE
+  i NUMBER := 5;
+BEGIN
+  FOR i IN 1..3 LOOP
+    DBMS_OUTPUT.PUT_LINE ('local: ' || TO_CHAR(i) || ', global: ' || TO_CHAR(main.i));
+  END LOOP;
+END main;
+/
+Result
+-------------------
+local: 1, global: 5
+local: 2, global: 5
+local: 3, global: 5
+
+-- Loop indexes in nested loops
+set serveroutput on
+BEGIN
+  <<outer_loop>>
+  FOR i IN 1..3 LOOP
+    <<inner_loop>>
+    FOR i IN 1..3 LOOP
+      IF outer_loop.i = 2 THEN
+        DBMS_OUTPUT.PUT_LINE('outer: ' || TO_CHAR(outer_loop.i) || ' inner: ' || TO_CHAR(inner_loop.i));
+      END IF;
+    END LOOP inner_loop;
+  END LOOP outer_loop;
+END;
+/
+-----------------
+outer: 2 inner: 1
+outer: 2 inner: 2
+outer: 2 inner: 3
