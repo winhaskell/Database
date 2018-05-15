@@ -165,3 +165,29 @@ Function CAT_AVG2 compiled
 CAT_AVG2(2)
 -----------
      1300.5
+
+
+
+
+SELECT ename, hiredate, sal, TO_CHAR((hiredate),'fmD') "Day"
+FROM nikovits.emp
+ORDER BY "Day";
+
+ENAME                          HIREDATE         SAL D
+------------------------------ --------- ---------- -
+MARTIN                         28-SEP-81       1250 1
+CLARK                          09-JUN-81       2450 2
+TURNER                         08-SEP-81       1500 2
+KING                           17-NOV-81       5000 2
+SMITH                          17-DEC-80        800 3
+ADAMS                          12-JAN-83       1100 3
+JAMES                          03-DEC-81        950 4
+JONES                          02-APR-81       2975 4
+FORD                           03-DEC-81       3000 4
+SCOTT                          09-DEC-82       3000 4
+ALLEN                          20-FEB-81       1600 5
+BLAKE                          01-MAY-81       4250 5
+MILLER                         23-JAN-82       1300 6
+WARD                           22-FEB-81       1250 7
+
+14 rows selected. 
