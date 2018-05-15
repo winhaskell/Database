@@ -191,3 +191,14 @@ MILLER                         23-JAN-82       1300 6
 WARD                           22-FEB-81       1250 7
 
 14 rows selected. 
+
+
+select deptno,avg(sal) as avg_sal_dpt from nikovits.emp group by deptno; 
+
+    DEPTNO AVG_SAL_DPT
+---------- -----------
+        30        1800
+        20        2175
+        10  2916.66667
+        
+        
