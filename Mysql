@@ -27,3 +27,11 @@ select now(), day(last_day(now())) as days;
  
  select date_sub('2012-05-25',interval 1 day) 
  2012-05-24
+
+
+select time_to_sec('01:00:05');
+3605
+
+select sec_to_time(6666); 
+01:51:06
+
