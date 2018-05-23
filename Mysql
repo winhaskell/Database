@@ -1,0 +1,29 @@
+select date_format('2008-08-08 22:23:01', '%Y%m%d%H%i%s');
+20080808222301
+
+
+select now(), day(last_day(now())) as days;
+|---------------------|---------|
+|now()                |days     |
+|---------------------|---------|
+|2018-05-23 19:25:59  | 31      |
+|---------------------|---------|
+
+ SELECT curdate();
+ 2018-05-23
+ 
+ select now();
+ 2018-05-23 19:30:51
+ 
+ 
+ select date_sub(curdate(),interval 1 day);
+ 2018-05-22
+ 
+ select date_sub(curdate(),interval 2 day);
+ 2018-05-21
+ 
+ select date_sub('2012-05-25',interval -1 day) 
+ 2012-05-26
+ 
+ select date_sub('2012-05-25',interval 1 day) 
+ 2012-05-24
