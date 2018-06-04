@@ -1,0 +1,82 @@
+Normalization is a process of organizing the data in database to avoid data redundancy, 
+insertion anomaly, update anomaly & deletion anomaly. 
+Let’s discuss about anomalies first then we will discuss normal forms with examples.
+
+https://beginnersbook.com/2015/05/normalization-in-dbms/
+
+Normalization
+Here are the most commonly used normal forms:
+
+First normal form(1NF)
+Second normal form(2NF)
+Third normal form(3NF)
+Boyce & Codd normal form (BCNF)
+
+First normal form (1NF)
+As per the rule of first normal form, an attribute (column) of a table cannot hold multiple values. 
+It should hold only atomic values.
+
+Example: Suppose a company wants to store the names and contact details of its employees. It creates a table that looks like this:
+
+emp_id	emp_name	emp_address	emp_mobile
+101	Herschel	New Delhi	8912312390
+102	Jon	Kanpur	8812121212
+9900012222
+
+103	Ron	Chennai	7778881212
+104	Lester	Bangalore	9990000123
+8123450987
+
+Two employees (Jon & Lester) are having two mobile numbers so the company stored them in the same field
+as you can see in the table above.
+
+This table is not in 1NF as the rule says “each attribute of a table must have atomic (single) values”,
+the emp_mobile values for employees Jon & Lester violates that rule.
+
+To make the table complies with 1NF we should have the data like this:
+
+emp_id	emp_name	emp_address	emp_mobile
+101	Herschel	New Delhi	8912312390
+102	Jon	Kanpur	8812121212
+102	Jon	Kanpur	9900012222
+103	Ron	Chennai	7778881212
+104	Lester	Bangalore	9990000123
+104	Lester	Bangalore	8123450987
+
+
+Second normal form (2NF)
+A table is said to be in 2NF if both the following conditions hold:
+
+Table is in 1NF (First normal form)
+No non-prime attribute is dependent on the proper subset of any candidate key of table.
+An attribute that is not part of any candidate key is known as non-prime attribute.
+
+Example: Suppose a school wants to store the data of teachers and the subjects they teach. They create a table that looks like this: Since a teacher can teach more than one subjects, the table can have multiple rows for a same teacher.
+
+teacher_id	subject	teacher_age
+111	Maths	38
+111	Physics	38
+222	Biology	38
+333	Physics	40
+333	Chemistry	40
+Candidate Keys: {teacher_id, subject}
+Non prime attribute: teacher_age
+
+The table is in 1 NF because each attribute has atomic values. However, it is not in 2NF because non prime attribute teacher_age is dependent on teacher_id alone which is a proper subset of candidate key. This violates the rule for 2NF as the rule says “no non-prime attribute is dependent on the proper subset of any candidate key of the table”.
+
+To make the table complies with 2NF we can break it in two tables like this:
+teacher_details table:
+
+teacher_id	teacher_age
+111	38
+222	38
+333	40
+teacher_subject table:
+
+teacher_id	subject
+111	Maths
+111	Physics
+222	Biology
+333	Physics
+333	Chemistry
+Now the tables comply with Second normal form (2NF).
