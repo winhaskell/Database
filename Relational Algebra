@@ -1,6 +1,7 @@
 Relational Algebra
+
 http://www.databasteknik.se/webbkursen/relalg-lecture/index.html
  
- 
- 
- 
+关系代数是一阶逻辑的分支，是闭合于运算下的关系的集合。运算作用于一个或多个关系上来生成一个关系。关系代数是计算机科学的一部分。
+
+在纯数学中的关系代数是有关于数理逻辑和集合论的代数结构。
