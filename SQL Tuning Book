@@ -1,0 +1,15 @@
+SQL Tuning: Generating Optimal Execution Plans
+
+A poorly performing database application not only costs users time, but also has an impact on other applications running on
+the same computer or the same network. SQL Tuning provides an essential next step for SQL developers and database administrators 
+who want to extend their SQL tuning expertise and get the most from their database applications.There are two basic issues to focus 
+on when tuning SQL: how to find and interpret the execution plan of an SQL statement and how to change SQL to get a specific 
+alternate execution plan. SQL Tuning provides answers to these questions and addresses a third issue that's even more important: 
+how to find the optimal execution plan for the query to use.Author Dan Tow outlines a timesaving method he's developed for finding 
+the optimum execution plan--rapidly and systematically--regardless of the complexity of the SQL or the database platform being used. 
+You'll learn how to understand and control SQL execution plans and how to diagram SQL queries to deduce the best execution plan for 
+a query. Key chapters in the book include exercises to reinforce the concepts you've learned. SQL Tuning concludes by addressing 
+special concerns and unique solutions to "unsolvable problems."Whether you are a programmer who develops SQL-based applications or
+a database administrator or other who troubleshoots poorly tuned applications, SQL Tuning will arm you with a reliable and deterministic 
+method for tuning your SQL queries to gain optimal performance.
+
