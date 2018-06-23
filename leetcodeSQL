@@ -68,7 +68,9 @@ Expected answer
 
 Rank Scores
 
-Write a SQL query to rank scores. If there is a tie between two scores, both should have the same ranking. Note that after a tie, the next ranking number should be the next consecutive integer value. In other words, there should be no "holes" between ranks.
+Write a SQL query to rank scores. If there is a tie between two scores, both should have the same ranking. 
+Note that after a tie, the next ranking number should be the next consecutive integer value. In other words,
+there should be no "holes" between ranks.
 
 +----+-------+
 | Id | Score |
@@ -92,5 +94,12 @@ For example, given the above Scores table, your query should generate the follow
 | 3.65  | 3    |
 | 3.50  | 4    |
 +-------+------+
+
+# Write your MySQL query statement below
+SELECT s.Score,count(r.Score) AS Rank FROM 
+Scores s, (SELECT DISTINCT Score FROM Scores ) r 
+WHERE s.Score <= r.Score 
+GROUP BY s.id 
+ORDER BY s.Score DESC;
 
 
