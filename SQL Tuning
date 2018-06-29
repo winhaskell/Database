@@ -3,6 +3,13 @@ SQL Tuning or SQL Optimization
 http://beginner-sql-tutorial.com/sql-query-tuning.htm
 http://www.vertabelo.com/blog/technical-articles/5-tips-to-optimize-your-sql-queries
 
+[转]
+https://blog.csdn.net/leshami/article/details/9054431 
+http://czmmiao.iteye.com/blog/2022443
+https://blog.csdn.net/bruce_suxin/article/details/80067920
+http://www.lunar2013.com/2016/01/固定执行计划-使用sql-tuning-advisor.html
+
+
 Sql Statements are used to retrieve data from the database. We can get same results by writing different sql queries. 
 But use of the best query is important when performance is considered. So you need to sql query tuning based on the requirement.
 Here is the list of queries which we use reqularly and how these sql queries can be optimized for better performance.
