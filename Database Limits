@@ -1,0 +1,17 @@
+Database Limits
+https://docs.oracle.com/cd/B28359_01/server.111/b28320/limits.htm#REFRN004
+
+Database limits are divided into four categories:
+
+Datatype Limits
+Physical Database Limits
+Logical Database Limits
+Process and Runtime Limits
+
+
+Physical Database Limits
+https://docs.oracle.com/cd/B12037_01/server.101/b10755/limits002.htm
+
+
+Limits In SQLite
+https://www.sqlite.org/limits.html
