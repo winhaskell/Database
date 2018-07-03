@@ -566,3 +566,10 @@ END;
 outer: 2 inner: 1
 outer: 2 inner: 2
 outer: 2 inner: 3
+
+
+https://www.essentialsql.com/database-cursor/
+
+SQL Server Cursor Example
+https://www.mssqltips.com/sqlservertip/1599/sql-server-cursor-example/
+
