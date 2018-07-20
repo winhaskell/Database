@@ -4,3 +4,15 @@ https://en.wikipedia.org/wiki/IBM_Db2
 https://www.ibm.com/analytics/us/en/db2/
 https://www.ibm.com/developerworks/community/blogs/ff78a96f-bf23-457e-befa-77f266844cbb/entry/db2_tips_n_tricks_part_50_how_to_monitor_index_reorganization?lang=en
 http://mainframewizard.com/content/db2-tips
+
+
+https://www.ibm.com/support/knowledgecenter/en/SSEPEK_11.0.0/intro/src/tpc/db2z_availabilityandscalabilitylargebusiness.html
+https://console.bluemix.net/catalog/services/db2
+https://console.bluemix.net
+https://triton.co.uk/SAPCoreBanking/
+
+
+
+
+
+
