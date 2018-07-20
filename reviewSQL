@@ -44,3 +44,10 @@ IN
  GROUP BY job HAVING COUNT(DISTINCT deptno) = 1);
  
  
+ 
+ 
+ 
+ https://www.w3schools.com/sql/sql_quickref.asp
+ 
+ https://docs.oracle.com/database/121/LNPLS/sqlcode_function.htm#LNPLS01349
+ 
