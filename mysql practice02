@@ -1,0 +1,110 @@
+ show grants;
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Grants for root@localhost                                                                                                                                                                                                                                                                                                                                                                                |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, RELOAD, SHUTDOWN, PROCESS, FILE, REFERENCES, 
+INDEX, ALTER, SHOW DATABASES, SUPER, CREATE TEMPORARY TABLES, LOCK TABLES, EXECUTE, REPLICATION SLAVE, 
+REPLICATION CLIENT, CREATE VIEW, SHOW VIEW, CREATE ROUTINE, ALTER ROUTINE, CREATE USER, EVENT, TRIGGER,
+CREATE TABLESPACE, CREATE ROLE, DROP ROLE ON *.* TO `root`@`localhost` WITH GRANT OPTION |
+
+| GRANT BACKUP_ADMIN,BINLOG_ADMIN,CONNECTION_ADMIN,ENCRYPTION_KEY_ADMIN,GROUP_REPLICATION_ADMIN,PERSIST_RO_VARIABLES_ADMIN,
+REPLICATION_SLAVE_ADMIN,RESOURCE_GROUP_ADMIN,RESOURCE_GROUP_USER,ROLE_ADMIN,SET_USER_ID,SYSTEM_VARIABLES_ADMIN,
+XA_RECOVER_ADMIN ON *.* TO `root`@`localhost` WITH GRANT OPTION        |
+
+| GRANT PROXY ON ''@'' TO 'root'@'localhost' WITH GRANT OPTION                                                                                                                                                                                                                                                                                                                                             |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+3 rows in set (0.00 sec)
+
+mysql>
+
+
+关于mysql的权限简单的理解就是mysql允许你做你全力以内的事情，不可以越界。
+ 比如只允许你执行select操作，那么你就不能执行update操作。
+ 只允许你从某台机器上连接mysql，那么你就不能从除那台机器以外的其他机器连接mysql。
+
+那么Mysql的权限是如何实现的呢？
+这就要说到mysql的两阶段验证，下面详细介绍：
+第一阶段：服务器首先会检查你是否允许连接。因为创建用户的时候会加上主机限制，可以限制成本地、某个IP、某个IP段、以及任何地方等，
+只允许你从配置的指定地方登陆。
+第二阶段：如果你能连接，Mysql会检查你发出的每个请求，看你是否有足够的权限实施它。比如你要更新某个表、或者查询某个表，
+Mysql会查看你对哪个表或者某个列是否有权限。再比如，你要运行某个存储过程，Mysql会检查你对存储过程是否有执行权限等。
+
+MYSQL到底都有哪些权限呢？ 
+https://docs.oracle.com/cd/E17952_01/mysql-5.0-en/grant.html
+
+This copy of the manual is more than 90 days old. 
+We encourage you to download a new version from dev.mysql.com/doc.
+
+ 
+ 
+ GRANT
+    priv_type [(column_list)]
+      [, priv_type [(column_list)]] ...
+    ON [object_type] priv_level
+    TO user_specification [, user_specification] ...
+    [REQUIRE {NONE | tsl_option [[AND] tsl_option] ...}]
+    [WITH {GRANT OPTION | resource_option} ...]
+
+object_type: {
+    TABLE
+  | FUNCTION
+  | PROCEDURE
+}
+
+priv_level: {
+    *
+  | *.*
+  | db_name.*
+  | db_name.tbl_name
+  | tbl_name
+  | db_name.routine_name
+}
+
+user_specification:
+    user [ auth_option ]
+
+auth_option: {
+    IDENTIFIED BY 'auth_string'
+  | IDENTIFIED BY PASSWORD 'hash_string'
+}
+
+tsl_option: {
+    SSL
+  | X509
+  | CIPHER 'cipher'
+  | ISSUER 'issuer'
+  | SUBJECT 'subject'
+}
+
+resource_option: {
+  | MAX_QUERIES_PER_HOUR count
+  | MAX_UPDATES_PER_HOUR count
+  | MAX_CONNECTIONS_PER_HOUR count
+  | MAX_USER_CONNECTIONS count
+}
+
+
+Normally, a database administrator first uses CREATE USER to create an account, 
+then GRANT to define its privileges and characteristics. For example:
+
+CREATE USER 'jeffrey'@'localhost' IDENTIFIED BY 'mypass';
+GRANT ALL ON db1.* TO 'jeffrey'@'localhost';
+GRANT SELECT ON db2.invoice TO 'jeffrey'@'localhost';
+GRANT USAGE ON *.* TO 'jeffrey'@'localhost' WITH MAX_QUERIES_PER_HOUR 90;
+
+
+Database Privileges
+Database privileges apply to all objects in a given database. To assign database-level privileges, use ON db_name.* syntax:
+
+GRANT ALL ON mydb.* TO 'someuser'@'somehost';
+GRANT SELECT, INSERT ON mydb.* TO 'someuser'@'somehost';
+If you use ON * syntax (rather than ON *.*) and you have selected a default database, privileges are assigned 
+at the database level for the default database. An error occurs if there is no default database.
+
+The CREATE, DROP, GRANT OPTION, and LOCK TABLES privileges can be specified at the database level. 
+Table or routine privileges also can be specified at the database level, in which case they apply to all tables
+or routines in the database.
+
+MySQL stores database privileges in the mysql.db table.
+
+
