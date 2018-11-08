@@ -274,3 +274,16 @@ mysql>  SELECT * FROM southwind.products WHERE productCode IS NULL;
 Empty set (0.00 sec)
 
 mysql>
+mysql> SELECT * FROM southwind.products WHERE name LIKE 'Pen %' ORDER BY price DESC;
++-----------+-------------+------------+----------+-------+
+| productID | productCode | name       | quantity | price |
++-----------+-------------+------------+----------+-------+
+|      1002 | PEN         | Pen Blue   |     8000 |  8.25 |
+|      1004 | PEN         | Pen Red    |     5000 |  7.26 |
+|      1003 | PEN         | Pen Yellow |     7000 |  6.66 |
+|      1005 | PEN         | Pen Black  |     2000 |  6.25 |
+|      1001 | PEN         | Pen Red    |     5000 |  1.23 |
++-----------+-------------+------------+----------+-------+
+5 rows in set (0.00 sec)
+
+mysql>
