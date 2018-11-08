@@ -428,3 +428,46 @@ mysql> select * from southwind.products;
 7 rows in set (0.00 sec)
 
 mysql>
+mysql> USE southwind;
+Database changed
+ 
+mysql> DROP TABLE IF EXISTS suppliers;
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+mysql> CREATE TABLE suppliers (
+    ->          supplierID  INT UNSIGNED  NOT NULL AUTO_INCREMENT,
+    ->          name        VARCHAR(30)   NOT NULL DEFAULT '',
+    ->          phone       CHAR(8)       NOT NULL DEFAULT '',
+    ->          PRIMARY KEY (supplierID)
+    ->        );
+Query OK, 0 rows affected (0.07 sec)
+
+mysql>  DESCRIBE suppliers;
++------------+------------------+------+-----+---------+----------------+
+| Field      | Type             | Null | Key | Default | Extra          |
++------------+------------------+------+-----+---------+----------------+
+| supplierID | int(10) unsigned | NO   | PRI | NULL    | auto_increment |
+| name       | varchar(30)      | NO   |     |         |                |
+| phone      | char(8)          | NO   |     |         |                |
++------------+------------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql>
+mysql> INSERT INTO suppliers VALUE
+    ->           (501, 'ABC Traders', '88881111'),
+    ->           (502, 'XYZ Company', '88882222'),
+    ->           (503, 'QQ Corp', '88883333');
+Query OK, 3 rows affected (0.11 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM suppliers;
++------------+-------------+----------+
+| supplierID | name        | phone    |
++------------+-------------+----------+
+|        501 | ABC Traders | 88881111 |
+|        502 | XYZ Company | 88882222 |
+|        503 | QQ Corp     | 88883333 |
++------------+-------------+----------+
+3 rows in set (0.00 sec)
+
+mysql>
