@@ -270,3 +270,7 @@ mysql> SELECT * FROM southwind.products WHERE (price BETWEEN 1.0 AND 9.0) AND (q
 5 rows in set (0.00 sec)
 
 
+mysql>  SELECT * FROM southwind.products WHERE productCode IS NULL;
+Empty set (0.00 sec)
+
+mysql>
