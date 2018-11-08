@@ -213,3 +213,60 @@ mysql> SELECT name, price FROM southwind.products WHERE price > 6.0;
 4 rows in set (0.00 sec)
 
 mysql>
+SELECT name, price FROM southwind.products WHERE productCode = 'PEN';
+
+mysql>  SELECT name, price FROM products WHERE productCode = 'PEN';
+ERROR 1046 (3D000): No database selected
+mysql> SELECT name, price FROM southwind.products WHERE productCode = 'PEN';
++------------+-------+
+| name       | price |
++------------+-------+
+| Pen Red    |  1.23 |
+| Pen Blue   |  8.25 |
+| Pen Yellow |  6.66 |
+| Pen Red    |  7.26 |
+| Pen Black  |  6.25 |
++------------+-------+
+5 rows in set (0.00 sec)
+
+mysql>
+mysql> SELECT * FROM southwind.products WHERE quantity >= 5000 AND name LIKE 'Pen %';
++-----------+-------------+------------+----------+-------+
+| productID | productCode | name       | quantity | price |
++-----------+-------------+------------+----------+-------+
+|      1001 | PEN         | Pen Red    |     5000 |  1.23 |
+|      1002 | PEN         | Pen Blue   |     8000 |  8.25 |
+|      1003 | PEN         | Pen Yellow |     7000 |  6.66 |
+|      1004 | PEN         | Pen Red    |     5000 |  7.26 |
++-----------+-------------+------------+----------+-------+
+4 rows in set (0.00 sec)
+
+mysql>
+mysql> SELECT * FROM southwind.products WHERE quantity >= 5000 AND name LIKE 'Pen %' AND price >6.0 AND price < 7.0;
+
+mysql> SELECT * FROM southwind.products WHERE quantity >= 5000 AND name LIKE 'Pen %' AND price >6.0 AND price < 7.0;
++-----------+-------------+------------+----------+-------+
+| productID | productCode | name       | quantity | price |
++-----------+-------------+------------+----------+-------+
+|      1003 | PEN         | Pen Yellow |     7000 |  6.66 |
++-----------+-------------+------------+----------+-------+
+1 row in set (0.00 sec)
+
+mysql>
+
+SELECT * FROM southwind.products
+       WHERE (price BETWEEN 1.0 AND 9.0) AND (quantity BETWEEN 1000 AND 8000);
+
+mysql> SELECT * FROM southwind.products WHERE (price BETWEEN 1.0 AND 9.0) AND (quantity BETWEEN 1000 AND 8000);
++-----------+-------------+------------+----------+-------+
+| productID | productCode | name       | quantity | price |
++-----------+-------------+------------+----------+-------+
+|      1001 | PEN         | Pen Red    |     5000 |  1.23 |
+|      1002 | PEN         | Pen Blue   |     8000 |  8.25 |
+|      1003 | PEN         | Pen Yellow |     7000 |  6.66 |
+|      1004 | PEN         | Pen Red    |     5000 |  7.26 |
+|      1005 | PEN         | Pen Black  |     2000 |  6.25 |
++-----------+-------------+------------+----------+-------+
+5 rows in set (0.00 sec)
+
+
