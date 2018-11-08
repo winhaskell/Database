@@ -162,3 +162,54 @@ mysql> select * from southwind.products;
 7 rows in set (0.00 sec)
 
 mysql>
+mysql> SELECT 1+1;
++-----+
+| 1+1 |
++-----+
+|   2 |
++-----+
+1 row in set (0.00 sec)
+
+mysql> SELECT NOW();
++---------------------+
+| NOW()               |
++---------------------+
+| 2018-11-08 14:12:40 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql>
+mysql> SELECT NOW();
++---------------------+
+| NOW()               |
++---------------------+
+| 2018-11-08 14:14:33 |
++---------------------+
+1 row in set (0.00 sec)
+
+
+mysql> SELECT name, price FROM products WHERE price < 1.0;
+ERROR 1046 (3D000): No database selected
+
+mysql> SELECT name, price FROM southwind.products WHERE price < 1.0;
++-----------+-------+
+| name      | price |
++-----------+-------+
+| Pencil 2B |  0.48 |
+| Pencil 2H |  0.49 |
++-----------+-------+
+2 rows in set (0.00 sec)
+
+
+mysql> SELECT name, price FROM southwind.products WHERE price > 6.0;
++------------+-------+
+| name       | price |
++------------+-------+
+| Pen Blue   |  8.25 |
+| Pen Yellow |  6.66 |
+| Pen Red    |  7.26 |
+| Pen Black  |  6.25 |
++------------+-------+
+4 rows in set (0.00 sec)
+
+mysql>
