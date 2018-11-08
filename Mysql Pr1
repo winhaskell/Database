@@ -409,4 +409,22 @@ WITH ROLLUP;          -- Apply aggregate functions to all groups;
 3 rows in set (0.00 sec)
 
 mysql>
+mysql>  UPDATE southwind.products SET price = price * 1.1;
+Query OK, 7 rows affected, 7 warnings (0.05 sec)
+Rows matched: 7  Changed: 7  Warnings: 7
 
+mysql> select * from southwind.products;
++-----------+-------------+------------+----------+-------+
+| productID | productCode | name       | quantity | price |
++-----------+-------------+------------+----------+-------+
+|      1001 | PEN         | Pen Red    |     5000 |  1.35 |
+|      1002 | PEN         | Pen Blue   |     8000 |  9.08 |
+|      1003 | PEN         | Pen Yellow |     7000 |  7.33 |
+|      1004 | PEN         | Pen Red    |     5000 |  7.99 |
+|      1005 | PEN         | Pen Black  |     2000 |  6.88 |
+|      1006 | PEC         | Pencil 2B  |    10000 |  0.53 |
+|      1007 | PEC         | Pencil 2H  |     8000 |  0.54 |
++-----------+-------------+------------+----------+-------+
+7 rows in set (0.00 sec)
+
+mysql>
