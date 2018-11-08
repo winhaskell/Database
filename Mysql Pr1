@@ -44,3 +44,57 @@ mysql> select * from southwind.products;
 Empty set (0.01 sec)
 
 mysql>
+mysql> DESCRIBE products;
+ERROR 1046 (3D000): No database selected
+
+mysql> describe southwind.products;
++-------------+------------------+------+-----+----------+----------------+
+| Field       | Type             | Null | Key | Default  | Extra          |
++-------------+------------------+------+-----+----------+----------------+
+| productID   | int(10) unsigned | NO   | PRI | NULL     | auto_increment |
+| productCode | char(3)          | NO   |     |          |                |
+| name        | varchar(30)      | NO   |     |          |                |
+| quantity    | int(10) unsigned | NO   |     | 0        |                |
+| price       | decimal(7,2)     | NO   |     | 99999.99 |                |
++-------------+------------------+------+-----+----------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> INSERT INTO products VALUES (1001, 'PEN', 'Pen Red', 80000, 2.22);
+09:49:43	INSERT INTO products VALUES (1001, 'PEN', 'Pen Red', 80000, 2.22)	1 row(s) affected	0.094 sec
+
+
+SELECT * FROM products;
+
+1001	PEN	Pen Red	80000	2.22
+1002	PEN	Pen Blue	8000	1.25
+1003	PEN	Pen Black	2000	1.25
+1004	PEC	Pencil 2B	10000	0.48
+1005	PEC	Pencil 2H	8000	0.49
+				
+
+ #	Time	    Action	Message	Duration / Fetch
+ 1	09:43:47	CREATE TABLE IF NOT EXISTS products (
+          productID    INT UNSIGNED  NOT NULL AUTO_INCREMENT,
+          productCode  CHAR(3)       NOT NULL DEFAULT '',
+          name         VARCHAR(30)   NOT NULL DEFAULT '',
+          quantity     INT UNSIGNED  NOT NULL DEFAULT 0,
+          price        DECIMAL(7,2)  NOT NULL DEFAULT 99999.99,
+          PRIMARY KEY  (productID)
+        )	0 row(s) affected	0.125 sec
+        
+ 2	09:49:43	INSERT INTO products VALUES (1001, 'PEN', 'Pen Red', 80000, 2.22)	1 row(s) affected	0.094 sec
+ 
+ 3	09:50:48	INSERT INTO products VALUES
+          (NULL, 'PEN', 'Pen Blue',  8000, 1.25),
+          (NULL, 'PEN', 'Pen Black', 2000, 1.25)	2 row(s) affected
+ Records: 2  Duplicates: 0  Warnings: 0	0.031 sec
+ 
+ 4	09:51:01	INSERT INTO products (productCode, name, quantity, price) VALUES
+          ('PEC', 'Pencil 2B', 10000, 0.48),
+          ('PEC', 'Pencil 2H', 8000, 0.49)	2 row(s) affected
+ Records: 2  Duplicates: 0  Warnings: 0	0.063 sec
+ 
+ 5	09:51:27	SELECT * FROM products
+ LIMIT 0, 1000	5 row(s) returned	0.000 sec / 0.000 sec
+
+	 
