@@ -300,3 +300,15 @@ mysql> SELECT * FROM southwind.products WHERE name LIKE 'Pen %' ORDER BY price D
 5 rows in set (0.00 sec)
 
 mysql>
+mysql>  SELECT * FROM southwind.products ORDER BY price LIMIT 2
+    -> ;
++-----------+-------------+-----------+----------+-------+
+| productID | productCode | name      | quantity | price |
++-----------+-------------+-----------+----------+-------+
+|      1006 | PEC         | Pencil 2B |    10000 |  0.48 |
+|      1007 | PEC         | Pencil 2H |     8000 |  0.49 |
++-----------+-------------+-----------+----------+-------+
+2 rows in set (0.00 sec)
+
+mysql>
+
