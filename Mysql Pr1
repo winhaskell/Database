@@ -97,4 +97,68 @@ SELECT * FROM products;
  5	09:51:27	SELECT * FROM products
  LIMIT 0, 1000	5 row(s) returned	0.000 sec / 0.000 sec
 
+
+INSERT INTO southwind.products VALUES (1001, 'PEN', 'Pen Red', 5000, 1.23);
+mysql> select * from southwind.products;
++-----------+-------------+---------+----------+-------+
+| productID | productCode | name    | quantity | price |
++-----------+-------------+---------+----------+-------+
+|      1001 | PEN         | Pen Red |     5000 |  1.23 |
++-----------+-------------+---------+----------+-------+
+1 row in set (0.00 sec)
+
+mysql>
+ 
+
+ INSERT INTO southwind.products VALUES
+         (NULL, 'PEN', 'Pen Blue',  8000, 8.25),
+         (1004, 'PEN', 'Pen Red', 5000, 7.26),
+         (NULL, 'PEN', 'Pen Black', 2000, 6.25);
 	 
+mysql> select * from southwind.products;
++-----------+-------------+-----------+----------+-------+
+| productID | productCode | name      | quantity | price |
++-----------+-------------+-----------+----------+-------+
+|      1001 | PEN         | Pen Red   |     5000 |  1.23 |
+|      1002 | PEN         | Pen Blue  |     8000 |  8.25 |
+|      1004 | PEN         | Pen Red   |     5000 |  7.26 |
+|      1005 | PEN         | Pen Black |     2000 |  6.25 |
++-----------+-------------+-----------+----------+-------+
+4 rows in set (0.00 sec)
+
+mysql>
+     INSERT INTO southwind.products (productCode, name, quantity, price) VALUES
+         ('PEC', 'Pencil 2B', 10000, 0.48),
+         ('PEC', 'Pencil 2H', 8000, 0.49);
+mysql> select * from southwind.products;
++-----------+-------------+-----------+----------+-------+
+| productID | productCode | name      | quantity | price |
++-----------+-------------+-----------+----------+-------+
+|      1001 | PEN         | Pen Red   |     5000 |  1.23 |
+|      1002 | PEN         | Pen Blue  |     8000 |  8.25 |
+|      1004 | PEN         | Pen Red   |     5000 |  7.26 |
+|      1005 | PEN         | Pen Black |     2000 |  6.25 |
+|      1006 | PEC         | Pencil 2B |    10000 |  0.48 |
+|      1007 | PEC         | Pencil 2H |     8000 |  0.49 |
++-----------+-------------+-----------+----------+-------+
+6 rows in set (0.00 sec)
+
+mysql>
+INSERT INTO southwind.products VALUES
+         (1003, 'PEN', 'Pen Yellow', 7000, 6.66);
+	 
+mysql> select * from southwind.products;
++-----------+-------------+------------+----------+-------+
+| productID | productCode | name       | quantity | price |
++-----------+-------------+------------+----------+-------+
+|      1001 | PEN         | Pen Red    |     5000 |  1.23 |
+|      1002 | PEN         | Pen Blue   |     8000 |  8.25 |
+|      1003 | PEN         | Pen Yellow |     7000 |  6.66 |
+|      1004 | PEN         | Pen Red    |     5000 |  7.26 |
+|      1005 | PEN         | Pen Black  |     2000 |  6.25 |
+|      1006 | PEC         | Pencil 2B  |    10000 |  0.48 |
+|      1007 | PEC         | Pencil 2H  |     8000 |  0.49 |
++-----------+-------------+------------+----------+-------+
+7 rows in set (0.00 sec)
+
+mysql>
