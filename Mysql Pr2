@@ -303,4 +303,5 @@ mysql> SELECT t1.id, t1.desc
 +----+------------+
 1 row in set (0.00 sec)
 
-mysql>
+Thanks: 
+https://www3.ntu.edu.sg/home/ehchua/programming/sql/MySQL_Beginner.html
