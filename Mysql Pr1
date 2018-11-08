@@ -1,3 +1,35 @@
+-- Create the database "southwind"
+mysql> CREATE DATABASE southwind;
+Query OK, 1 row affected (0.01 sec)
+ 
+-- Show all the databases in the server
+--   to confirm that "southwind" database has been created.
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| southwind          |
+| ......             |
+ 
+-- Set "southwind" as the default database so as to reference its table directly.
+mysql> USE southwind;
+Database changed
+ 
+-- Show the current (default) database
+mysql> SELECT DATABASE();
++------------+
+| DATABASE() |
++------------+
+| southwind  |
++------------+
+ 
+-- Show all the tables in the current database.
+-- "southwind" has no table (empty set).
+mysql> SHOW TABLES;
+Empty set (0.00 sec)
+
+
+-- Create the table "products". Read "explanations" below for the column defintions
 CREATE TABLE IF NOT EXISTS products (
          productID    INT UNSIGNED  NOT NULL AUTO_INCREMENT,
          productCode  CHAR(3)       NOT NULL DEFAULT '',
