@@ -1,3 +1,31 @@
+SQL Date/Time Types
+
+MySQL provides these date/time data types:
+
+DATETIME: stores both date and time in the format of 'YYYY-MM-DD HH:MM:SS'. The valid range is '1000-01-01 00:00:00'
+to '9999-12-31 23:59:59'. You can set a value using the valid format (e.g., '2011-08-15 00:00:00'). 
+You could also apply functions NOW() or CURDATE() (time will be set to '00:00:00'), but not CURTIME().
+
+DATE: stores date only in the format of 'YYYY-MM-DD'. The range is '1000-01-01' to '9999-12-31'. 
+You could apply CURDATE() or NOW() (the time discarded) on this field.
+
+TIME: stores time only in the format of 'HH:MM:SS'. You could apply CURTIME() or NOW() (the date discarded) for this field.
+
+YEAR(4|2): in 'YYYY' or 'YY'. The range of years is 1901 to 2155. Use DATE type for year outside this range. 
+You could apply CURDATE() to this field (month and day discarded).
+
+TIMESTAMP: similar to DATETIME but stored the number of seconds since January 1, 1970 UTC (Unix-style). 
+The range is '1970-01-01 00:00:00' to '2037-12-31 23:59:59'.
+The differences between DATETIME and TIMESTAMP are:the range,support for time zone,
+
+TIMESTAMP column could be declared with DEFAULT CURRENT_TIMESTAMP to set the default value to the current date/time.
+(All other data types' default, including DATETIME, must be a constant and not a function return value). 
+You can also declare a TIMESTAMP column with "ON UPDATE CURRENT_TIMESTAMP" to capture the timestamp of the last update.
+The date/time value can be entered manually as a string literal (e.g., '2010-12-31 23:59:59' for DATAETIME). 
+MySQL will issue a warning and insert all zeros (e.g., '0000-00-00 00:00:00' for DATAETIME), 
+if the value of date/time to be inserted is invalid or out-of-range. '0000-00-00' is called a "dummy" date.
+
+
 mysql> select now(), curdate(), curtime();
 +---------------------+------------+-----------+
 | now()               | curdate()  | curtime() |
@@ -6,45 +34,6 @@ mysql> select now(), curdate(), curtime();
 +---------------------+------------+-----------+
 1 row in set (0.00 sec)
 
-mysql> select now(), curdate(), curtime();
-+---------------------+------------+-----------+
-| now()               | curdate()  | curtime() |
-+---------------------+------------+-----------+
-| 2018-11-08 17:17:13 | 2018-11-08 | 17:17:13  |
-+---------------------+------------+-----------+
-1 row in set (0.00 sec)
-
-mysql> select now(), curdate(), curtime();
-+---------------------+------------+-----------+
-| now()               | curdate()  | curtime() |
-+---------------------+------------+-----------+
-| 2018-11-08 17:17:14 | 2018-11-08 | 17:17:14  |
-+---------------------+------------+-----------+
-1 row in set (0.00 sec)
-
-mysql> select now(), curdate(), curtime();
-+---------------------+------------+-----------+
-| now()               | curdate()  | curtime() |
-+---------------------+------------+-----------+
-| 2018-11-08 17:17:15 | 2018-11-08 | 17:17:15  |
-+---------------------+------------+-----------+
-1 row in set (0.00 sec)
-
-mysql> select now(), curdate(), curtime();
-+---------------------+------------+-----------+
-| now()               | curdate()  | curtime() |
-+---------------------+------------+-----------+
-| 2018-11-08 17:17:15 | 2018-11-08 | 17:17:15  |
-+---------------------+------------+-----------+
-1 row in set (0.00 sec)
-
-mysql> select now(), curdate(), curtime();
-+---------------------+------------+-----------+
-| now()               | curdate()  | curtime() |
-+---------------------+------------+-----------+
-| 2018-11-08 17:17:16 | 2018-11-08 | 17:17:16  |
-+---------------------+------------+-----------+
-1 row in set (0.00 sec)
 
 mysql> select now(), curdate(), curtime();
 +---------------------+------------+-----------+
@@ -86,29 +75,6 @@ mysql> SELECT YEAR(NOW()), MONTH(NOW()), DAY(NOW()), HOUR(NOW()), MINUTE(NOW()),
 +-------------+--------------+------------+-------------+---------------+---------------+
 1 row in set (0.00 sec)
 
-mysql> SELECT YEAR(NOW()), MONTH(NOW()), DAY(NOW()), HOUR(NOW()), MINUTE(NOW()), SECOND(NOW());
-+-------------+--------------+------------+-------------+---------------+---------------+
-| YEAR(NOW()) | MONTH(NOW()) | DAY(NOW()) | HOUR(NOW()) | MINUTE(NOW()) | SECOND(NOW()) |
-+-------------+--------------+------------+-------------+---------------+---------------+
-|        2018 |           11 |          8 |          17 |            19 |            47 |
-+-------------+--------------+------------+-------------+---------------+---------------+
-1 row in set (0.00 sec)
-
-mysql> SELECT YEAR(NOW()), MONTH(NOW()), DAY(NOW()), HOUR(NOW()), MINUTE(NOW()), SECOND(NOW());
-+-------------+--------------+------------+-------------+---------------+---------------+
-| YEAR(NOW()) | MONTH(NOW()) | DAY(NOW()) | HOUR(NOW()) | MINUTE(NOW()) | SECOND(NOW()) |
-+-------------+--------------+------------+-------------+---------------+---------------+
-|        2018 |           11 |          8 |          17 |            19 |            48 |
-+-------------+--------------+------------+-------------+---------------+---------------+
-1 row in set (0.00 sec)
-
-mysql> SELECT YEAR(NOW()), MONTH(NOW()), DAY(NOW()), HOUR(NOW()), MINUTE(NOW()), SECOND(NOW());
-+-------------+--------------+------------+-------------+---------------+---------------+
-| YEAR(NOW()) | MONTH(NOW()) | DAY(NOW()) | HOUR(NOW()) | MINUTE(NOW()) | SECOND(NOW()) |
-+-------------+--------------+------------+-------------+---------------+---------------+
-|        2018 |           11 |          8 |          17 |            19 |            54 |
-+-------------+--------------+------------+-------------+---------------+---------------+
-1 row in set (0.00 sec)
 
 mysql> SELECT YEAR(NOW()), MONTH(NOW()), DAY(NOW()), HOUR(NOW()), MINUTE(NOW()), SECOND(NOW());
 +-------------+--------------+------------+-------------+---------------+---------------+
@@ -167,3 +133,11 @@ mysql> SELECT DATEDIFF('2018-11-08', '2017-01-17');
 1 row in set (0.00 sec)
 
 mysql>
+mysql> SELECT FROM_DAYS(728666);
++-------------------+
+| FROM_DAYS(728666) |
++-------------------+
+| 1995-01-08        |
++-------------------+
+1 row in set (0.00 sec)
+
