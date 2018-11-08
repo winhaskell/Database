@@ -395,5 +395,18 @@ mysql>  SELECT productCode, MAX(price) AS `Highest Price`, MIN(price) AS `Lowest
 2 rows in set (0.00 sec)
 
 mysql>
+mysql> SELECT productCode,  MAX(price), MIN(price), CAST(AVG(price) AS DECIMAL(7,2)) AS `Average`,  SUM(quantity)       
+FROM southwind.products       
+GROUP BY productCode
+WITH ROLLUP;          -- Apply aggregate functions to all groups;
++-------------+------------+------------+---------+---------------+
+| productCode | MAX(price) | MIN(price) | Average | SUM(quantity) |
++-------------+------------+------------+---------+---------------+
+| PEC         |       0.49 |       0.48 |    0.49 |         18000 |
+| PEN         |       8.25 |       1.23 |    5.93 |         27000 |
+| NULL        |       8.25 |       0.48 |    4.37 |         45000 |
++-------------+------------+------------+---------+---------------+
+3 rows in set (0.00 sec)
 
+mysql>
 
