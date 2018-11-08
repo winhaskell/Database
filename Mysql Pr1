@@ -38,3 +38,9 @@ CREATE TABLE IF NOT EXISTS products (
          price        DECIMAL(7,2)  NOT NULL DEFAULT 99999.99,
          PRIMARY KEY  (productID)
        );
+       
+       
+mysql> select * from southwind.products;
+Empty set (0.01 sec)
+
+mysql>
