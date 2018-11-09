@@ -114,3 +114,45 @@ mysql> select * from countries;
 25 rows in set (0.00 sec)
 
 mysql>
+mysql> CREATE TABLE IF NOT EXISTS `departments` (  `DEPARTMENT_ID` decimal(4,0) NOT NULL DEFAULT '0',  `DEPARTMENT_NAME` varchar(30) NOT NULL,  `MANAGER_ID` decimal(6,0) DEFAULT NULL,  `LOCATION_ID` decimal(4,0) DEFAULT NULL,  PRIMARY KEY (`DEPARTMENT_ID`),  KEY `DEPT_MGR_FK` (`MANAGER_ID`),  KEY `DEPT_LOCATION_IX` (`LOCATION_ID`)) ;
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> INSERT INTO `departments` (`DEPARTMENT_ID`, `DEPARTMENT_NAME`, `MANAGER_ID`, `LOCATION_ID`) VALUES('10', 'Administration', '200', '1700'),('20', 'Marketing', '201', '1800'),('30', 'Purchasing', '114', '1700'),('40', 'Human Resources', '203', '2400'),('50', 'Shipping', '121', '1500'),('60', 'IT', '103', '1400'),('70', 'Public Relations', '204', '2700'),('80', 'Sales', '145', '2500'),('90', 'Executive', '100', '1700'),('100', 'Finance', '108', '1700'),('110', 'Accounting', '205', '1700'),('120', 'Treasury', '0', '1700'),('130', 'Corporate Tax', '0', '1700'),('140', 'Control And Credit', '0', '1700'),('150', 'Shareholder Services', '0', '1700'),('160', 'Benefits', '0', '1700'),('170', 'Manufacturing', '0', '1700'),('180', 'Construction', '0', '1700'),('190', 'Contracting', '0', '1700'),('200', 'Operations', '0', '1700'),('210', 'IT Support', '0', '1700'),('220', 'NOC', '0', '1700'),('230', 'IT Helpdesk', '0', '1700'),('240', 'Government Sales', '0', '1700'),('250', 'Retail Sales', '0', '1700'),('260', 'Recruiting', '0', '1700'),('270', 'Payroll', '0', '1700');
+Query OK, 27 rows affected (0.05 sec)
+Records: 27  Duplicates: 0  Warnings: 0
+
+mysql> select * from departments;
++---------------+----------------------+------------+-------------+
+| DEPARTMENT_ID | DEPARTMENT_NAME      | MANAGER_ID | LOCATION_ID |
++---------------+----------------------+------------+-------------+
+|            10 | Administration       |        200 |        1700 |
+|            20 | Marketing            |        201 |        1800 |
+|            30 | Purchasing           |        114 |        1700 |
+|            40 | Human Resources      |        203 |        2400 |
+|            50 | Shipping             |        121 |        1500 |
+|            60 | IT                   |        103 |        1400 |
+|            70 | Public Relations     |        204 |        2700 |
+|            80 | Sales                |        145 |        2500 |
+|            90 | Executive            |        100 |        1700 |
+|           100 | Finance              |        108 |        1700 |
+|           110 | Accounting           |        205 |        1700 |
+|           120 | Treasury             |          0 |        1700 |
+|           130 | Corporate Tax        |          0 |        1700 |
+|           140 | Control And Credit   |          0 |        1700 |
+|           150 | Shareholder Services |          0 |        1700 |
+|           160 | Benefits             |          0 |        1700 |
+|           170 | Manufacturing        |          0 |        1700 |
+|           180 | Construction         |          0 |        1700 |
+|           190 | Contracting          |          0 |        1700 |
+|           200 | Operations           |          0 |        1700 |
+|           210 | IT Support           |          0 |        1700 |
+|           220 | NOC                  |          0 |        1700 |
+|           230 | IT Helpdesk          |          0 |        1700 |
+|           240 | Government Sales     |          0 |        1700 |
+|           250 | Retail Sales         |          0 |        1700 |
+|           260 | Recruiting           |          0 |        1700 |
+|           270 | Payroll              |          0 |        1700 |
++---------------+----------------------+------------+-------------+
+27 rows in set (0.00 sec)
+
+mysql>
