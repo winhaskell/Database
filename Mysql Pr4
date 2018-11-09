@@ -12,7 +12,10 @@ mysql> SELECT * FROM southwind.products;
 +-----------+-------------+------------+----------+-------+
 7 rows in set (0.00 sec)
 
-mysql>
+
+为查询加上 LIMIT
+即使确定查询表只会有1条结果，加上 LIMIT 1 可以增加性能。
+因为这样加上LIMIT后， MySQL数据库引擎在找到一条数据后就会停止搜索，而不是继续往查找。
 
 mysql> SELECT 1 FROM southwind.products WHERE productID =  1001;
 +---+
