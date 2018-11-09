@@ -96,4 +96,7 @@ mysql> show warnings;
 
 mysql>
 
+select  * from southwind.products s1,  southwind.products s2
+where s1.productCode = s2.productCode and s1.productId = s2.productId ;
+
 
