@@ -82,3 +82,18 @@ mysql>  show binary logs ;
 +--------------------------+-----------+
 1 row in set (0.00 sec)
 
+
+mysql> select * from tb;
+ERROR 1146 (42S02): Table 'southwind.tb' doesn't exist
+
+mysql> show warnings;
++-------+------+------------------------------------+
+| Level | Code | Message                            |
++-------+------+------------------------------------+
+| Error | 1146 | Table 'southwind.tb' doesn't exist |
++-------+------+------------------------------------+
+1 row in set (0.00 sec)
+
+mysql>
+
+
