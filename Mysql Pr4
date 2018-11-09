@@ -390,3 +390,55 @@ mysql> select * from regions;
 4 rows in set (0.00 sec)
 
 
+查看MySql版本号命令
+mysql> status;
+MySQL> \s
+--------------
+Ver 8.0.13 for Win64 on x86_64 (MySQL Community Server - GPL)
+
+Connection id:          32
+Current database:       southwind
+Current user:           root@localhost
+SSL:                    Cipher in use is DHE-RSA-AES128-GCM-SHA256
+Using delimiter:        ;
+Server version:         8.0.13 MySQL Community Server - GPL
+Protocol version:       10
+Connection:             localhost via TCP/IP
+Server characterset:    utf8mb4
+Db     characterset:    utf8mb4
+Client characterset:    cp852
+Conn.  characterset:    cp852
+TCP port:               3306
+Uptime:                 2 days 3 hours 1 min 11 sec
+
+mysql> select version();
++-----------+
+| version() |
++-----------+
+| 8.0.13    |
++-----------+
+1 row in set (0.01 sec)
+
+mysql>
+
+mysql> SHOW VARIABLES LIKE "%INNODB_VERSION%";
++----------------+--------+
+| Variable_name  | Value  |
++----------------+--------+
+| innodb_version | 8.0.13 |
++----------------+--------+
+1 row in set (0.01 sec)
+
+mysql> SHOW VARIABLES LIKE "VERSION%";
++-------------------------+------------------------------+
+| Variable_name           | Value                        |
++-------------------------+------------------------------+
+| version                 | 8.0.13                       |
+| version_comment         | MySQL Community Server - GPL |
+| version_compile_machine | x86_64                       |
+| version_compile_os      | Win64                        |
+| version_compile_zlib    | 1.2.11                       |
++-------------------------+------------------------------+
+5 rows in set (0.00 sec)
+
+mysql>
