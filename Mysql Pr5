@@ -14,3 +14,71 @@ mysql> SHOW VARIABLES LIKE 'character%';
 8 rows in set (0.01 sec)
 
 mysql>
+mysql>  show binlog events\G;
+*************************** 1. row ***************************
+   Log_name: BUDN34388837A-bin.000001
+        Pos: 4
+ Event_type: Format_desc
+  Server_id: 1
+End_log_pos: 124
+       Info: Server ver: 8.0.13, Binlog ver: 4
+*************************** 2. row ***************************
+   Log_name: BUDN34388837A-bin.000001
+        Pos: 124
+ Event_type: Previous_gtids
+  Server_id: 1
+End_log_pos: 155
+       Info:
+*************************** 3. row ***************************
+   Log_name: BUDN34388837A-bin.000001
+        Pos: 155
+ Event_type: Stop
+  Server_id: 1
+End_log_pos: 178
+       Info:
+3 rows in set (0.02 sec)
+
+ERROR:
+No query specified
+
+mysql> show master status;
++--------------------------+----------+--------------+------------------+-------------------+
+| File                     | Position | Binlog_Do_DB | Binlog_Ignore_DB | Executed_Gtid_Set |
++--------------------------+----------+--------------+------------------+-------------------+
+| BUDN34388837A-bin.000002 |  2109737 |              |                  |                   |
++--------------------------+----------+--------------+------------------+-------------------+
+1 row in set (0.00 sec)
+
+mysql> truncate table newtb;
+ERROR 1223 (HY000): Can't execute the query because you have a conflicting read lock
+
+mysql> show binary logs;
++--------------------------+-----------+
+| Log_name                 | File_size |
++--------------------------+-----------+
+| BUDN34388837A-bin.000001 |       178 |
+| BUDN34388837A-bin.000002 |   2109737 |
++--------------------------+-----------+
+2 rows in set (0.00 sec)
+
+mysql>
+
+mysql> reset master;
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> show binary logs;
++--------------------------+-----------+
+| Log_name                 | File_size |
++--------------------------+-----------+
+| BUDN34388837A-bin.000001 |       155 |
++--------------------------+-----------+
+1 row in set (0.00 sec)
+
+mysql>  show binary logs ;
++--------------------------+-----------+
+| Log_name                 | File_size |
++--------------------------+-----------+
+| BUDN34388837A-bin.000001 |       155 |
++--------------------------+-----------+
+1 row in set (0.00 sec)
+
