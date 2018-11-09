@@ -100,3 +100,23 @@ select  * from southwind.products s1,  southwind.products s2
 where s1.productCode = s2.productCode and s1.productId = s2.productId ;
 
 
+mysql> SHOW TABLES;
++---------------------+
+| Tables_in_southwind |
++---------------------+
+| accounts            |
+| countries           |
+| departments         |
+| employees           |
+| job_history         |
+| jobs                |
+| locations           |
+| products            |
+| regions             |
+| suppliers           |
+| t1                  |
+| t2                  |
++---------------------+
+12 rows in set (0.02 sec)
+
+mysql>
