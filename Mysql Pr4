@@ -1,0 +1,49 @@
+mysql> SELECT * FROM southwind.products;
++-----------+-------------+------------+----------+-------+
+| productID | productCode | name       | quantity | price |
++-----------+-------------+------------+----------+-------+
+|      1001 | PEN         | Pen Red    |     5000 |  1.35 |
+|      1002 | PEN         | Pen Blue   |     8000 |  9.08 |
+|      1003 | PEN         | Pen Yellow |     7000 |  7.33 |
+|      1004 | PEN         | Pen Red    |     5000 |  7.99 |
+|      1005 | PEN         | Pen Black  |     2000 |  6.88 |
+|      1006 | PEC         | Pencil 2B  |    10000 |  0.53 |
+|      1007 | PEC         | Pencil 2H  |     8000 |  0.54 |
++-----------+-------------+------------+----------+-------+
+7 rows in set (0.00 sec)
+
+mysql>
+
+mysql> SELECT 1 FROM southwind.products WHERE productID =  1001;
++---+
+| 1 |
++---+
+| 1 |
++---+
+1 row in set (0.00 sec)
+
+mysql> SELECT 1 FROM southwind.products WHERE productCode =  1001;
+Empty set, 7 warnings (0.00 sec)
+
+mysql> SELECT 1 FROM southwind.products WHERE productCode LIKE "PEN";
++---+
+| 1 |
++---+
+| 1 |
+| 1 |
+| 1 |
+| 1 |
+| 1 |
++---+
+5 rows in set (0.00 sec)
+
+mysql> SELECT 1 FROM southwind.products WHERE productCode LIKE "PEC";
++---+
+| 1 |
++---+
+| 1 |
+| 1 |
++---+
+2 rows in set (0.00 sec)
+
+mysql>
