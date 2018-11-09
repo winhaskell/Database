@@ -50,3 +50,25 @@ mysql> SELECT 1 FROM southwind.products WHERE productCode LIKE "PEC";
 2 rows in set (0.00 sec)
 
 mysql>
+mysql> use southwind;
+Database changed
+
+mysql> CREATE TABLE countries(
+    -> COUNTRY_ID varchar(2),
+    -> COUNTRY_NAME varchar(40),
+    -> REGION_ID decimal(10,0)
+    -> ); 
+    
+Query OK, 0 rows affected (0.15 sec)
+ 
+mysql> desc  southwind.countries;
++--------------+---------------+------+-----+---------+-------+
+| Field        | Type          | Null | Key | Default | Extra |
++--------------+---------------+------+-----+---------+-------+
+| COUNTRY_ID   | varchar(2)    | YES  |     | NULL    |       |
+| COUNTRY_NAME | varchar(40)   | YES  |     | NULL    |       |
+| REGION_ID    | decimal(10,0) | YES  |     | NULL    |       |
++--------------+---------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql>
