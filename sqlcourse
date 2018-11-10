@@ -19,3 +19,22 @@ The most widely used DBMS is the relational model that saves data in table forma
 SQL language is used to Sql query a database
 The database approach has many advantages when it comes to storing data compared to the traditional flat file based systems
 
+MySQL Mother Site & Standards MySQL Mother Site @ www.mysql.com.
+MySQL 5.7 "Reference Manual" @ http://dev.mysql.com/doc/.
+MySQL 5.7 "SQL Statement Syntax" @ http://dev.mysql.com/doc/refman/5.7/en/sql-syntax.html.
+
+"ISO/IEC 9075 Information Technology - Database Languages SQL": 
+1989 (SQL-89), 1992 (SQL-92 or SQL2), 1999 (SQL-99 or SQL3), 2003 (SQL-2003), 2006 (SQL-2006) and 2011 (SQL-2011).
+
+Sample Databases
+MySQL Employees Sample Database @ http://dev.mysql.com/doc/employee/en/index.html.
+MySQL Sakila Sample Database @ http://dev.mysql.com/doc/sakila/en/index.html.
+Microsoft Nothwind Sample database @ http://www.microsoft.com/en-us/download/details.aspx?id=23654; 
+MySQL port @ http://code.google.com/p/northwindextended.
+The "Classic Models" Retailer database @ http://www.mysqltutorial.org.
+
+Books and Tutorials
+Codd E. F., "A Relational Model of Data for Large Shared Data Banks", Communications of the ACM, vol. 13, issue 6, pp. 377–387, June 1970.
+(For Java Programmers) "JDBC Basics", Java Online Tutorial @ http://download.oracle.com/javase/tutorial/jdbc/basics/index.html.
+Paul DuBois, "MySQL Developer's Library", 4th ed, 2009 (5th ed is probably available).
+Russell Dyer, "MySQL in a Nutshell", 2nd ed, O'reilly, 2008.
