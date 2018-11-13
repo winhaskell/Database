@@ -701,3 +701,68 @@ mysql> explain select name from world.students where name ='Istvan';
 explain select id, name from parana_items where id=1;
 
 
+----------------------------------------------------------------------------------------------------------------------------
+性能瓶颈定位
+
+我们可以通过show命令查看MySQL状态及变量，找到系统的瓶颈：
+
+Mysql> show status ——显示状态信息（扩展show status like ‘XXX’）
+
+Mysql> show variables ——显示系统变量（扩展show variables like ‘XXX’）
+
+Mysql> show innodb status ——显示InnoDB存储引擎的状态
+
+Mysql> show processlist ——查看当前SQL执行，包括执行状态、是否锁表等
+
+作者：小怪聊职场
+链接：https://www.jianshu.com/p/3c79039e82aa
+來源：简书
+简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。
+
+
+mysql> show processlist;
++----+-----------------+-----------------+-----------+---------+--------+------------------------+------------------+
+| Id | User            | Host            | db        | Command | Time   | State                  | Info             |
++----+-----------------+-----------------+-----------+---------+--------+------------------------+------------------+
+|  4 | event_scheduler | localhost       | NULL      | Daemon  | 528780 | Waiting on empty queue | NULL             |
+| 33 | root            | localhost:49874 | world     | Sleep   |    193 |                        | NULL             |
+| 34 | root            | localhost:49875 | world     | Sleep   |    193 |                        | NULL             |
+| 35 | root            | localhost:49879 | southwind | Query   |      0 | starting               | show processlist |
++----+-----------------+-----------------+-----------+---------+--------+------------------------+------------------+
+4 rows in set (0.01 sec)
+
+mysql>
+mysql> show variables like 'key_buffer_size';
++-----------------+---------+
+| Variable_name   | Value   |
++-----------------+---------+
+| key_buffer_size | 8388608 |
++-----------------+---------+
+1 row in set (0.00 sec)
+
+mysql>
+mysql> show global status like 'key_read%';
++-------------------+-------+
+| Variable_name     | Value |
++-------------------+-------+
+| Key_read_requests | 0     |
+| Key_reads         | 0     |
++-------------------+-------+
+2 rows in set (0.01 sec)
+
+mysql>
+mysql> show global status like 'qcache%';
+Empty set (0.00 sec)
+
+mysql>  show variables like 'query_cache%';
+Empty set (0.00 sec)
+
+mysql> show global status like 'created_tmp%';
++-------------------------+-------+
+| Variable_name           | Value |
++-------------------------+-------+
+| Created_tmp_disk_tables | 15    |
+| Created_tmp_files       | 7     |
+| Created_tmp_tables      | 7242  |
++-------------------------+-------+
+3 rows in set (0.00 sec)
