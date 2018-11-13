@@ -1,0 +1,110 @@
+查询日志功能是否开启 SHOW VARIABLES LIKE 'general%';
+
+mysql> SHOW VARIABLES LIKE 'general%';
++------------------+-------------------+
+| Variable_name    | Value             |
++------------------+-------------------+
+| general_log      | OFF               |
+| general_log_file | XXXXXXYYXXXXX.log |
++------------------+-------------------+
+2 rows in set (0.00 sec)
+
+mysql>
+general_log：日志功能是否开启，默认关闭OFF
+general_log_file：日志文件保存位置
+
+mysql> set GLOBAL general_log='ON';
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> SHOW VARIABLES LIKE 'general%';
++------------------+-------------------+
+| Variable_name    | Value             |
++------------------+-------------------+
+| general_log      | ON                |
+| general_log_file | XXXXXXYYXXXXX.log |
++------------------+-------------------+
+2 rows in set (0.00 sec)
+
+
+参考 http://blog.51cto.com/pangge/1319304
+时间默认超过多少的称为慢查询日志？
+一般都是通过long_query_time选项来设置这个时间值，时间以秒为单位，可以精确到微秒。如果查询时间超过了这个时间值（默认为10秒），
+这个查询语句将被记录到慢查询日志中。查看服务器默认时间值方式如下：
+mysql> SHOW  GLOBAL VARIABLES LIKE 'long%';
++-----------------+-----------+
+| Variable_name   | Value     |
++-----------------+-----------+
+| long_query_time | 10.000000 |
++-----------------+-----------+
+1 row in set (0.00 sec)
+
+mysql>
+
+mysql> showglobal variables like "%log_bin%";
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version 
+for the right syntax to use near 'showglobal variables like "%log_bin%"' at line 1
+mysql>
+
+
+mysql> showbinlog events\G;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'showbinlog events' at line 1
+ERROR:
+No query specified
+
+mysql> select * from mysql.general_log;
+Empty set (0.00 sec)
+
+mysql> show variables like 'log_output';
++---------------+-------+
+| Variable_name | Value |
++---------------+-------+
+| log_output    | FILE  |
++---------------+-------+
+1 row in set (0.00 sec)
+
+
+设置日志输出方式为表（如果设置log_output=table的话，则日志结果会记录到名为gengera_log的表中，这表的默认引擎是CSV）：
+// 参考 http://www.cnblogs.com/kerrycode/p/7130403.html
+
+mysql> set global log_output='table';
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> show variables like 'log_output';
++---------------+-------+
+| Variable_name | Value |
++---------------+-------+
+| log_output    | TABLE |
++---------------+-------+
+1 row in set (0.01 sec)
+
+mysql> select * from mysql.general_log;
++----------------------------+------------------------------+-----------+-----------+--------------+----------------------------------+
+| event_time                 | user_host                    | thread_id | server_id | command_type | argument                         |
++----------------------------+------------------------------+-----------+-----------+--------------+----------------------------------+
+| 2018-11-13 17:08:09.634890 | root[root] @ localhost [::1] |        36 |         1 | Query        | show variables like 'log_output' |
+| 2018-11-13 17:08:13.679063 | root[root] @ localhost [::1] |        36 |         1 | Query        | select * from mysql.general_log  |
++----------------------------+------------------------------+-----------+-----------+--------------+----------------------------------+
+2 rows in set (0.00 sec)
+
+mysql>  select * from mysql.general_log;
++----------------------------+------------------------------+-----------+-----------+--------------+----------------------------------+
+| event_time                 | user_host                    | thread_id | server_id | command_type | argument                         |
++----------------------------+------------------------------+-----------+-----------+--------------+----------------------------------+
+| 2018-11-13 17:08:09.634890 | root[root] @ localhost [::1] |        36 |         1 | Query        | show variables like 'log_output' |
+| 2018-11-13 17:08:13.679063 | root[root] @ localhost [::1] |        36 |         1 | Query        | select * from mysql.general_log  |
+| 2018-11-13 17:11:13.605604 | root[root] @ localhost [::1] |        36 |         1 | Query        | select * from mysql.general_log  |
++----------------------------+------------------------------+-----------+-----------+--------------+----------------------------------+
+| 2018-11-13 17:20:58.766668 | root[root] @ localhost [::1] |        36 |         1 | Query        | select * from mysql.general_log    |
+| 2018-11-13 17:20:59.799322 | root[root] @ localhost [::1] |        36 |         1 | Query        | select * from mysql.general_log    |
+| 2018-11-13 17:21:01.435261 | root[root] @ localhost [::1] |        36 |         1 | Query        | select * from mysql.general_log    |
++----------------------------+------------------------------+-----------+-----------+--------------+------------------------------------+
+mysql>
+
+
+
+
+
+
+
+
+
