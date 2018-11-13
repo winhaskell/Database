@@ -1,0 +1,173 @@
+参考 http://gaozzsoft.iteye.com/blog/2384087
+
+SQL 执行时间分析
+通过找到执行时间长的 SQL 语句，可以直观的发现数据层的效率问题。
+
+1.通过 show processlist 来查看系统的执行情况
+mysql> show processlist;
++----+------+-----------+------+---------+------+-------+------------------+
+| Id | User | Host      | db   | Command | Time | State | Info             |
++----+------+-----------+------+---------+------+-------+------------------+
+|  2 | root | localhost | NULL | Query   |    0 | init  | show processlist |
++----+------+-----------+------+---------+------+-------+------------------+
+1 row in set (0.01 sec)
+2.通过 profiling 来进行查看
+这个命令是查看 SQL 的执行时间，能很直观的看出快慢。
+
+2.1 查看 profiling 是否开启
+0 代表还是关闭着分析功能
+
+mysql> select @@profiling;
++-------------+
+| @@profiling |
++-------------+
+|           0 |
++-------------+
+2.2 打开工具
+mysql> set profiling=1;
+Query OK, 0 rows affected, 1 warning (0.01 sec)
+
+mysql> select @@profiling;
++-------------+
+| @@profiling |
++-------------+
+|           1 |
++-------------+
+
+------------------------------------------------------------------------------------------------------
+
+mysql>  select @@profiling;
++-------------+
+| @@profiling |
++-------------+
+|           0 |
++-------------+
+1 row in set, 1 warning (0.00 sec)
+
+mysql> set profiling=1;
+
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+mysql> select @@profiling;
++-------------+
+| @@profiling |
++-------------+
+|           1 |
++-------------+
+1 row in set, 1 warning (0.00 sec)
+
+mysql> show profiles;
++----------+------------+--------------------+
+| Query_ID | Duration   | Query              |
++----------+------------+--------------------+
+|        1 | 0.00020400 | select @@profiling |
++----------+------------+--------------------+
+1 row in set, 1 warning (0.00 sec)
+
+------------------------------------------------------------------------------------------------------
+SQL 的执行时间
+mysql> show profiles;
++----------+------------+---------------------------------+
+| Query_ID | Duration   | Query                           |
++----------+------------+---------------------------------+
+|        1 | 0.00020400 | select @@profiling              |
+|        2 | 0.00070600 | select * from mysql.general_log |
++----------+------------+---------------------------------+
+2 rows in set, 1 warning (0.00 sec)
+
+
+SQL 执行耗时详细信息
+语法：show profile for query Query_ID
+
+mysql> show profile for query 1;
++----------------------+----------+
+| Status               | Duration |
++----------------------+----------+
+| starting             | 0.000073 |
+| checking permissions | 0.000031 |   ---检查是否在缓存中  
+| Opening tables       | 0.000207 |   ---打开表
+| init                 | 0.000067 |   ---初始化
+| System lock          | 0.000040 |   ---锁系统
+| optimizing           | 0.000005 |   ---优化查询
+| statistics           | 0.000021 |
+| preparing            | 0.000015 |   ---准备
+| executing            | 0.000003 |   ---执行
+| Sending data         | 0.000993 |
+| end                  | 0.000006 |
+| query end            | 0.000007 |
+| closing tables       | 0.000011 |
+| freeing items        | 0.000169 |
+| cleaning up          | 0.000089 |
++----------------------+----------+
+
+------------------------------------------------------------------------------------------------------
+mysql> show profile for query 1;
++----------------------+----------+
+| Status               | Duration |
++----------------------+----------+
+| starting             | 0.000131 |
+| checking permissions | 0.000003 |
+| Opening tables       | 0.000009 |
+| init                 | 0.000003 |
+| optimizing           | 0.000004 |
+| executing            | 0.000006 |
+| end                  | 0.000003 |
+| query end            | 0.000007 |
+| closing tables       | 0.000002 |
+| freeing items        | 0.000031 |
+| cleaning up          | 0.000005 |
++----------------------+----------+
+11 rows in set, 1 warning (0.00 sec)
+------------------------------------------------------------------------------------------------------
+
+
+查看慢日志是否开启
+默认情况下slow_query_log的值为OFF，表示慢查询日志是禁用的，可以通过设置slow_query_log的值来开启。语法：set global slow_query_log=1
+
+mysql> show variables  like '%slow_query_log%';
++---------------------+------------------------------------------------------+
+| Variable_name       | Value                                                |
++---------------------+------------------------------------------------------+
+| slow_query_log      | OFF                                                  |
+| slow_query_log_file | /usr/local/var/mysql/xueweihandeMacBook-Air-slow.log |
++---------------------+------------------------------------------------------+
+2 rows in set (0.11 sec)
+
+mysql> set global slow_query_log=1;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> show variables  like '%slow_query_log%';
++---------------------+------------------------------------------------------+
+| Variable_name       | Value                                                |
++---------------------+------------------------------------------------------+
+| slow_query_log      | ON                                                   |
+| slow_query_log_file | /usr/local/var/mysql/xueweihandeMacBook-Air-slow.log |
++---------------------+------------------------------------------------------+
+
+
+------------------------------------------------------------------------------------------------------
+mysql> show variables  like '%slow_query_log%';
++---------------------+------------------------+
+| Variable_name       | Value                  |
++---------------------+------------------------+
+| slow_query_log      | ON                     |
+| slow_query_log_file | XXXXXXXYYYYYYYYXXX.log |
++---------------------+------------------------+
+2 rows in set (0.00 sec)
+------------------------------------------------------------------------------------------------------
+
+
+
+mysql> select @@query_cache_type;
+ERROR 1193 (HY000): Unknown system variable 'query_cache_type'
+mysql> show variables like '%query_cache%';
++------------------+-------+
+| Variable_name    | Value |
++------------------+-------+
+| have_query_cache | NO    |
++------------------+-------+
+1 row in set (0.00 sec)
+
+mysql>
+
+
