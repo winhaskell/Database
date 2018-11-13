@@ -1,0 +1,47 @@
+create table tcount_tbl
+   (
+    tutorial_author varchar(40) NOT NULL,
+    tutorial_count  INT
+   );
+   
+   
+mysql>  describe  world.tcount_tbl;
++-----------------+-------------+------+-----+---------+-------+
+| Field           | Type        | Null | Key | Default | Extra |
++-----------------+-------------+------+-----+---------+-------+
+| tutorial_author | varchar(40) | NO   |     | NULL    |       |
+| tutorial_count  | int(11)     | YES  |     | NULL    |       |
++-----------------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql>
+INSERT INTO  world.tcount_tbl(tutorial_author, tutorial_count) values ('mahnaz', 90);
+INSERT INTO  world.tcount_tbl(tutorial_author, tutorial_count) values ('mahnaz', NULL);
+INSERT INTO  world.tcount_tbl(tutorial_author, tutorial_count) values ('Jen', NULL);
+INSERT INTO  world.tcount_tbl(tutorial_author, tutorial_count) values ('Gill', 20);
+
+mysql> select * from  world.tcount_tbl;
++-----------------+----------------+
+| tutorial_author | tutorial_count |
++-----------------+----------------+
+| mahran          |             20 |
+| mahran          |             20 |
+| mahnaz          |             90 |
++-----------------+----------------+
+3 rows in set (0.01 sec)
+
+
+mysql> select * from  world.tcount_tbl;
++-----------------+----------------+
+| tutorial_author | tutorial_count |
++-----------------+----------------+
+| mahran          |             20 |
+| mahran          |             20 |
+| mahnaz          |             90 |
+| mahnaz          |           NULL |
+| Jen             |           NULL |
+| Gill            |             20 |
++-----------------+----------------+
+6 rows in set (0.00 sec)
+
+mysql>
