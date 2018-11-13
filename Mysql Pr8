@@ -242,6 +242,22 @@ order by t.name, sub.name, s.name;
 
 
    
+数据库操作：　
 
+　　1、查看数据库：
+
+　　　　>SHOW DATABASES;
+
+　　2、创建数据库：
+
+　　　　>CREATE DATABASE db_name;　　//db_name为数据库名
+
+　　3、使用数据库：
+
+　　　　>USE db_name;
+
+　　4、删除数据库：
+
+　　　　>DROP DATABASE db_name;
 
 
