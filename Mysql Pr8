@@ -379,4 +379,64 @@ mysql> select * from world.students;
 8 rows in set (0.00 sec)
 
 mysql>
+仅更新某一列里的值 使用 Updata
+mysql> UPDATE world.students SET address = 'beijing' WHERE sid = 1;
+
+Query OK, 1 row affected (0.07 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from world.students;
++-----+-----------------+---------+
+| sid | name            | address |
++-----+-----------------+---------+
+|   1 | Simon           | beijing |
+|   2 | Alvin           |         |
+|   3 | Theo            |         |
+|   4 | Brittany        |         |
+|   5 | Jenette         |         |
+|   6 | Elenor          |         |
+|   7 | Stu             |         |
+|   8 | Tom B. Erichsen | Norway  |
++-----+-----------------+---------+
+8 rows in set (0.00 sec)
+
+----------------------------------------------------------------------------------- 
+Update 语句
+Update 语句用于修改表中的数据。
+语法：
+UPDATE 表名称 SET 列名称 = 新值 WHERE 列名称 = 某值
+
+更新某一行中的一个列
+我们为 lastname 是 "Wilson" 的人添加 firstname：
+UPDATE Person SET FirstName = 'beijing' WHERE LastName = 'shanghai' 
+
+更新某一行中的若干列
+我们会修改地址（address），并添加城市名称（city）：
+UPDATE Person SET Address = 'jinqiaolu', City = 'shanghai'
+WHERE LastName = 'beijing'
+----------------------------------------------------------------------------------- 
+作者：Zhang Daopin 
+来源：CSDN 
+原文：https://blog.csdn.net/ITzhangdaopin/article/details/72842258 
+----------------------------------------------------------------------------------- 
+
+
+mysql> UPDATE world.students SET address = 'Soul' WHERE sid = 2;
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from world.students;
++-----+-----------------+---------+
+| sid | name            | address |
++-----+-----------------+---------+
+|   1 | Simon           | beijing |
+|   2 | Alvin           | Soul    |
+|   3 | Theo            |         |
+|   4 | Brittany        |         |
+|   5 | Jenette         |         |
+|   6 | Elenor          |         |
+|   7 | Stu             |         |
+|   8 | Tom B. Erichsen | Norway  |
++-----+-----------------+---------+
+8 rows in set (0.00 sec)
 
