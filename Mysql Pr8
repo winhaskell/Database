@@ -357,3 +357,26 @@ mysql>
 
 mysql>
     
+    
+    
+添加一行
+mysql> INSERT INTO world.students (sid,name,address) VALUES  (8,'Tom B. Erichsen', 'Norway');
+Query OK, 1 row affected (0.10 sec)
+
+mysql> select * from world.students;
++-----+-----------------+---------+
+| sid | name            | address |
++-----+-----------------+---------+
+|   1 | Simon           |         |
+|   2 | Alvin           |         |
+|   3 | Theo            |         |
+|   4 | Brittany        |         |
+|   5 | Jenette         |         |
+|   6 | Elenor          |         |
+|   7 | Stu             |         |
+|   8 | Tom B. Erichsen | Norway  |
++-----+-----------------+---------+
+8 rows in set (0.00 sec)
+
+mysql>
+
