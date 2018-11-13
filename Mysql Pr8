@@ -43,3 +43,32 @@ mysql> SELECT * FROM world.students;
 4 rows in set (0.00 sec)
 
 mysql>
+mysql> SELECT name, gpa FROM world.students;
++-----------+------+
+| name      | gpa  |
++-----------+------+
+| Anderson  |  3.9 |
+| Jones     |  2.4 |
+| Hernandez |  3.1 |
+| Chen      |  3.2 |
++-----------+------+
+4 rows in set (0.00 sec)
+
+mysql>
+SELECT gpa, name, grad
+    FROM students
+    WHERE gpa > 3.0
+    ORDER BY gpa DESC;
+    
+mysql> SELECT gpa, name, grad FROM world.students WHERE gpa > 3.0 ORDER BY gpa DESC;
++------+-----------+------+
+| gpa  | name      | grad |
++------+-----------+------+
+|  3.9 | Anderson  | 2009 |
+|  3.2 | Chen      | 2011 |
+|  3.1 | Hernandez | 2011 |
++------+-----------+------+
+3 rows in set (0.00 sec)
+
+mysql>
+
