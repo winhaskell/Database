@@ -440,3 +440,7 @@ mysql> select * from world.students;
 +-----+-----------------+---------+
 8 rows in set (0.00 sec)
 
+
+Mysql更新某一个字段的值
+update tablename set age='newage' where age='';
+UPDATE world.students SET name = 'Start' WHERE name = 'Stu';
