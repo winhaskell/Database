@@ -463,3 +463,94 @@ mysql> select * from world.students;
 |   8 | Tom B. Erichsen | Norway  |
 +-----+-----------------+---------+
 8 rows in set (0.00 sec)
+
+
+ INSERT INTO world.students (sid,name,address) VALUES  (9,'Theo', 'Finland');
+ 
+ mysql> select * from world.students where name = 'Theo'
+    -> ;
++-----+------+---------+
+| sid | name | address |
++-----+------+---------+
+|   3 | Theo |         |
+|   9 | Theo | Finland |
++-----+------+---------+
+2 rows in set (0.00 sec)
+
+mysql> select * from world.students where name like '%Theo'
+    -> ;
++-----+------+---------+
+| sid | name | address |
++-----+------+---------+
+|   3 | Theo |         |
+|   9 | Theo | Finland |
++-----+------+---------+
+2 rows in set (0.00 sec)
+
+mysql> select * from world.students where name like '%Th'
+    -> ;
+Empty set (0.00 sec)
+
+mysql> select * from world.students where name like '_Th';
+Empty set (0.00 sec)
+
+mysql> select * from world.students where name like 'Th__';
++-----+------+---------+
+| sid | name | address |
++-----+------+---------+
+|   3 | Theo |         |
+|   9 | Theo | Finland |
++-----+------+---------+
+2 rows in set (0.00 sec)
+
+mysql> select * from world.students where name like 'Th_';
+Empty set (0.00 sec)
+
+mysql> select * from world.students where name like 'Th_%';
++-----+------+---------+
+| sid | name | address |
++-----+------+---------+
+|   3 | Theo |         |
+|   9 | Theo | Finland |
++-----+------+---------+
+2 rows in set (0.00 sec)
+
+mysql>
+
+mysql> SELECT DISTINCT name FROM world.students;
++-----------------+
+| name            |
++-----------------+
+| Simon           |
+| Alvin           |
+| Theo            |
+| Brittany        |
+| Jenette         |
+| Elenor          |
+| Start           |
+| Tom B. Erichsen |
++-----------------+
+8 rows in set (0.00 sec)
+
+mysql> SELECT name FROM world.students;
++-----------------+
+| name            |
++-----------------+
+| Simon           |
+| Alvin           |
+| Theo            |
+| Brittany        |
+| Jenette         |
+| Elenor          |
+| Start           |
+| Tom B. Erichsen |
+| Theo            |
++-----------------+
+9 rows in set (0.00 sec)
+
+mysql> DISTINCT
+-- 结果集中会自动去重复数据
+SELECT DISTINCT Company FROM Orders 
+-- 表 Persons 字段 Id_P 等于 Orders 字段 Id_P 的值，
+-- 结果集显示 Persons表的 LastName、FirstName字段，Orders表的OrderNo字段
+SELECT p.LastName, p.FirstName, o.OrderNo FROM Persons p, Orders o WHERE p.Id_P = o.Id_P 
