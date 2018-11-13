@@ -554,3 +554,26 @@ SELECT DISTINCT Company FROM Orders
 -- 表 Persons 字段 Id_P 等于 Orders 字段 Id_P 的值，
 -- 结果集显示 Persons表的 LastName、FirstName字段，Orders表的OrderNo字段
 SELECT p.LastName, p.FirstName, o.OrderNo FROM Persons p, Orders o WHERE p.Id_P = o.Id_P 
+
+
+mysql> INSERT INTO world.students (sid, name, address) VALUES (10, 'Istvan', 'wellington');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from world.students;
++-----+-----------------+------------+
+| sid | name            | address    |
++-----+-----------------+------------+
+|   1 | Simon           | beijing    |
+|   2 | Alvin           | Soul       |
+|   3 | Theo            |            |
+|   4 | Brittany        |            |
+|   5 | Jenette         |            |
+|   6 | Elenor          |            |
+|   7 | Start           |            |
+|   8 | Tom B. Erichsen | Norway     |
+|   9 | Theo            | Finland    |
+|  10 | Istvan          | wellington |
++-----+-----------------+------------+
+10 rows in set (0.00 sec)
+
+mysql>
