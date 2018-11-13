@@ -29,3 +29,17 @@ mysql> select * from world.students;
 4 rows in set (0.00 sec)
 
 mysql>
+
+SELECT * FROM students;
+mysql> SELECT * FROM world.students;
++----+-----------+------------+------+------+
+| id | name      | birth      | gpa  | grad |
++----+-----------+------------+------+------+
+|  1 | Anderson  | 1987-10-22 |  3.9 | 2009 |
+|  2 | Jones     | 1990-04-16 |  2.4 | 2012 |
+|  3 | Hernandez | 1989-08-12 |  3.1 | 2011 |
+|  4 | Chen      | 1990-02-04 |  3.2 | 2011 |
++----+-----------+------------+------+------+
+4 rows in set (0.00 sec)
+
+mysql>
