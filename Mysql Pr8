@@ -72,3 +72,176 @@ mysql> SELECT gpa, name, grad FROM world.students WHERE gpa > 3.0 ORDER BY gpa D
 
 mysql>
 
+
+-- ---------------------------------------------------- -- 
+-- Lab Example: Students, Teachers, Subject, and Grades -- 
+-- ---------------------------------------------------- -- 
+
+
+--
+-- SQL as DDL: Data Definition Language -- Defining the schema.
+--
+DROP TABLE IF EXISTS students;
+CREATE TABLE students(
+   sid  int  not null, 
+   name text not null,
+ primary key(sid)
+);
+
+CREATE TABLE teachers(
+   tid  int  not null,
+   name text not null, 
+ primary key(tid)
+);
+
+CREATE TABLE subjects(
+   subid int  not null,
+   name  text not null,
+ primary key(subid)
+);
+
+DROP TABLE IF EXISTS grades;
+CREATE TABLE grades(
+  studentID int not null references students(sid),
+  teacherID int not null references teachers(tid),
+  subjectID int not null references subjects(subid),
+  grade varchar(3),
+ primary key(studentID, teacherID, subjectID)
+);
+
+
+--
+-- SQL as DML: Data Manipulation Language -- Add test data to the tables.
+--
+INSERT INTO students (sid, name) VALUES(1, 'Simon');
+INSERT INTO students (sid, name) VALUES(2, 'Alvin');
+INSERT INTO students (sid, name) VALUES(3, 'Theo');
+INSERT INTO students (sid, name) VALUES(4, 'Brittany');
+INSERT INTO students (sid, name) VALUES(5, 'Jenette');
+INSERT INTO students (sid, name) VALUES(6, 'Elenor');
+INSERT INTO students (sid, name) VALUES(7, 'Stu');
+
+select *
+from Students;
+
+INSERT INTO teachers (tid, name) VALUES (1, 'Washington');
+INSERT INTO teachers (tid, name) VALUES (2, 'Adams');
+INSERT INTO teachers (tid, name) VALUES (3, 'Jefferson');
+INSERT INTO teachers (tid, name) VALUES (4, 'Lincoln');
+
+select *
+from teachers;
+
+INSERT INTO subjects (subid, name) VALUES (1, 'History');
+INSERT INTO subjects (subid, name) VALUES (2, 'Biology');
+INSERT INTO subjects (subid, name) VALUES (3, 'SF');
+
+select *
+from subjects;
+
+INSERT INTO grades (studentID, teacherID, subjectID, grade) VALUES (1, 2, 1, 'A');
+INSERT INTO grades (studentID, teacherID, subjectID, grade) VALUES (1, 2, 2, 'B');
+INSERT INTO grades (studentID, teacherID, subjectID, grade) VALUES (7, 4, 3, 'C+');
+INSERT INTO grades (studentID, teacherID, subjectID, grade) VALUES (7, 3, 2, 'F');
+INSERT INTO grades (studentID, teacherID, subjectID, grade) VALUES (6, 2, 1, 'B+');
+INSERT INTO grades (studentID, teacherID, subjectID, grade) VALUES (2, 4, 3, 'C');
+INSERT INTO grades (studentID, teacherID, subjectID, grade) VALUES (3, 4, 3, 'B');
+
+select *
+from grades;
+
+
+--
+-- SQL as DML: Data Manipulation Language -- Queries to answer interesting quesstions about the data.
+--
+
+-- Students in order by name:
+select *
+from students
+order by name ASC;
+
+
+-- Names of students in any class taught by Adams:
+select name
+from students 
+where sid in 
+  (select studentID
+   from grades
+   where teacherID in 
+     (select tid
+      from teachers
+      where name = 'Adams')
+   );
+
+
+-- Names of teachers who taught Biology:
+select name
+from teachers
+where tid in 
+  (select teacherID
+   from grades
+   where subjectID in 
+     (select subid
+      from subjects
+      where name = 'Biology')
+   );
+
+         
+-- Namaes of teachers who have not yet taught:
+select name
+from teachers
+where tid not in 
+  (select teacherID
+   from grades);
+
+   
+-- Names of students who have not yet taken any classes:
+select name
+from students 
+where sid not in 
+  (select studentID
+   from grades);
+
+   
+-- Names of students in the same class:
+
+select name
+from students
+where sid in 
+  (SELECT studentID
+   FROM grades g1 
+   WHERE 
+      (SELECT COUNT(*) 
+       FROM grades g2 
+       WHERE g1.subjectID = g2.subjectID 
+         AND g1.teacherID = g2.teacherID ) > 1 
+   ORDER BY subjectID
+  );
+  
+
+
+select t.name   as "Teacher",
+       sub.name as "Subject",
+       s.name   as "Student"
+from grades g1, 
+     grades g2, 
+     students s, 
+     teachers t,
+     subjects sub
+where g1.teacherID = g2.teacherID
+  and g1.subjectID = g2.subjectID
+  and g1.studentID = s.sid
+  and g1.teacherID = t.tid
+  and g1.subjectID = sub.subid
+order by t.name, sub.name, s.name;
+
+
+         
+// http://www.labouseur.com/courses/db/s4-lab-students_teachers_subjects_grades.txt
+
+
+
+   
+
+
+
