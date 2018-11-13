@@ -236,10 +236,10 @@ where g1.teacherID = g2.teacherID
 order by t.name, sub.name, s.name;
 
 
-         
-// http://www.labouseur.com/courses/db/s4-lab-students_teachers_subjects_grades.txt
-
-
+     
+参考:
+http://www.labouseur.com/courses/db/s4-lab-students_teachers_subjects_grades.txt
+https://blog.csdn.net/sinat_35861727/article/details/78866904
 
    
 数据库操作：　
@@ -261,3 +261,99 @@ order by t.name, sub.name, s.name;
 　　　　>DROP DATABASE db_name;
 
 
+
+
+创建表：
+
+　　1、创建表：
+
+　　　　>CREATE TABLE table_name(
+
+　　　　>id TINYINT UNSIGNED NOT NULL AUTO_INCREMENT,　　　　//id值，无符号、非空、递增——唯一性，可做主键。
+
+　　　　>name VARCHAR(60) NOT NULL
+
+　　　　>score TINYINT UNSIGNED NOT NULL DEFAULT 0,　　　　//设置默认列值
+
+　　　　>PRIMARY KEY(id)
+
+　　　　>)ENGINE=InnoDB　　　　//设置表的存储引擎，一般常用InnoDB和MyISAM；InnoDB可靠，支持事务；MyISAM高效不支持全文检索
+
+　　　　>DEFAULT charset=utf8;　　//设置默认的编码，防止数据库中文乱码
+
+　　　　如果有条件的创建数据表还可以使用   >CREATE TABLE IF NOT EXISTS tb_name(........
+
+　　2、复制表：
+
+　　　　>CREATE TABLE tb_name2 SELECT * FROM tb_name;
+
+　　　　或者部分复制：
+
+　　　　>CREATE TABLE tb_name2 SELECT id,name FROM tb_name;
+
+　　3、创建临时表：
+
+　　　　>CREATE TEMPORARY TABLE tb_name(这里和创建普通表一样);
+
+　　4、查看数据库中可用的表：
+
+　　　　>SHOW TABLES;
+
+　　5、查看表的结构：
+
+　　　　>DESCRIBE tb_name;
+
+　　　　也可以使用：
+
+　　　　>SHOW COLUMNS in tb_name; 　　　　//from也可以
+
+　　6、删除表：
+
+　　　　>DROP [ TEMPORARY ] TABLE [ IF EXISTS ] tb_name[ ,tb_name2.......];
+
+　　　　实例：
+
+　　　　>DROP TABLE IF EXISTS tb_name;
+
+　　7、表重命名：
+
+　　　　>RENAME TABLE name_old TO name_new;
+
+　　　　还可以使用：
+
+　　　　>ALTER TABLE name_old RENAME name_new;
+    
+    
+添加一列
+    ALTER TABLE students ADD COLUMN address varchar(80) NOT NULL;
+    describe students;
+    mysql> describe world.students;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| sid     | int(11)     | NO   | PRI | NULL    |       |
+| name    | text        | NO   |     | NULL    |       |
+| address | varchar(80) | NO   |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql>
+
+     select * from students;
+     select * from world.students;
+     mysql> select * from world.students;
++-----+----------+---------+
+| sid | name     | address |
++-----+----------+---------+
+|   1 | Simon    |         |
+|   2 | Alvin    |         |
+|   3 | Theo     |         |
+|   4 | Brittany |         |
+|   5 | Jenette  |         |
+|   6 | Elenor   |         |
+|   7 | Stu      |         |
++-----+----------+---------+
+7 rows in set (0.00 sec)
+
+mysql>
+    
