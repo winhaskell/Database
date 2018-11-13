@@ -1,0 +1,109 @@
+--销售冠军 
+--问题：在公司中，老板走进来，要一张每个地区销量前3名的销售额与销售员的报表 
+
+
+create table salesdetail 
+( 
+Area int not null, 
+Saler nvarchar(20) not null, 
+SalerId int not null, 
+Sales int not null ) default charset=utf8; 
+
+
+-------------------------------------------------------------------------------------------------------------------------
+表的默认字符集是latin1. 
+所以我们在创建表的时候就需要指定表的字符集:
+     create table user(name varchar(11)) default charset=utf8; 
+中文乱码处理
+ -------------------------------------------------------------------------------------------------------------------------
+
+insert salesdetail 
+select 1,'张三',15,3000 
+union select 1,'赵一',16,3500 
+union select 1,'钱二',17,4000 
+union select 1,'孙三',18,5000 
+union select 1,'李四',19,5000 
+union select 1,'王五',11,7000 
+union select 2,'周边一',25,3000 
+union select 2,'李白',22,4000 
+union select 2,'张镇东',23,6000 
+union select 2,'李宁',24,1000 
+union select 3,'李斯',35,3000 
+union select 3,'李勇',33,2000 
+union select 4,'李逵',44,5000 
+union select 4,'宋江',45,5000 
+union select 4,'吴用',42,13000 
+union select 4,'公孙胜',43,23000 
+union select 5,'阮小二',51,5000 
+union select 5,'阮小五',52,5000 
+union select 5,'林冲',53,5000 
+union select 5,'林莽',54,6000 
+
+
+select * from salesdetail as a where sales >= (select min(b.sales) from salesdetail as b where a.Area=b.Area and a.Sales<=b.Sales 
+having COUNT(distinct b.Saler)<=3) 
+order by a.Area,a.Sales desc,a.Saler,a.SalerId;
+
+| Area | Saler | SalerId | Sales |
+1	       王五	     11	    7000
+1	       孙三	     18	    5000
+1	       李四	     19     5000
+2	       张镇东  	23	   6000
+2	        李白	   22   	4000
+2	       周边一    25	   3000
+3	       李斯	     35	    3000
+3	       李勇	     33	    2000
+4	       公孙胜	  43	   23000
+4	       吴用    	 42	    13000
+5	       林莽      54	    6000
+
+
+
+mysql> select * from world.salesdetail;
++------+-------+---------+-------+
+| Area | Saler | SalerId | Sales |
++------+-------+---------+-------+
+|    1 | ??    |      15 |  3000 |
+|    1 | ??    |      16 |  3500 |
+|    1 | ??    |      17 |  4000 |
+|    1 | ??    |      18 |  5000 |
+|    1 | ??    |      19 |  5000 |
+|    1 | ??    |      11 |  7000 |
+|    2 | ???   |      25 |  3000 |
+|    2 | ??    |      22 |  4000 |
+|    2 | ???   |      23 |  6000 |
+|    2 | ??    |      24 |  1000 |
+|    3 | ??    |      35 |  3000 |
+|    3 | ??    |      33 |  2000 |
+|    4 | ??    |      44 |  5000 |
+|    4 | ??    |      45 |  5000 |
+|    4 | ??    |      42 | 13000 |
+|    4 | ???   |      43 | 23000 |
+|    5 | ???   |      51 |  5000 |
+|    5 | ???   |      52 |  5000 |
+|    5 | ??    |      53 |  5000 |
+|    5 | ??    |      54 |  6000 |
+|    1 | ??    |      15 |  3000 |
+|    1 | ???   |      16 |  3500 |
++------+-------+---------+-------+
+22 rows in set (0.00 sec)
+
+mysql> select * from salesdetail as a where sales >= (select min(b.sales) from salesdetail as b where a.Area=b.Area and a.Sales<=b.Sales having COUNT(distinct b.Saler)<=3) order by a.Area,a.Sales desc,a.Saler,a.SalerId;
++------+-------+---------+-------+
+| Area | Saler | SalerId | Sales |
++------+-------+---------+-------+
+|    1 | ??    |      11 |  7000 |
+|    1 | ??    |      18 |  5000 |
+|    1 | ??    |      19 |  5000 |
+|    2 | ???   |      23 |  6000 |
+|    2 | ??    |      22 |  4000 |
+|    2 | ???   |      25 |  3000 |
+|    3 | ??    |      35 |  3000 |
+|    3 | ??    |      33 |  2000 |
+|    4 | ???   |      43 | 23000 |
+|    4 | ??    |      42 | 13000 |
+|    5 | ??    |      54 |  6000 |
++------+-------+---------+-------+
+11 rows in set (0.00 sec)
+
+mysql>
