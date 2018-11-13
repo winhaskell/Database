@@ -1,0 +1,17 @@
+CREATE TABLE students (
+    id INT AUTO_INCREMENT,
+    name VARCHAR(30),
+    birth DATE,
+    gpa FLOAT,
+    grad INT,
+    PRIMARY KEY(id));
+    
+    
+ INSERT INTO students(name, birth, gpa, grad)
+     VALUES ('Anderson', '1987-10-22', 3.9, 2009);
+INSERT INTO students(name, birth, gpa, grad)
+     VALUES ('Jones', '1990-4-16', 2.4, 2012);
+INSERT INTO students(name, birth, gpa, grad)
+    VALUES ('Hernandez', '1989-8-12', 3.1, 2011);
+INSERT INTO students(name, birth, gpa, grad)
+    VALUES ('Chen', '1990-2-4', 3.2, 2011);
