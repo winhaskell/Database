@@ -217,3 +217,65 @@ mysql> DESCRIBE world.person;
 
 mysql>
 
+CREATE TABLE animals (
+     id MEDIUMINT NOT NULL AUTO_INCREMENT,
+     name CHAR(30) NOT NULL,
+     PRIMARY KEY (id)
+);
+
+INSERT INTO animals (name) VALUES
+    ('dog'),('cat'),('penguin'),
+    ('lax'),('whale'),('ostrich');
+
+SELECT * FROM animals;
+mysql> SELECT * FROM world.animals;
++-----+---------+
+| id  | name    |
++-----+---------+
+|   1 | dog     |
+|   2 | cat     |
+|   3 | penguin |
+|   4 | lax     |
+|   5 | whale   |
+|   6 | ostrich |
+| 100 | rabbit  |
+| 101 | mouse   |
++-----+---------+
+8 rows in set (0.00 sec)
+
+mysql>
+
++----+---------+
+| id | name    |
++----+---------+
+|  1 | dog     |
+|  2 | cat     |
+|  3 | penguin |
+|  4 | lax     |
+|  5 | whale   |
+|  6 | ostrich |
++----+---------+
+6 rows in set (0.00 sec)
+
+mysql>
+INSERT INTO animals (id,name) VALUES(100,'rabbit');
+INSERT INTO animals (id,name) VALUES(NULL,'mouse');
+
+mysql> SELECT * FROM world.animals;
++-----+---------+
+| id  | name    |
++-----+---------+
+|   1 | dog     |
+|   2 | cat     |
+|   3 | penguin |
+|   4 | lax     |
+|   5 | whale   |
+|   6 | ostrich |
+| 100 | rabbit  |
+| 101 | mouse   |
++-----+---------+
+8 rows in set (0.00 sec)
+
+mysql>
+
+
