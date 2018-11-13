@@ -628,3 +628,55 @@ IN - 操作符允许我们在 WHERE 子句中规定多个值。
 
 IN - 操作符用来指定范围，范围中的每一条，都进行匹配。由逗号间隔，全部放置括号中。 
 语法：SELECT "字段名" FROM "表格名" WHERE "字段名" IN ('值1', '值2', ...);
+
+
+mysql> delete from world.students;
+Query OK, 10 rows affected (0.01 sec)
+
+mysql> select * from world.students;
+Empty set (0.00 sec)
+
+mysql> describe world.students;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| sid     | int(11)     | NO   | PRI | NULL    |       |
+| name    | text        | NO   |     | NULL    |       |
+| address | varchar(80) | NO   |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+3 rows in set (0.02 sec)
+
+
+      INSERT INTO world.students (sid, name, address) VALUES (10, 'Istvan', 'wellington');
+	  INSERT INTO world.students (sid, name, address) VALUES (1 , 'Simon ', 'beijing');
+	  INSERT INTO world.students (sid, name, address) VALUES (2, 'Alvin', 'soul');
+	  INSERT INTO world.students (sid, name, address) VALUES (8, 'Tom B. Erichsen', 'Norway');
+	  INSERT INTO world.students (sid, name, address) VALUES (9, 'Theo', 'Finland');
+	  INSERT INTO world.students (sid, name, address) VALUES (7, 'Start', 'wellington');
+	  INSERT INTO world.students (sid, name, address) VALUES (6, 'Elenor', 'wellington');
+	  INSERT INTO world.students (sid, name, address) VALUES (5, 'Jenette', 'wellington');
+	  INSERT INTO world.students (sid, name, address) VALUES (4, 'Brittany', 'wellington');
+	  INSERT INTO world.students (sid, name, address) VALUES (3, 'Istvan', 'auckland');
+	  INSERT INTO world.students (sid, name, address) VALUES (11, 'bill', 'seaton');
+
+
+mysql> select * from world.students;
++-----+-----------------+------------+
+| sid | name            | address    |
++-----+-----------------+------------+
+|   1 | Simon           | beijing    |
+|   2 | Alvin           | soul       |
+|   3 | Istvan          | auckland   |
+|   4 | Brittany        | wellington |
+|   5 | Jenette         | wellington |
+|   6 | Elenor          | wellington |
+|   7 | Start           | wellington |
+|   8 | Tom B. Erichsen | Norway     |
+|   9 | Theo            | Finland    |
+|  10 | Istvan          | wellington |
+|  11 | bill            | seaton     |
++-----+-----------------+------------+
+11 rows in set (0.00 sec)
+
+mysql>
+
