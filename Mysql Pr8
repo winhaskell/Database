@@ -613,3 +613,18 @@ mysql> SELECT name,address FROM  world.students order by name;
 10 rows in set (0.00 sec)
 
 mysql>
+
+mysql> SELECT * FROM world.students WHERE name IN ('Alvin','Theo');
++-----+-------+---------+
+| sid | name  | address |
++-----+-------+---------+
+|   2 | Alvin | Soul    |
+|   3 | Theo  |         |
+|   9 | Theo  | Finland |
++-----+-------+---------+
+3 rows in set (0.00 sec)
+
+IN - 操作符允许我们在 WHERE 子句中规定多个值。
+
+IN - 操作符用来指定范围，范围中的每一条，都进行匹配。由逗号间隔，全部放置括号中。 
+语法：SELECT "字段名" FROM "表格名" WHERE "字段名" IN ('值1', '值2', ...);
