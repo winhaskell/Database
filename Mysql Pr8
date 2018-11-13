@@ -444,3 +444,22 @@ mysql> select * from world.students;
 Mysql更新某一个字段的值
 update tablename set age='newage' where age='';
 UPDATE world.students SET name = 'Start' WHERE name = 'Stu';
+
+mysql> UPDATE world.students SET name = 'Start' WHERE name = 'Stu';
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from world.students;
++-----+-----------------+---------+
+| sid | name            | address |
++-----+-----------------+---------+
+|   1 | Simon           | beijing |
+|   2 | Alvin           | Soul    |
+|   3 | Theo            |         |
+|   4 | Brittany        |         |
+|   5 | Jenette         |         |
+|   6 | Elenor          |         |
+|   7 | Start           |         |
+|   8 | Tom B. Erichsen | Norway  |
++-----+-----------------+---------+
+8 rows in set (0.00 sec)
