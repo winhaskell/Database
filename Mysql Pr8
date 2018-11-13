@@ -577,3 +577,39 @@ mysql> select * from world.students;
 10 rows in set (0.00 sec)
 
 mysql>
+
+mysql> SELECT name,address FROM  world.students order by address;
++-----------------+------------+
+| name            | address    |
++-----------------+------------+
+| Theo            |   NULL     |
+| Brittany        |   ---      |
+| Jenette         |   ---      |
+| Elenor          |   ---      |
+| Start           |   ---      |
+| Simon           | beijing    |
+| Theo            | Finland    |
+| Tom B. Erichsen | Norway     |
+| Alvin           | Soul       |
+| Istvan          | wellington |
++-----------------+------------+
+10 rows in set (0.00 sec)
+
+mysql> SELECT name,address FROM  world.students order by name;
++-----------------+------------+
+| name            | address    |
++-----------------+------------+
+| Alvin           | Soul       |
+| Brittany        |            |
+| Elenor          |            |
+| Istvan          | wellington |
+| Jenette         |            |
+| Simon           | beijing    |
+| Start           |            |
+| Theo            |            |
+| Theo            | Finland    |
+| Tom B. Erichsen | Norway     |
++-----------------+------------+
+10 rows in set (0.00 sec)
+
+mysql>
