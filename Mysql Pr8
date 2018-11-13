@@ -680,3 +680,10 @@ mysql> select * from world.students;
 
 mysql>
 
+
+-- 删除 workmates 表: 
+drop table workmates;
+
+删除整个数据库  语法：drop database 数据库名;
+-- 删除 samp_db 数据库: 
+drop database samp_db;
