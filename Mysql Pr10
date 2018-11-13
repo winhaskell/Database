@@ -1,3 +1,5 @@
+Handling MySQL NULL Values
+
 create table tcount_tbl
    (
     tutorial_author varchar(40) NOT NULL,
@@ -43,5 +45,37 @@ mysql> select * from  world.tcount_tbl;
 | Gill            |             20 |
 +-----------------+----------------+
 6 rows in set (0.00 sec)
+
+mysql>
+To find the records where the tutorial_count column is or is not NULL, the queries should be written as shown in the following program.
+mysql> SELECT * FROM world.tcount_tbl WHERE tutorial_count IS NULL;
++-----------------+----------------+
+| tutorial_author | tutorial_count |
++-----------------+----------------+
+| mahnaz          |           NULL |
+| Jen             |           NULL |
++-----------------+----------------+
+2 rows in set (0.00 sec)
+
+
+mysql> = and != do not work with NULL values as follows 
+
+mysql> SELECT * FROM  world.tcount_tbl WHERE tutorial_count = NULL;
+Empty set (0.00 sec)
+
+mysql> SELECT * FROM  world.tcount_tbl WHERE tutorial_count != NULL;
+Empty set (0.00 sec)
+
+
+mysql> SELECT * FROM world.tcount_tbl WHERE tutorial_count IS NOT NULL;
++-----------------+----------------+
+| tutorial_author | tutorial_count |
++-----------------+----------------+
+| mahran          |             20 |
+| mahran          |             20 |
+| mahnaz          |             90 |
+| Gill            |             20 |
++-----------------+----------------+
+4 rows in set (0.00 sec)
 
 mysql>
