@@ -1,0 +1,113 @@
+MySQL Fundamentals Ed 1
+https://education.oracle.com/mysql-fundamentals-ed-1/courP_5620
+
+
+Introduction to MySQL
+MySQL Overview
+How MySQL course content covers material that applies whether you run MySQL locally or in MySQL Cloud Service
+Course Goals
+What it means to provision a MySQL Cloud Service instance
+Course Lesson Map
+Classroom Environment
+What is MySQL Cloud Service
+How an instance of MySQL Cloud Service differs from having an on-premises instance
+MySQL Server and Client
+MySQL Client/Server Model
+Using the mysql client
+MySQL Workbench
+Setting the root Password
+MySQL Connectors
+Installation of the MySQL server
+Starting and stopping the MySQL server
+Database Basics
+Basics of Relational Databases
+SQL data definition language
+SQL data manipulation language
+Entities and Relationships
+Relationship Categories
+SQL Language and MySQL
+Spreadsheet Versus Database
+Designing Your Database
+Database Modeling
+Normalization
+Keys
+Viewing and Evaluating a Database
+Database Design
+Data Types
+String Data Types
+Character Set and Collation Support
+Temporal Data Types
+The Meaning of NULL
+Numeric Data Types
+Data Types as Part of Database Design
+Data Type Considerations
+Creating Databases and Tables
+Showing How a Table Was Created
+Column Options
+Indexes, Keys, and Constraints
+Table Options
+Creating a Table
+Creating a Database
+Modifying Databases and Tables
+Creating a New Table Using an Existing Table
+Copying an Existing Table Structure
+Adding, removing and modifying Indexes
+Confirming the Creation of a New Table
+Creating a Temporary Table
+Adding, removing and modifying table columns
+Deleting databases and tables
+Querying Table Data
+Creating Views
+Querying Data from an Application
+Troubleshooting: Authorization Levels
+The SELECT Statement
+Exporting and Importing a Delimited File
+Modifying Table Data
+Exporting and importing a script
+Multistatement Transactions
+Manipulating Data
+Replacing existing records
+Updating existing records
+Modifying Data from an Application
+Inserting records
+Deleting records
+Functions
+Date and time functions
+Aggregate Functions
+String Functions
+Numeric Functions
+Using Functions
+Spaces in Function Names
+Functions in MySQL Expressions
+Joining Tables
+Outer Joins
+Joining Tables with SELECT
+Querying Multiple Tables
+Table Name Aliases
+Inner Joins
+Conclusion
+Final Q&A
+Course Goals
+Evaluation
+MySQL Curriculum Path
+MySQL Resources
+
+
+
+Course Objectives:
+Describe the features and benefits of MySQL
+Explain the basics of relational databases
+Design an effective database
+Issue MySQL statements from the mysql command-line client
+Perform database operations by using MySQL Workbench
+Select appropriate data types for your database
+Build a database and tables by using SQL
+Modify the structure of your database
+Create indexes and keys
+Add or update database data
+Query data with SELECT statements
+Join data from multiple tables
+Use built-in MySQL functions
+Export and import database data
+Explain database transactions
+Gain an understanding on the MySQL Cloud Service
