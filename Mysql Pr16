@@ -1,0 +1,231 @@
+--------------------- 
+作者：规速 
+来源：CSDN 
+原文：https://blog.csdn.net/hguisu/article/details/5731629 
+版权声明：本文为博主原创文章，转载请附上博文链接！
+--------------------- 
+ 
+ 通过 show status和应用特点了解各种 SQL的执行频率
+ 通过 SHOW STATUS 可以提供服务器状态信息，也可以使用 mysqladmin extende d-status 命令获得。 
+ SHOW STATUS 可以根据需要显示 session 级别的统计结果和 global级别的统计结果。
+ 如显示当前session： SHOW STATUS like "Com_%"; 全局级别：show global status; 以下几个参数对 Myisam 和 Innodb 存储引擎都计数：
+1. Com_select 执行 select 操作的次数，一次查询只累加 1 ；
+2. Com_insert 执行 insert 操作的次数，对于批量插入的 insert 操作，只累加一次 ；
+3. Com_update 执行 update 操作的次数；
+4. Com_delete 执行 delete 操作的次数；
+
+ 
+
+mysql> SHOW STATUS like "Com_%";
++-------------------------------------+-------+
+| Variable_name                       | Value |
++-------------------------------------+-------+
+| Com_admin_commands                  | 0     |
+| Com_assign_to_keycache              | 0     |
+| Com_alter_db                        | 0     |
+| Com_alter_event                     | 0     |
+| Com_alter_function                  | 0     |
+| Com_alter_instance                  | 0     |
+| Com_alter_procedure                 | 0     |
+| Com_alter_resource_group            | 0     |
+| Com_alter_server                    | 0     |
+| Com_alter_table                     | 2     |
+| Com_alter_tablespace                | 0     |
+| Com_alter_user                      | 0     |
+| Com_alter_user_default_role         | 0     |
+| Com_analyze                         | 0     |
+| Com_begin                           | 0     |
+| Com_binlog                          | 0     |
+| Com_call_procedure                  | 0     |
+| Com_change_db                       | 0     |
+| Com_change_master                   | 0     |
+| Com_change_repl_filter              | 0     |
+| Com_check                           | 0     |
+| Com_checksum                        | 0     |
+| Com_clone                           | 0     |
+| Com_commit                          | 0     |
+| Com_create_db                       | 0     |
+| Com_create_event                    | 0     |
+| Com_create_function                 | 0     |
+| Com_create_index                    | 0     |
+| Com_create_procedure                | 0     |
+| Com_create_role                     | 0     |
+| Com_create_server                   | 0     |
+| Com_create_table                    | 0     |
+| Com_create_resource_group           | 0     |
+| Com_create_trigger                  | 0     |
+| Com_create_udf                      | 0     |
+| Com_create_user                     | 0     |
+| Com_create_view                     | 0     |
+| Com_create_spatial_reference_system | 0     |
+| Com_dealloc_sql                     | 0     |
+| Com_delete                          | 0     |
+| Com_delete_multi                    | 0     |
+| Com_do                              | 0     |
+| Com_drop_db                         | 0     |
+| Com_drop_event                      | 0     |
+| Com_drop_function                   | 0     |
+| Com_drop_index                      | 1     |
+| Com_drop_procedure                  | 0     |
+| Com_drop_resource_group             | 0     |
+| Com_drop_role                       | 0     |
+| Com_drop_server                     | 0     |
+| Com_drop_spatial_reference_system   | 0     |
+| Com_drop_table                      | 0     |
+| Com_drop_trigger                    | 0     |
+| Com_drop_user                       | 0     |
+| Com_drop_view                       | 0     |
+| Com_empty_query                     | 0     |
+| Com_execute_sql                     | 0     |
+| Com_explain_other                   | 0     |
+| Com_flush                           | 0     |
+| Com_get_diagnostics                 | 0     |
+| Com_grant                           | 0     |
+| Com_grant_roles                     | 0     |
+| Com_ha_close                        | 0     |
+| Com_ha_open                         | 0     |
+| Com_ha_read                         | 0     |
+| Com_help                            | 0     |
+| Com_import                          | 0     |
+| Com_insert                          | 0     |
+| Com_insert_select                   | 0     |
+| Com_install_component               | 0     |
+| Com_install_plugin                  | 0     |
+| Com_kill                            | 0     |
+| Com_load                            | 0     |
+| Com_lock_instance                   | 0     |
+| Com_lock_tables                     | 0     |
+| Com_optimize                        | 0     |
+| Com_preload_keys                    | 0     |
+| Com_prepare_sql                     | 0     |
+| Com_purge                           | 0     |
+| Com_purge_before_date               | 0     |
+| Com_release_savepoint               | 0     |
+| Com_rename_table                    | 0     |
+| Com_rename_user                     | 0     |
+| Com_repair                          | 0     |
+| Com_replace                         | 0     |
+| Com_replace_select                  | 0     |
+| Com_reset                           | 0     |
+| Com_resignal                        | 0     |
+| Com_restart                         | 0     |
+| Com_revoke                          | 0     |
+| Com_revoke_all                      | 0     |
+| Com_revoke_roles                    | 0     |
+| Com_rollback                        | 0     |
+| Com_rollback_to_savepoint           | 0     |
+| Com_savepoint                       | 0     |
+| Com_select                          | 27    |
+| Com_set_option                      | 2     |
+| Com_set_password                    | 0     |
+| Com_set_resource_group              | 0     |
+| Com_set_role                        | 0     |
+| Com_signal                          | 0     |
+| Com_show_binlog_events              | 0     |
+| Com_show_binlogs                    | 0     |
+| Com_show_charsets                   | 0     |
+| Com_show_collations                 | 0     |
+| Com_show_create_db                  | 0     |
+| Com_show_create_event               | 0     |
+| Com_show_create_func                | 0     |
+| Com_show_create_proc                | 0     |
+| Com_show_create_table               | 0     |
+| Com_show_create_trigger             | 0     |
+| Com_show_databases                  | 1     |
+| Com_show_engine_logs                | 0     |
+| Com_show_engine_mutex               | 0     |
+| Com_show_engine_status              | 0     |
+| Com_show_events                     | 0     |
+| Com_show_errors                     | 0     |
+| Com_show_fields                     | 1     |
+| Com_show_function_code              | 0     |
+| Com_show_function_status            | 0     |
+| Com_show_grants                     | 0     |
+| Com_show_keys                       | 6     |
+| Com_show_master_status              | 0     |
+| Com_show_open_tables                | 0     |
+| Com_show_plugins                    | 0     |
+| Com_show_privileges                 | 0     |
+| Com_show_procedure_code             | 0     |
+| Com_show_procedure_status           | 0     |
+| Com_show_processlist                | 1     |
+| Com_show_profile                    | 1     |
+| Com_show_profiles                   | 5     |
+| Com_show_relaylog_events            | 0     |
+| Com_show_slave_hosts                | 0     |
+| Com_show_slave_status               | 0     |
+| Com_show_status                     | 2     |
+| Com_show_storage_engines            | 0     |
+| Com_show_table_status               | 0     |
+| Com_show_tables                     | 0     |
+| Com_show_triggers                   | 0     |
+| Com_show_variables                  | 4     |
+| Com_show_warnings                   | 0     |
+| Com_show_create_user                | 0     |
+| Com_shutdown                        | 0     |
+| Com_slave_start                     | 0     |
+| Com_slave_stop                      | 0     |
+| Com_group_replication_start         | 0     |
+| Com_group_replication_stop          | 0     |
+| Com_stmt_execute                    | 0     |
+| Com_stmt_close                      | 0     |
+| Com_stmt_fetch                      | 0     |
+| Com_stmt_prepare                    | 0     |
+| Com_stmt_reset                      | 0     |
+| Com_stmt_send_long_data             | 0     |
+| Com_truncate                        | 0     |
+| Com_uninstall_component             | 0     |
+| Com_uninstall_plugin                | 0     |
+| Com_unlock_instance                 | 0     |
+| Com_unlock_tables                   | 0     |
+| Com_update                          | 0     |
+| Com_update_multi                    | 0     |
+| Com_xa_commit                       | 0     |
+| Com_xa_end                          | 0     |
+| Com_xa_prepare                      | 0     |
+| Com_xa_recover                      | 0     |
+| Com_xa_rollback                     | 0     |
+| Com_xa_start                        | 0     |
+| Com_stmt_reprepare                  | 0     |
+| Compression                         | OFF   |
++-------------------------------------+-------+
+168 rows in set (0.00 sec)
+
+mysql>
+mysql> explain  SELECT * from world.entries2 a, world.entries2 b where a.id != b.id;
++----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+----------------------------------------------------+
+| id | select_type | table | partitions | type | possible_keys | key  | key_len | ref  | rows | filtered | Extra                                              |
++----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+----------------------------------------------------+
+|  1 | SIMPLE      | a     | NULL       | ALL  | NULL          | NULL | NULL    | NULL |    3 |   100.00 | NULL                                               |
+|  1 | SIMPLE      | b     | NULL       | ALL  | NULL          | NULL | NULL    | NULL |    3 |    66.67 | Using where; Using join buffer (Block Nested Loop) |
++----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+----------------------------------------------------+
+2 rows in set, 1 warning (0.00 sec)
+
+mysql>
+mysql> SELECT * from world.entries2 a, world.entries2 b where a.id != b.id;
++----+--------+---------+---------------------+----+--------+---------+---------------------+
+| id | title  | content | posted_on           | id | title  | content | posted_on           |
++----+--------+---------+---------------------+----+--------+---------+---------------------+
+|  2 | š«íšÉć | MBA     | 2016-05-22 17:18:33 |  1 | ŠŐÇŠť» | DB2     | 2016-04-22 18:25:33 |
+|  3 | ŠŐÇŠť» | DB2     | 2016-04-22 18:25:33 |  1 | ŠŐÇŠť» | DB2     | 2016-04-22 18:25:33 |
+|  1 | ŠŐÇŠť» | DB2     | 2016-04-22 18:25:33 |  2 | š«íšÉć | MBA     | 2016-05-22 17:18:33 |
+|  3 | ŠŐÇŠť» | DB2     | 2016-04-22 18:25:33 |  2 | š«íšÉć | MBA     | 2016-05-22 17:18:33 |
+|  1 | ŠŐÇŠť» | DB2     | 2016-04-22 18:25:33 |  3 | ŠŐÇŠť» | DB2     | 2016-04-22 18:25:33 |
+|  2 | š«íšÉć | MBA     | 2016-05-22 17:18:33 |  3 | ŠŐÇŠť» | DB2     | 2016-04-22 18:25:33 |
++----+--------+---------+---------------------+----+--------+---------+---------------------+
+6 rows in set (0.00 sec)
+
+
+mysql> SELECT * from world.entries2 a, world.entries2 b where a.id != b.id and a.content = b.content;
++----+--------+---------+---------------------+----+--------+---------+---------------------+
+| id | title  | content | posted_on           | id | title  | content | posted_on           |
++----+--------+---------+---------------------+----+--------+---------+---------------------+
+|  3 | ŠŐÇŠť» | DB2     | 2016-04-22 18:25:33 |  1 | ŠŐÇŠť» | DB2     | 2016-04-22 18:25:33 |
+|  1 | ŠŐÇŠť» | DB2     | 2016-04-22 18:25:33 |  3 | ŠŐÇŠť» | DB2     | 2016-04-22 18:25:33 |
++----+--------+---------+---------------------+----+--------+---------+---------------------+
+2 rows in set (0.00 sec)
+
+mysql>
+3	技术	DB2	2016-04-22 18:25:33	1	技术	DB2	2016-04-22 18:25:33
+1	技术	DB2	2016-04-22 18:25:33	3	技术	DB2	2016-04-22 18:25:33
+
