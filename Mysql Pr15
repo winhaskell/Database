@@ -37,3 +37,55 @@ mysql> select * from world.employee_tbl;
 5	小明	2016-04-11 15:26:40	4
 6	小明	2016-04-04 15:26:54	2
 			
+
+
+create table entries2 (
+        id    int auto_increment, 
+        title    text,
+        content  text,
+        posted_on  datetime,
+        primary key (id)   
+) character set = utf8;
+
+mysql> describe world.entries2;
++-----------+----------+------+-----+---------+----------------+
+| Field     | Type     | Null | Key | Default | Extra          |
++-----------+----------+------+-----+---------+----------------+
+| id        | int(11)  | NO   | PRI | NULL    | auto_increment |
+| title     | text     | YES  |     | NULL    |                |
+| content   | text     | YES  |     | NULL    |                |
+| posted_on | datetime | YES  |     | NULL    |                |
++-----------+----------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql>
+INSERT INTO `entries2` VALUES ('1', "技术","DB2", '2016-04-22 18:25:33');
+
+mysql> select * from world.entries2;
++----+--------+---------+---------------------+
+| id | title  | content | posted_on           |
++----+--------+---------+---------------------+
+|  1 | ŠŐÇŠť» | DB2     | 2016-04-22 18:25:33 |
++----+--------+---------+---------------------+
+1 row in set (0.00 sec)
+
+mysql>
+INSERT INTO `entries2` VALUES ('3', "技术","DB2", '2016-04-22 18:25:33');
+INSERT INTO `entries2` VALUES ('2', "管理","MBA ", '2016-05-22 17:18:33');
+
+id   | title  | content | posted_on           |
+1	技术	DB2	2016-04-22 18:25:33
+2	管理	MBA 	2016-05-22 17:18:33
+3	技术	DB2	2016-04-22 18:25:33
+
+mysql> select * from world.entries2;
++----+--------+---------+---------------------+
+| id | title  | content | posted_on           |
++----+--------+---------+---------------------+
+|  1 | ŠŐÇŠť» | DB2     | 2016-04-22 18:25:33 |
+|  2 | š«íšÉć | MBA     | 2016-05-22 17:18:33 |
+|  3 | ŠŐÇŠť» | DB2     | 2016-04-22 18:25:33 |
++----+--------+---------+---------------------+
+3 rows in set (0.00 sec)
+
+mysql>
