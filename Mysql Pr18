@@ -335,14 +335,18 @@ mysql> select * from user;
 4 rows in set (0.00 sec)
 
 mysql>
+mysql> select User,Host,authentication_string from user;
++------------------+-----------+------------------------------------------------------------------------+
+| User             | Host      | authentication_string                                                  |
++------------------+-----------+------------------------------------------------------------------------+
+| mysql.infoschema | localhost | $A$005$THISISACOMBINATIONOFINVALIDSALTANDPASSWORDTHATMUSTNEVERBRBEUSED |
+| mysql.session    | localhost | $A$005$THISISACOMBINATIONOFINVALIDSALTANDPASSWORDTHATMUSTNEVERBRBEUSED |
+| mysql.sys        | localhost | $A$005$THISISACOMBINATIONOFINVALIDSALTANDPASSWORDTHATMUSTNEVERBRBEUSED |
+| root             | localhost | $A$005$XT?(Kjy=rcT?d!eRQGDTUtoBp0Zx12B6znkkk616LbZsj6ktkxUigimIA    |
++------------------+-----------+------------------------------------------------------------------------+
+4 rows in set (0.00 sec)
 
-
-
-
-
-
-
-
+这就是基本的MySQL用户信息，当然还有很多用户授权、锁定、过期等信息.
 
 
 
