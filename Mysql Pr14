@@ -1,0 +1,60 @@
+DROP TABLE user_login;  
+
+CREATE TABLE user_login(  
+    pid INT NOT NULL,  
+    login_time DATETIME NOT NULL  
+);  
+
+
+INSERT INTO user_login(pid, login_time) VALUES(1,'2016-11-25 13:30:45');  
+INSERT INTO user_login(pid, login_time) VALUES(1,'2016-11-24 13:30:45');  
+INSERT INTO user_login(pid, login_time) VALUES(1,'2016-11-24 10:30:45');  
+INSERT INTO user_login(pid, login_time) VALUES(1,'2016-11-24 09:30:45');  
+INSERT INTO user_login(pid, login_time) VALUES(1,'2016-11-23 09:30:45');  
+INSERT INTO user_login(pid, login_time) VALUES(1,'2016-11-10 09:30:45');  
+INSERT INTO user_login(pid, login_time) VALUES(1,'2016-11-09 09:30:45');  
+INSERT INTO user_login(pid, login_time) VALUES(1,'2016-11-01 09:30:45');  
+INSERT INTO user_login(pid, login_time) VALUES(1,'2016-10-31 09:30:45');  
+  
+  
+INSERT INTO user_login(pid, login_time) VALUES(2,'2016-11-25 13:30:45');  
+INSERT INTO user_login(pid, login_time) VALUES(2,'2016-11-24 13:30:45');  
+INSERT INTO user_login(pid, login_time) VALUES(2,'2016-11-23 10:30:45');  
+INSERT INTO user_login(pid, login_time) VALUES(2,'2016-11-22 09:30:45');  
+INSERT INTO user_login(pid, login_time) VALUES(2,'2016-11-21 09:30:45');  
+INSERT INTO user_login(pid, login_time) VALUES(2,'2016-11-20 09:30:45');  
+INSERT INTO user_login(pid, login_time) VALUES(2,'2016-11-19 09:30:45');  
+INSERT INTO user_login(pid, login_time) VALUES(2,'2016-11-02 09:30:45');  
+INSERT INTO user_login(pid, login_time) VALUES(2,'2016-11-01 09:30:45');  
+INSERT INTO user_login(pid, login_time) VALUES(2,'2016-10-31 09:30:45');  
+INSERT INTO user_login(pid, login_time) VALUES(2,'2016-10-30 09:30:45');  
+INSERT INTO user_login(pid, login_time) VALUES(2,'2016-10-29 09:30:45'); 
+
+mysql> select  *  from world.user_login;
++-----+---------------------+
+| pid | login_time          |
++-----+---------------------+
+|   1 | 2016-11-25 13:30:45 |
+|   1 | 2016-11-24 13:30:45 |
+|   1 | 2016-11-24 10:30:45 |
+|   1 | 2016-11-24 09:30:45 |
+|   1 | 2016-11-23 09:30:45 |
+|   1 | 2016-11-10 09:30:45 |
+|   1 | 2016-11-09 09:30:45 |
+|   1 | 2016-11-01 09:30:45 |
+|   1 | 2016-10-31 09:30:45 |
+|   2 | 2016-11-25 13:30:45 |
+|   2 | 2016-11-24 13:30:45 |
+|   2 | 2016-11-23 10:30:45 |
+|   2 | 2016-11-22 09:30:45 |
+|   2 | 2016-11-21 09:30:45 |
+|   2 | 2016-11-20 09:30:45 |
+|   2 | 2016-11-19 09:30:45 |
+|   2 | 2016-11-02 09:30:45 |
+|   2 | 2016-11-01 09:30:45 |
+|   2 | 2016-10-31 09:30:45 |
+|   2 | 2016-10-30 09:30:45 |
+|   2 | 2016-10-29 09:30:45 |
++-----+---------------------+
+21 rows in set (0.01 sec)
+
