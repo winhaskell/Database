@@ -349,7 +349,197 @@ mysql> select User,Host,authentication_string from user;
 这就是基本的MySQL用户信息，当然还有很多用户授权、锁定、过期等信息.
 
 
+MySQL中有多种多样的缓存，有的缓存负责缓存查询语句，也有的负责缓存查询数据。
+这些缓存内容客户端无法操作，是由server端来维护的。它会随着你查询与修改等相应不同操作进行不断更新。
+通过其配置文件我们可以看到在MySQL中的缓存：
+
+mysql> show variables like "%cache%";
++---------------------------------+----------------------+
+| Variable_name                   | Value                |
++---------------------------------+----------------------+
+| binlog_cache_size               | 32768                |
+| binlog_stmt_cache_size          | 32768                |
+| have_query_cache                | NO                   |
+| host_cache_size                 | 279                  |
+| innodb_disable_sort_file_cache  | OFF                  |
+| innodb_ft_cache_size            | 8000000              |
+| innodb_ft_result_cache_limit    | 2000000000           |
+| innodb_ft_total_cache_size      | 640000000            |
+| key_cache_age_threshold         | 300                  |
+| key_cache_block_size            | 1024                 |
+| key_cache_division_limit        | 100                  |
+| max_binlog_cache_size           | 18446744073709547520 |
+| max_binlog_stmt_cache_size      | 18446744073709547520 |
+| schema_definition_cache         | 256                  |
+| stored_program_cache            | 256                  |
+| stored_program_definition_cache | 256                  |
+| table_definition_cache          | 1400                 |
+| table_open_cache                | 2000                 |
+| table_open_cache_instances      | 16                   |
+| tablespace_definition_cache     | 256                  |
+| thread_cache_size               | 10                   |
++---------------------------------+----------------------+
+21 rows in set (0.00 sec)
 
 
 
+// http://www.10tiao.com/html/283/201810/2650864422/1.html
+数据库层面问题解决思路
 
+一般应急调优的思路：
+
+针对突然的业务办理卡顿，无法进行正常的业务处理！需要立马解决的场景！
+
+1、show processlist
+
+mysql> show processlist;
++----+-----------------+-----------------+-------+---------+-------+-----------------------------+------------------+
+| Id | User            | Host            | db    | Command | Time  | State                       | Info             |
++----+-----------------+-----------------+-------+---------+-------+-----------------------------+------------------+
+|  4 | event_scheduler | localhost       | NULL  | Daemon  |  5740 | Waiting for next activation | NULL             |
+| 38 | root            | localhost:58458 | world | Sleep   |   446 |                             | NULL             |
+| 39 | root            | localhost:58459 | world | Sleep   |   446 |                             | NULL             |
+| 40 | root            | localhost:55613 | NULL  | Sleep   | 12341 |                             | NULL             |
+| 41 | root            | localhost:55614 | NULL  | Sleep   |     1 |                             | NULL             |
+| 42 | root            | localhost:56960 | mysql | Query   |     0 | starting                    | show processlist |
++----+-----------------+-----------------+-------+---------+-------+-----------------------------+------------------+
+6 rows in set (0.00 sec)
+
+ 
+2、explain select id ,name from stu where name='clsn'; # ALL id name age sex
+select id,name from stu where id=2-1 函数 结果集>30;
+show index from table;
+
+3、通过执行计划判断，索引问题（有没有、合不合理）或者语句本身问题
+
+4、show status like '%lock%'; # 查询锁状态
+kill SESSION_ID; # 杀掉有问题的session
+
+mysql> show status like '%lock%';
++------------------------------------------+-------+
+| Variable_name                            | Value |
++------------------------------------------+-------+
+| Com_lock_instance                        | 0     |
+| Com_lock_tables                          | 0     |
+| Com_unlock_instance                      | 0     |
+| Com_unlock_tables                        | 0     |
+| Handler_external_lock                    | 1012  |
+| Innodb_row_lock_current_waits            | 0     |
+| Innodb_row_lock_time                     | 0     |
+| Innodb_row_lock_time_avg                 | 0     |
+| Innodb_row_lock_time_max                 | 0     |
+| Innodb_row_lock_waits                    | 0     |
+| Key_blocks_not_flushed                   | 0     |
+| Key_blocks_unused                        | 6698  |
+| Key_blocks_used                          | 0     |
+| Locked_connects                          | 0     |
+| Performance_schema_locker_lost           | 0     |
+| Performance_schema_metadata_lock_lost    | 0     |
+| Performance_schema_rwlock_classes_lost   | 0     |
+| Performance_schema_rwlock_instances_lost | 0     |
+| Performance_schema_table_lock_stat_lost  | 0     |
+| Table_locks_immediate                    | 15867 |
+| Table_locks_waited                       | 0     |
++------------------------------------------+-------+
+21 rows in set (0.00 sec)
+
+mysql> 优化思路
+
+
+定位问题点:
+硬件 --> 系统 --> 应用 --> 数据库 --> 架构（高可用、读写分离、分库分表）
+
+
+处理方向：
+
+明确优化目标、性能和安全的折中、防患未然
+
+硬件优化
+
+主机方面：
+
+根据数据库类型，主机CPU选择、内存容量选择、磁盘选择
+
+平衡内存和磁盘资源
+
+随机的I/O和顺序的I/O
+
+主机 RAID卡的BBU(Battery Backup Unit)关闭
+
+
+cpu的选择：
+
+cpu的两个关键因素：核数、主频
+
+根据不同的业务类型进行选择：
+
+cpu密集型：计算比较多，OLTP 主频很高的cpu、核数还要多
+
+IO密集型：查询比较，OLAP 核数要多，主频不一定高的
+
+
+内存的选择：
+
+OLAP类型数据库，需要更多内存，和数据获取量级有关。
+
+OLTP类型数据一般内存是cpu核心数量的2倍到4倍，没有最佳实践。
+
+存储方面：
+根据存储数据种类的不同，选择不同的存储设备
+
+配置合理的RAID级别(raid5、raid10、热备盘)
+
+对与操作系统来讲，不需要太特殊的选择，最好做好冗余（raid1）（ssd、sas 、sata）
+
+
+raid卡：主机raid卡选择：
+
+实现操作系统磁盘的冗余（raid1）
+
+平衡内存和磁盘资源
+
+随机的I/O和顺序的I/O
+
+主机 RAID卡的BBU(Battery Backup Unit)要关闭。
+
+
+网络设备方面：
+使用流量支持更高的网络设备（交换机、路由器、网线、网卡、HBA卡）
+
+注意：以上这些规划应该在初始设计系统时就应该考虑好。
+
+服务器硬件优化
+
+1、物理状态灯：
+
+2、自带管理设备：远程控制卡（FENCE设备：ipmi ilo idarc），开关机、硬件监控。
+
+3、第三方的监控软件、设备（snmp、agent）对物理设施进行监控
+
+4、存储设备：自带的监控平台。EMC2（hp收购了）， 日立（hds），IBM低端OEM hds，高端存储是自己技术，华为存储
+
+系统优化
+
+Cpu：
+
+基本不需要调整，在硬件选择方面下功夫即可。
+
+
+
+内存：
+
+基本不需要调整，在硬件选择方面下功夫即可。
+
+
+
+SWAP：
+
+MySQL尽量避免使用swap。阿里云的服务器中默认swap为0
+
+
+
+IO ：
+
+raid、no lvm、 ext4或xfs、ssd、IO调度策略
+
+Swap调整(不使用swap分区)
