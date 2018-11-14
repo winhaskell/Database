@@ -115,3 +115,127 @@ mysql> SHOW TABLE STATUS FROM world;
 | user_login      | InnoDB |      10 | Dynamic    |   21 |            780 |       16384 |               0 |            0 |         0 |           NULL | 2018-11-14 13:12:54 | 2018-11-14 11:07:12 | NULL       | utf8mb4_0900_ai_ci |     NULL |                |         |
 +-----------------+--------+---------+------------+------+----------------+-------------+-----------------+--------------+-----------+----------------+---------------------+---------------------+------------+--------------------+----------+----------------+---------+
 18 rows in set (0.14 sec)
+
+
+
+mysql> SHOW TABLE STATUS FROM mysql;
++---------------------------+--------+---------+------------+------+----------------+-------------+-----------------+--------------+-----------+----------------+---------------------+---------------------+------------+--------------------+----------+---------------------------------------+-----------------------------------------+
+| Name                      | Engine | Version | Row_format | Rows | Avg_row_length | Data_length | Max_data_length | Index_length | Data_free | Auto_increment | Create_time         | Update_time         | Check_time | Collation          | Checksum | Create_options                        | Comment                                 |
++---------------------------+--------+---------+------------+------+----------------+-------------+-----------------+--------------+-----------+----------------+---------------------+---------------------+------------+--------------------+----------+---------------------------------------+-----------------------------------------+
+| animals                   | InnoDB |      10 | Dynamic    |    6 |           2730 |       16384 |               0 |            0 |         0 |              7 | 2018-11-13 21:33:16 | 2018-11-13 21:33:16 | NULL       | utf8mb4_0900_ai_ci |     NULL |                                       |                                         |
+| columns_priv              | InnoDB |      10 | Dynamic    |    0 |              0 |       16384 |               0 |            0 |   4194304 |           NULL | 2018-11-07 12:33:29 | NULL                | NULL       | utf8_bin           |     NULL | stats_persistent=0                    | Column privileges                       |
+| component                 | InnoDB |      10 | Dynamic    |    0 |              0 |       16384 |               0 |            0 |   4194304 |              1 | 2018-11-07 12:33:29 | NULL                | NULL       | utf8_general_ci    |     NULL |                                       | Components                              |
+| db                        | InnoDB |      10 | Dynamic    |    2 |           8192 |       16384 |               0 |        16384 |   4194304 |           NULL | 2018-11-07 12:33:29 | NULL                | NULL       | utf8_bin           |     NULL | stats_persistent=0                    | Database privileges                     |
+| default_roles             | InnoDB |      10 | Dynamic    |    0 |              0 |       16384 |               0 |            0 |   4194304 |           NULL | 2018-11-07 12:33:29 | NULL                | NULL       | utf8_bin           |     NULL | stats_persistent=0                    | Default roles                           |
+| engine_cost               | InnoDB |      10 | Dynamic    |    2 |           8192 |       16384 |               0 |            0 |   4194304 |           NULL | 2018-11-07 12:33:29 | NULL                | NULL       | utf8_general_ci    |     NULL | stats_persistent=0                    |                                         |
+| func                      | InnoDB |      10 | Dynamic    |    0 |              0 |       16384 |               0 |            0 |   4194304 |           NULL | 2018-11-07 12:33:29 | NULL                | NULL       | utf8_bin           |     NULL | stats_persistent=0                    | User defined functions                  |
+| general_log               | CSV    |      10 | Dynamic    |    1 |              0 |           0 |               0 |            0 |         0 |           NULL | 2018-11-07 12:33:29 | NULL                | NULL       | utf8_general_ci    |     NULL |                                       | General log                             |
+| global_grants             | InnoDB |      10 | Dynamic    |   15 |           1092 |       16384 |               0 |            0 |   4194304 |           NULL | 2018-11-07 12:33:29 | NULL                | NULL       | utf8_bin           |     NULL | stats_persistent=0                    | Extended global grants                  |
+| gtid_executed             | InnoDB |      10 | Dynamic    |    0 |              0 |       16384 |               0 |            0 |   4194304 |           NULL | 2018-11-07 12:33:29 | NULL                | NULL       | utf8mb4_0900_ai_ci |     NULL |                                       |                                         |
+| help_category             | InnoDB |      10 | Dynamic    |   40 |            409 |       16384 |               0 |        16384 |   4194304 |           NULL | 2018-11-07 12:33:29 | NULL                | NULL       | utf8_general_ci    |     NULL | stats_persistent=0                    | help categories                         |
+| help_keyword              | InnoDB |      10 | Dynamic    |  586 |            167 |       98304 |               0 |        81920 |   4194304 |           NULL | 2018-11-07 12:33:29 | NULL                | NULL       | utf8_general_ci    |     NULL | stats_persistent=0                    | help keywords                           |
+| help_relation             | InnoDB |      10 | Dynamic    |  993 |             82 |       81920 |               0 |            0 |   4194304 |           NULL | 2018-11-07 12:33:29 | NULL                | NULL       | utf8_general_ci    |     NULL | stats_persistent=0                    | keyword-topic relation                  |
+| help_topic                | InnoDB |      10 | Dynamic    |  701 |           2267 |     1589248 |               0 |        81920 |   4194304 |           NULL | 2018-11-07 12:33:29 | NULL                | NULL       | utf8_general_ci    |     NULL | stats_persistent=0                    | help topics                             |
+| innodb_index_stats        | InnoDB |      10 | Dynamic    |  321 |            204 |       65536 |               0 |            0 |   4194304 |           NULL | 2018-11-07 11:33:26 | 2018-11-14 13:54:58 | NULL       | utf8_bin           |     NULL | row_format=DYNAMIC stats_persistent=0 |                                         |
+| innodb_table_stats        | InnoDB |      10 | Dynamic    |   50 |            327 |       16384 |               0 |            0 |   4194304 |           NULL | 2018-11-07 11:33:26 | 2018-11-14 13:54:58 | NULL       | utf8_bin           |     NULL | row_format=DYNAMIC stats_persistent=0 |                                         |
+| password_history          | InnoDB |      10 | Dynamic    |    0 |              0 |       16384 |               0 |            0 |   4194304 |           NULL | 2018-11-07 12:33:29 | NULL                | NULL       | utf8_bin           |     NULL | stats_persistent=0                    | Password history for user accounts      |
+| plugin                    | InnoDB |      10 | Dynamic    |    0 |              0 |       16384 |               0 |            0 |   4194304 |           NULL | 2018-11-07 12:33:29 | NULL                | NULL       | utf8_general_ci    |     NULL | stats_persistent=0                    | MySQL plugins                           |
+| procs_priv                | InnoDB |      10 | Dynamic    |    0 |              0 |       16384 |               0 |        16384 |   4194304 |           NULL | 2018-11-07 12:33:29 | NULL                | NULL       | utf8_bin           |     NULL | stats_persistent=0                    | Procedure privileges                    |
+| proxies_priv              | InnoDB |      10 | Dynamic    |    1 |          16384 |       16384 |               0 |        16384 |   4194304 |           NULL | 2018-11-07 12:33:29 | NULL                | NULL       | utf8_bin           |     NULL | stats_persistent=0                    | User proxy privileges                   |
+| role_edges                | InnoDB |      10 | Dynamic    |    0 |              0 |       16384 |               0 |            0 |   4194304 |           NULL | 2018-11-07 12:33:29 | NULL                | NULL       | utf8_bin           |     NULL | stats_persistent=0                    | Role hierarchy and role grants          |
+| server_cost               | InnoDB |      10 | Dynamic    |    6 |           2730 |       16384 |               0 |            0 |   4194304 |           NULL | 2018-11-07 12:33:29 | NULL                | NULL       | utf8_general_ci    |     NULL | stats_persistent=0                    |                                         |
+| servers                   | InnoDB |      10 | Dynamic    |    0 |              0 |       16384 |               0 |            0 |   4194304 |           NULL | 2018-11-07 12:33:29 | NULL                | NULL       | utf8_general_ci    |     NULL | stats_persistent=0                    | MySQL Foreign Servers table             |
+| slave_master_info         | InnoDB |      10 | Dynamic    |    0 |              0 |       16384 |               0 |            0 |   4194304 |           NULL | 2018-11-07 12:33:29 | NULL                | NULL       | utf8_general_ci    |     NULL | stats_persistent=0                    | Master Information                      |
+| slave_relay_log_info      | InnoDB |      10 | Dynamic    |    0 |              0 |       16384 |               0 |            0 |   4194304 |           NULL | 2018-11-07 12:33:29 | NULL                | NULL       | utf8_general_ci    |     NULL | stats_persistent=0                    | Relay Log Information                   |
+| slave_worker_info         | InnoDB |      10 | Dynamic    |    0 |              0 |       16384 |               0 |            0 |   4194304 |           NULL | 2018-11-07 12:33:29 | NULL                | NULL       | utf8_general_ci    |     NULL | stats_persistent=0                    | Worker Information                      |
+| slow_log                  | CSV    |      10 | Dynamic    |    2 |              0 |           0 |               0 |            0 |         0 |           NULL | 2018-11-07 12:33:29 | NULL                | NULL       | utf8_general_ci    |     NULL |                                       | Slow log                                |
+| tables_priv               | InnoDB |      10 | Dynamic    |    2 |           8192 |       16384 |               0 |        16384 |   4194304 |           NULL | 2018-11-07 12:33:29 | NULL                | NULL       | utf8_bin           |     NULL | stats_persistent=0                    | Table privileges                        |
+| time_zone                 | InnoDB |      10 | Dynamic    |    0 |              0 |       16384 |               0 |            0 |   4194304 |              1 | 2018-11-07 12:33:29 | NULL                | NULL       | utf8_general_ci    |     NULL | stats_persistent=0                    | Time zones                              |
+| time_zone_leap_second     | InnoDB |      10 | Dynamic    |    0 |              0 |       16384 |               0 |            0 |   4194304 |           NULL | 2018-11-07 12:33:29 | NULL                | NULL       | utf8_general_ci    |     NULL | stats_persistent=0                    | Leap seconds information for time zones |
+| time_zone_name            | InnoDB |      10 | Dynamic    |    0 |              0 |       16384 |               0 |            0 |   4194304 |           NULL | 2018-11-07 12:33:29 | NULL                | NULL       | utf8_general_ci    |     NULL | stats_persistent=0                    | Time zone names                         |
+| time_zone_transition      | InnoDB |      10 | Dynamic    |    0 |              0 |       16384 |               0 |            0 |   4194304 |           NULL | 2018-11-07 12:33:29 | NULL                | NULL       | utf8_general_ci    |     NULL | stats_persistent=0                    | Time zone transitions                   |
+| time_zone_transition_type | InnoDB |      10 | Dynamic    |    0 |              0 |       16384 |               0 |            0 |   4194304 |           NULL | 2018-11-07 12:33:29 | NULL                | NULL       | utf8_general_ci    |     NULL | stats_persistent=0                    | Time zone transition types              |
+| user                      | InnoDB |      10 | Dynamic    |    4 |           4096 |       16384 |               0 |            0 |   4194304 |           NULL | 2018-11-07 12:33:29 | 2018-11-07 12:33:37 | NULL       | utf8_bin           |     NULL | stats_persistent=0                    | Users and global privileges             |
++---------------------------+--------+---------+------------+------+----------------+-------------+-----------------+--------------+-----------+----------------+---------------------+---------------------+------------+--------------------+----------+---------------------------------------+-----------------------------------------+
+34 rows in set (0.11 sec)
+
+mysql>
+mysql> SHOW TABLE STATUS FROM world;
++-----------------+--------+---------+------------+------+----------------+-------------+-----------------+--------------+-----------+----------------+---------------------+---------------------+------------+--------------------+----------+----------------+---------+
+| Name            | Engine | Version | Row_format | Rows | Avg_row_length | Data_length | Max_data_length | Index_length | Data_free | Auto_increment | Create_time         | Update_time         | Check_time | Collation          | Checksum | Create_options | Comment |
++-----------------+--------+---------+------------+------+----------------+-------------+-----------------+--------------+-----------+----------------+---------------------+---------------------+------------+--------------------+----------+----------------+---------+
+| animals         | InnoDB |      10 | Dynamic    |    8 |           2048 |       16384 |               0 |            0 |         0 |            102 | 2018-11-13 21:32:35 | 2018-11-13 21:33:53 | NULL       | utf8mb4_0900_ai_ci |     NULL |                |         |
+| city            | InnoDB |      10 | Dynamic    | 4188 |             97 |      409600 |               0 |       131072 |         0 |           4080 | 2018-11-07 12:35:28 | 2018-11-07 12:35:29 | NULL       | latin1_swedish_ci  |     NULL |                |         |
+| country         | InnoDB |      10 | Dynamic    |  239 |            411 |       98304 |               0 |            0 |         0 |           NULL | 2018-11-07 12:35:29 | 2018-11-07 12:35:29 | NULL       | latin1_swedish_ci  |     NULL |                |         |
+| countrylanguage | InnoDB |      10 | Dynamic    |  984 |             99 |       98304 |               0 |        65536 |         0 |           NULL | 2018-11-07 12:35:29 | 2018-11-07 12:35:29 | NULL       | latin1_swedish_ci  |     NULL |                |         |
+| employee_tbl    | InnoDB |      10 | Dynamic    |    6 |           2730 |       16384 |               0 |            0 |         0 |           NULL | 2018-11-14 13:29:46 | 2018-11-14 13:30:36 | NULL       | utf8_general_ci    |     NULL |                |         |
+| entries2        | InnoDB |      10 | Dynamic    |    3 |           5461 |       16384 |               0 |            0 |         0 |              4 | 2018-11-14 13:46:27 | 2018-11-14 13:54:58 | NULL       | utf8_general_ci    |     NULL |                |         |
+| grades          | InnoDB |      10 | Dynamic    |    7 |           2340 |       16384 |               0 |            0 |         0 |           NULL | 2018-11-13 12:54:41 | 2018-11-13 12:56:00 | NULL       | utf8mb4_0900_ai_ci |     NULL |                |         |
+| person          | InnoDB |      10 | Dynamic    |    2 |           8192 |       16384 |               0 |            0 |         0 |              3 | 2018-11-13 21:27:39 | 2018-11-13 21:28:42 | NULL       | utf8mb4_0900_ai_ci |     NULL |                |         |
+| products        | InnoDB |      10 | Dynamic    |    5 |           3276 |       16384 |               0 |            0 |         0 |           1006 | 2018-11-08 09:43:47 | 2018-11-08 09:51:01 | NULL       | utf8mb4_0900_ai_ci |     NULL |                |         |
+| salesdetail     | InnoDB |      10 | Dynamic    |   22 |            744 |       16384 |               0 |            0 |         0 |           NULL | 2018-11-13 15:39:23 | 2018-11-13 15:46:11 | NULL       | utf8_general_ci    |     NULL |                |         |
+| salesdetail2    | InnoDB |      10 | Dynamic    |    0 |              0 |       16384 |               0 |            0 |         0 |           NULL | 2018-11-13 15:44:49 | NULL                | NULL       | utf8_general_ci    |     NULL |                |         |
+| shirt           | InnoDB |      10 | Dynamic    |    7 |           2340 |       16384 |               0 |            0 |         0 |              8 | 2018-11-13 21:27:50 | 2018-11-13 21:28:42 | NULL       | utf8mb4_0900_ai_ci |     NULL |                |         |
+| shop            | InnoDB |      10 | Dynamic    |    7 |           2340 |       16384 |               0 |            0 |         0 |           NULL | 2018-11-13 21:01:31 | 2018-11-13 21:01:32 | NULL       | utf8mb4_0900_ai_ci |     NULL |                |         |
+| students        | InnoDB |      10 | Dynamic    |   11 |           1489 |       16384 |               0 |            0 |         0 |           NULL | 2018-11-13 13:41:45 | 2018-11-13 15:03:04 | NULL       | utf8mb4_0900_ai_ci |     NULL |                |         |
+| subjects        | InnoDB |      10 | Dynamic    |    3 |           5461 |       16384 |               0 |            0 |         0 |           NULL | 2018-11-13 12:54:41 | 2018-11-13 12:55:45 | NULL       | utf8mb4_0900_ai_ci |     NULL |                |         |
+| tcount_tbl      | InnoDB |      10 | Dynamic    |    6 |           2730 |       16384 |               0 |            0 |         0 |           NULL | 2018-11-13 16:13:13 | 2018-11-13 16:22:56 | NULL       | utf8mb4_0900_ai_ci |     NULL |                |         |
+| teachers        | InnoDB |      10 | Dynamic    |    4 |           4096 |       16384 |               0 |            0 |         0 |           NULL | 2018-11-13 12:54:41 | 2018-11-13 12:55:18 | NULL       | utf8mb4_0900_ai_ci |     NULL |                |         |
+| user_login      | InnoDB |      10 | Dynamic    |   21 |            780 |       16384 |               0 |            0 |         0 |           NULL | 2018-11-14 13:12:54 | 2018-11-14 11:07:12 | NULL       | utf8mb4_0900_ai_ci |     NULL |                |         |
++-----------------+--------+---------+------------+------+----------------+-------------+-----------------+--------------+-----------+----------------+---------------------+---------------------+------------+--------------------+----------+----------------+---------+
+18 rows in set (0.00 sec)
+
+
+查看/启用调度器并创建调度
+mysql> SHOW VARIABLES LIKE '%scheduler%';
++-----------------+-------+
+| Variable_name   | Value |
++-----------------+-------+
+| event_scheduler | ON    |
++-----------------+-------+
+1 row in set (0.00 sec)
+
+mysql>
+
+mysql> CREATE EVENT purge_binary_logs ON SCHEDULE EVERY 1 DAY DO PURGE BINARY LOGS BEFORE DATE_SUB(NOW( ),INTERVAL 3 DAY);
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> SHOW EVENTS;
++-------+-------------------+----------------+-----------+-----------+------------+----------------+----------------+---------------------+------+---------+------------+----------------------+----------------------+--------------------+
+| Db    | Name              | Definer        | Time zone | Type      | Execute at | Interval value | Interval field | Starts              | Ends | Status  | Originator | character_set_client | collation_connection | Database Collation |
++-------+-------------------+----------------+-----------+-----------+------------+----------------+----------------+---------------------+------+---------+------------+----------------------+----------------------+--------------------+
+| world | purge_binary_logs | root@localhost | SYSTEM    | RECURRING | NULL       |              1 | DAY            | 2018-11-14 16:03:55 | NULL | ENABLED |          1 | cp852                | cp852_general_ci     | utf8mb4_0900_ai_ci |
++-------+-------------------+----------------+-----------+-----------+------------+----------------+----------------+---------------------+------+---------+------------+----------------------+----------------------+--------------------+
+1 row in set (0.01 sec)
+
+mysql>
+mysql> SELECT @@event_scheduler;
++-------------------+
+| @@event_scheduler |
++-------------------+
+| ON                |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> SHOW PROCESSLIST;
++----+-----------------+-----------------+-------+---------+------+-----------------------------+------------------+
+| Id | User            | Host            | db    | Command | Time | State                       | Info             |
++----+-----------------+-----------------+-------+---------+------+-----------------------------+------------------+
+|  4 | event_scheduler | localhost       | NULL  | Daemon  |   90 | Waiting for next activation | NULL             |
+| 38 | root            | localhost:58458 | world | Sleep   |  196 |                             | NULL             |
+| 39 | root            | localhost:58459 | world | Sleep   |  196 |                             | NULL             |
+| 40 | root            | localhost:55613 | NULL  | Sleep   | 6691 |                             | NULL             |
+| 41 | root            | localhost:55614 | NULL  | Sleep   |    1 |                             | NULL             |
+| 42 | root            | localhost:56960 | world | Query   |    0 | starting                    | SHOW PROCESSLIST |
++----+-----------------+-----------------+-------+---------+------+-----------------------------+------------------+
+6 rows in set (0.00 sec)
+
+mysql>
+mysql> SELECT * FROM information_schema.EVENTS;
++---------------+--------------+-------------------+----------------+-----------+------------+----------------------------------------------------------+------------+------------+----------------+----------------+--------------------------------------------+---------------------+------+---------+---------------+---------------------+---------------------+---------------------+---------------+------------+----------------------+----------------------+--------------------+
+| EVENT_CATALOG | EVENT_SCHEMA | EVENT_NAME        | DEFINER        | TIME_ZONE | EVENT_BODY | EVENT_DEFINITION                                         | EVENT_TYPE | EXECUTE_AT | INTERVAL_VALUE | INTERVAL_FIELD | SQL_MODE                                   | STARTS              | ENDS | STATUS  | ON_COMPLETION | CREATED             | LAST_ALTERED        | LAST_EXECUTED       | EVENT_COMMENT | ORIGINATOR | CHARACTER_SET_CLIENT | COLLATION_CONNECTION | DATABASE_COLLATION |
++---------------+--------------+-------------------+----------------+-----------+------------+----------------------------------------------------------+------------+------------+----------------+----------------+--------------------------------------------+---------------------+------+---------+---------------+---------------------+---------------------+---------------------+---------------+------------+----------------------+----------------------+--------------------+
+| def           | world        | purge_binary_logs | root@localhost | SYSTEM    | SQL        | PURGE BINARY LOGS BEFORE DATE_SUB(NOW( ),INTERVAL 3 DAY) | RECURRING  | NULL       |              1 | DAY            | STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION | 2018-11-14 16:03:55 | NULL | ENABLED | NOT PRESERVE  | 2018-11-14 16:03:55 | 2018-11-14 16:03:55 | 2018-11-14 15:03:55 |               |          1 | cp852                | cp852_general_ci     | utf8mb4_0900_ai_ci |
++---------------+--------------+-------------------+----------------+-----------+------------+----------------------------------------------------------+------------+------------+----------------+----------------+--------------------------------------------+---------------------+------+---------+---------------+---------------------+---------------------+---------------------+---------------+------------+----------------------+----------------------+--------------------+
+1 row in set (0.00 sec)
+
