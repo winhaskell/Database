@@ -100,8 +100,7 @@ mysql> select  *  from world.user_login limit 6;
 6 rows in set (0.01 sec)
 
 
-mysql>
-创建索引
+mysql 创建索引
 
 在执行CREATE TABLE语句时可以创建索引，也可以单独用CREATE INDEX或ALTER TABLE来为表增加索引。
 
@@ -140,3 +139,49 @@ Records: 0  Duplicates: 0  Warnings: 0
 |       22 | 0.00043850 | select  *  from world.user_login limit 6
 
 
+删除索引
+可利用ALTER TABLE或DROP INDEX语句来删除索引。
+类似于CREATE INDEX语句，DROP INDEX可以在ALTER TABLE内部作为一条语句处理，语法如下。
+DROP INDEX index_name ON talbe_name;
+
+mysql> DROP INDEX pid ON world.user_login;
+Query OK, 0 rows affected (0.12 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql>  show index from world.user_login;
+Empty set (0.00 sec)
+
+mysql> alter table world.user_login add index (pid);
+Query OK, 0 rows affected (0.10 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+28 | 0.11875700 | DROP INDEX pid ON world.user_login     
+
+mysql> show index from world.user_login;
++------------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+| Table      | Non_unique | Key_name | Seq_in_index | Column_name | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment | Index_comment | Visible | Expression |
++------------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+| user_login |          1 | pid      |            1 | pid         | A         |           2 |     NULL |   NULL |      | BTREE      |         |               | YES     | NULL       |
++------------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+1 row in set (0.02 sec)
+
+mysql> select * from world.user_login limit 10;
++-----+---------------------+
+| pid | login_time          |
++-----+---------------------+
+|   1 | 2016-11-25 13:30:45 |
+|   1 | 2016-11-24 13:30:45 |
+|   1 | 2016-11-24 10:30:45 |
+|   1 | 2016-11-24 09:30:45 |
+|   1 | 2016-11-23 09:30:45 |
+|   1 | 2016-11-10 09:30:45 |
+|   1 | 2016-11-09 09:30:45 |
+|   1 | 2016-11-01 09:30:45 |
+|   1 | 2016-10-31 09:30:45 |
+|   2 | 2016-11-25 13:30:45 |
++-----+---------------------+
+10 rows in set (0.01 sec)
+
+
+31 | 0.01674850 | show index from world.user_login                                                                                                                                                                                                                                                                             |
+32 | 0.00718100 | select * from world.user_login limit 10      
