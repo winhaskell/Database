@@ -98,3 +98,45 @@ mysql> select  *  from world.user_login limit 6;
 |   1 | 2016-11-10 09:30:45 |
 +-----+---------------------+
 6 rows in set (0.01 sec)
+
+
+mysql>
+创建索引
+
+在执行CREATE TABLE语句时可以创建索引，也可以单独用CREATE INDEX或ALTER TABLE来为表增加索引。
+
+ALTER TABLE
+ALTER TABLE用来创建普通索引、UNIQUE索引或PRIMARY KEY索引。
+
+ALTER TABLE table_name ADD INDEX index_name (column_list)
+
+ALTER TABLE table_name ADD UNIQUE (column_list)
+
+ALTER TABLE table_name ADD PRIMARY KEY (column_list)
+
+其中table_name是要增加索引的表名，column_list指出对哪些列进行索引，多列时各列之间用逗号分隔。
+索引名index_name可选，缺省时，MySQL将根据第一个索引列赋一个名称。另外，ALTER TABLE允许在单个语句中更改多个表，因此可以在同时创建多个索引。
+
+作者：kang_KK
+链接：https://www.jianshu.com/p/e109aea6eb7c
+來源：简书
+简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。
+
+索引并不一定就是给主键或是唯一的字段。如果在你的表中，有某个字段你总要会经常用来做搜索，那么，请为其建立索引吧。
+
+从上图你可以看到那个搜索字串 “last_name LIKE ‘a%'”，一个是建了索引，一个是没有索引，性能差了4倍左右。
+
+另外，你应该也需要知道什么样的搜索是不能使用正常的索引的。
+例如，当你需要在一篇大的文章中搜索一个词时，如： “WHERE post_content LIKE ‘%apple%'”，索引可能是没有意义的。
+你可能需要使用MySQL全文索引 或是自己做一个索引（比如说：搜索关键词或是Tag什么的）
+
+mysql> alter table world.user_login add index (pid);
+Query OK, 0 rows affected (0.12 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+
+| Query_ID | Duration   | Query    
+|       14 | 0.00178875 | select  *  from world.user_login limit 6   
+|       22 | 0.00043850 | select  *  from world.user_login limit 6
+
+
