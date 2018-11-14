@@ -1,0 +1,101 @@
+Oracle/MySQL OCP 考试 
+模拟题
+
+GTID
+ delay
+slave worker
+ 
+分区
+ 
+INFORMATION_SCHEMA
+     SQL优化     
+ 
+INNODB
+ 
+mysql客户端程序
+     mysqldump
+     mysql_config_editor
+     mysqladmin
+ 
+mysql audit plugin
+ 
+Query Cache
+    
+binary log 管理和使用
+ 
+auto increment lock
+ 
+ 
+MySQL security Plugin
+ 
+字符集
+ 
+SQL优化
+     利用index
+     
+ 
+HA solution
+ 
+Memory storage engine
+ 
+FLUSH LOGS
+ 
+BACKUP 
+     MyISAM
+     INNODB
+ 
+LOCK TABLES
+ 
+slow log
+ 
+thread memory
+ 
+MyISAM
+ 
+explain
+
+
+
+想要系统地学习MySQL，业界最好的MySQL培训，一线互联网公司实战与架构分享。
+MySQL OCP题库、面试简历与机经的介绍。
+
+
+Oracle MySQL 5.6 Certification with Study Guide
+
+What is MySQL 5.6 Certification?
+The new release of MySQL 5.6 is designed for professionals involved in writing applications with the MySQL database server. The new version of MySQL is focused on increased speed, security, replication, and optimization.
+
+Skills Required for Certification
+To appear for this Certification, a candidate must have prior knowledge of
+
+MySQL 5
+MySQL Server
+Performing database backups
+Setting up replication and security
+Protecting MySQL databases
+Performance Tuning
+Exam name	MySQL 5.6 Certified Developer, Oracle Certified Professional	MySQL 5.6 Certified Database Administrator, Oracle Certified Professional
+Exam number	1Z0-882	1Z0-883
+Eligibility	Oracle Certified Associate	Oracle Certified Associate
+Target audience	developers creating applications that use MySQL as the database engine	database administrators for MySQL server
+Exam Cost	$245	$245
+Exam questions	86 Multiple Choice Questions	100 Multiple Choice Questions
+Exam duration	150 Minutes	150 Minutes
+Passing Mark	61%	60%
+
+Take the Test when you're ready - Buy Exam Voucher
+Purchase an exam voucher now and redeem it within 6 months - it's like a gift card.
+
+Schedule Your Exam Now
+If you're ready to take your exam, schedule it now and pay directly with a credit card, or redeem a voucher you have purchased
+from Oracle. Either way, you'll schedule it through our external testing provider, PearsonVue.
+
+After The Exam
+Within 30 minutes of completing your Oracle Certification exam, you will receive an email from Oracle notifying you that your 
+exam results are available in CertView. If you have previously authenticated your CertView account, simply login and select the
+option to "See My New Exam Result Now". If you have not authenticated your CertView account at this point, you will need to 
+proceed with your account authentication .
+
+Authentication requires an Oracle Single Sign On username and password and the following is your Pearson VUE 
+profile: email address and Oracle Testing ID. You want to be logged into CertView to log in once your account has been authenticated.
+
