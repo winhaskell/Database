@@ -1,5 +1,8 @@
+参考 http://www.ywnds.com/?p=14089#comment-5724  MySQL performance_schema系列文章
+
 MySQL performance_schema
 
+当前数据库版本是否支持
 mysql> SELECT * FROM INFORMATION_SCHEMA.ENGINES WHERE ENGINE ='PERFORMANCE_SCHEMA';
 +--------------------+---------+--------------------+--------------+------+------------+
 | ENGINE             | SUPPORT | COMMENT            | TRANSACTIONS | XA   | SAVEPOINTS |
@@ -9,6 +12,7 @@ mysql> SELECT * FROM INFORMATION_SCHEMA.ENGINES WHERE ENGINE ='PERFORMANCE_SCHEM
 1 row in set (0.01 sec)
 
 
+show命令来查询你的数据库实例是否支持INFORMATION_SCHEMA引擎
 mysql> show engines;
 +--------------------+---------+----------------------------------------------------------------+--------------+------+------------+
 | Engine             | Support | Comment                                                        | Transactions | XA   | Savepoints |
@@ -24,3 +28,354 @@ mysql> show engines;
 | ARCHIVE            | YES     | Archive storage engine                                         | NO           | NO   | NO         |
 +--------------------+---------+----------------------------------------------------------------+--------------+------+------------+
 9 rows in set (0.00 sec)
+
+performance_schema在5.7.x及其以上版本中默认启用（5.6.x及其以下版本默认关闭），如果要显式启用或关闭时，
+我们需要使用参数performance_schema=ON|OFF设置，并在my.cnf中进行配置：
+
+[mysqld]
+performance_schema = ON  # 注意：该参数为只读参数，需要在实例启动之前设置才生效
+
+mysql> SHOW VARIABLES LIKE 'performance_schema';
++--------------------+-------+
+| Variable_name      | Value |
++--------------------+-------+
+| performance_schema | ON    |
++--------------------+-------+
+1 row in set (0.00 sec)
+
+mysql> SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES \
+    -> WHERE TABLE_SCHEMA ='performance_schema' and engine='performance_schema';
++------------------------------------------------------+
+| TABLE_NAME                                           |
++------------------------------------------------------+
+| accounts                                             |
+| cond_instances                                       |
+| data_lock_waits                                      |
+| data_locks                                           |
+| events_errors_summary_by_account_by_error            |
+| events_errors_summary_by_host_by_error               |
+| events_errors_summary_by_thread_by_error             |
+| events_errors_summary_by_user_by_error               |
+| events_errors_summary_global_by_error                |
+| events_stages_current                                |
+| events_stages_history                                |
+| events_stages_history_long                           |
+| events_stages_summary_by_account_by_event_name       |
+| events_stages_summary_by_host_by_event_name          |
+| events_stages_summary_by_thread_by_event_name        |
+| events_stages_summary_by_user_by_event_name          |
+| events_stages_summary_global_by_event_name           |
+| events_statements_current                            |
+| events_statements_histogram_by_digest                |
+| events_statements_histogram_global                   |
+| events_statements_history                            |
+| events_statements_history_long                       |
+| events_statements_summary_by_account_by_event_name   |
+| events_statements_summary_by_digest                  |
+| events_statements_summary_by_host_by_event_name      |
+| events_statements_summary_by_program                 |
+| events_statements_summary_by_thread_by_event_name    |
+| events_statements_summary_by_user_by_event_name      |
+| events_statements_summary_global_by_event_name       |
+| events_transactions_current                          |
+| events_transactions_history                          |
+| events_transactions_history_long                     |
+| events_transactions_summary_by_account_by_event_name |
+| events_transactions_summary_by_host_by_event_name    |
+| events_transactions_summary_by_thread_by_event_name  |
+| events_transactions_summary_by_user_by_event_name    |
+| events_transactions_summary_global_by_event_name     |
+| events_waits_current                                 |
+| events_waits_history                                 |
+| events_waits_history_long                            |
+| events_waits_summary_by_account_by_event_name        |
+| events_waits_summary_by_host_by_event_name           |
+| events_waits_summary_by_instance                     |
+| events_waits_summary_by_thread_by_event_name         |
+| events_waits_summary_by_user_by_event_name           |
+| events_waits_summary_global_by_event_name            |
+| file_instances                                       |
+| file_summary_by_event_name                           |
+| file_summary_by_instance                             |
+| global_status                                        |
+| global_variables                                     |
+| host_cache                                           |
+| hosts                                                |
+| log_status                                           |
+| memory_summary_by_account_by_event_name              |
+| memory_summary_by_host_by_event_name                 |
+| memory_summary_by_thread_by_event_name               |
+| memory_summary_by_user_by_event_name                 |
+| memory_summary_global_by_event_name                  |
+| metadata_locks                                       |
+| mutex_instances                                      |
+| objects_summary_global_by_type                       |
+| performance_timers                                   |
+| persisted_variables                                  |
+| prepared_statements_instances                        |
+| replication_applier_configuration                    |
+| replication_applier_filters                          |
+| replication_applier_global_filters                   |
+| replication_applier_status                           |
+| replication_applier_status_by_coordinator            |
+| replication_applier_status_by_worker                 |
+| replication_connection_configuration                 |
+| replication_connection_status                        |
+| replication_group_member_stats                       |
+| replication_group_members                            |
+| rwlock_instances                                     |
+| session_account_connect_attrs                        |
+| session_connect_attrs                                |
+| session_status                                       |
+| session_variables                                    |
+| setup_actors                                         |
+| setup_consumers                                      |
+| setup_instruments                                    |
+| setup_objects                                        |
+| setup_threads                                        |
+| socket_instances                                     |
+| socket_summary_by_event_name                         |
+| socket_summary_by_instance                           |
+| status_by_account                                    |
+| status_by_host                                       |
+| status_by_thread                                     |
+| status_by_user                                       |
+| table_handles                                        |
+| table_io_waits_summary_by_index_usage                |
+| table_io_waits_summary_by_table                      |
+| table_lock_waits_summary_by_table                    |
+| threads                                              |
+| user_defined_functions                               |
+| user_variables_by_thread                             |
+| users                                                |
+| variables_by_thread                                  |
+| variables_info                                       |
++------------------------------------------------------+
+102 rows in set (0.01 sec)
+
+
+mysql> use performance_schema;
+Database changed
+
+mysql> show tables from performance_schema;
++------------------------------------------------------+
+| Tables_in_performance_schema                         |
++------------------------------------------------------+
+| accounts                                             |
+| cond_instances                                       |
+| data_lock_waits                                      |
+| data_locks                                           |
+| events_errors_summary_by_account_by_error            |
+| events_errors_summary_by_host_by_error               |
+| events_errors_summary_by_thread_by_error             |
+| events_errors_summary_by_user_by_error               |
+| events_errors_summary_global_by_error                |
+| events_stages_current                                |
+| events_stages_history                                |
+| events_stages_history_long                           |
+| events_stages_summary_by_account_by_event_name       |
+| events_stages_summary_by_host_by_event_name          |
+| events_stages_summary_by_thread_by_event_name        |
+| events_stages_summary_by_user_by_event_name          |
+| events_stages_summary_global_by_event_name           |
+| events_statements_current                            |
+| events_statements_histogram_by_digest                |
+| events_statements_histogram_global                   |
+| events_statements_history                            |
+| events_statements_history_long                       |
+| events_statements_summary_by_account_by_event_name   |
+| events_statements_summary_by_digest                  |
+| events_statements_summary_by_host_by_event_name      |
+| events_statements_summary_by_program                 |
+| events_statements_summary_by_thread_by_event_name    |
+| events_statements_summary_by_user_by_event_name      |
+| events_statements_summary_global_by_event_name       |
+| events_transactions_current                          |
+| events_transactions_history                          |
+| events_transactions_history_long                     |
+| events_transactions_summary_by_account_by_event_name |
+| events_transactions_summary_by_host_by_event_name    |
+| events_transactions_summary_by_thread_by_event_name  |
+| events_transactions_summary_by_user_by_event_name    |
+| events_transactions_summary_global_by_event_name     |
+| events_waits_current                                 |
+| events_waits_history                                 |
+| events_waits_history_long                            |
+| events_waits_summary_by_account_by_event_name        |
+| events_waits_summary_by_host_by_event_name           |
+| events_waits_summary_by_instance                     |
+| events_waits_summary_by_thread_by_event_name         |
+| events_waits_summary_by_user_by_event_name           |
+| events_waits_summary_global_by_event_name            |
+| file_instances                                       |
+| file_summary_by_event_name                           |
+| file_summary_by_instance                             |
+| global_status                                        |
+| global_variables                                     |
+| host_cache                                           |
+| hosts                                                |
+| log_status                                           |
+| memory_summary_by_account_by_event_name              |
+| memory_summary_by_host_by_event_name                 |
+| memory_summary_by_thread_by_event_name               |
+| memory_summary_by_user_by_event_name                 |
+| memory_summary_global_by_event_name                  |
+| metadata_locks                                       |
+| mutex_instances                                      |
+| objects_summary_global_by_type                       |
+| performance_timers                                   |
+| persisted_variables                                  |
+| prepared_statements_instances                        |
+| replication_applier_configuration                    |
+| replication_applier_filters                          |
+| replication_applier_global_filters                   |
+| replication_applier_status                           |
+| replication_applier_status_by_coordinator            |
+| replication_applier_status_by_worker                 |
+| replication_connection_configuration                 |
+| replication_connection_status                        |
+| replication_group_member_stats                       |
+| replication_group_members                            |
+| rwlock_instances                                     |
+| session_account_connect_attrs                        |
+| session_connect_attrs                                |
+| session_status                                       |
+| session_variables                                    |
+| setup_actors                                         |
+| setup_consumers                                      |
+| setup_instruments                                    |
+| setup_objects                                        |
+| setup_threads                                        |
+| socket_instances                                     |
+| socket_summary_by_event_name                         |
+| socket_summary_by_instance                           |
+| status_by_account                                    |
+| status_by_host                                       |
+| status_by_thread                                     |
+| status_by_user                                       |
+| table_handles                                        |
+| table_io_waits_summary_by_index_usage                |
+| table_io_waits_summary_by_table                      |
+| table_lock_waits_summary_by_table                    |
+| threads                                              |
+| user_defined_functions                               |
+| user_variables_by_thread                             |
+| users                                                |
+| variables_by_thread                                  |
+| variables_info                                       |
++------------------------------------------------------+
+102 rows in set (0.00 sec)
+
+
+按照事件类型分组记录性能事件数据的表 
+mysql> show tables like 'events_statement%';
++----------------------------------------------------+
+| Tables_in_performance_schema (events_statement%)   |
++----------------------------------------------------+
+| events_statements_current                          |
+| events_statements_histogram_by_digest              |
+| events_statements_histogram_global                 |
+| events_statements_history                          |
+| events_statements_history_long                     |
+| events_statements_summary_by_account_by_event_name |
+| events_statements_summary_by_digest                |
+| events_statements_summary_by_host_by_event_name    |
+| events_statements_summary_by_program               |
+| events_statements_summary_by_thread_by_event_name  |
+| events_statements_summary_by_user_by_event_name    |
+| events_statements_summary_global_by_event_name     |
++----------------------------------------------------+
+12 rows in set (0.00 sec)
+
+mysql>
+等待事件记录表，与语句事件类型的相关记录表类似：
+mysql> show tables like 'events_wait%';
++-----------------------------------------------+
+| Tables_in_performance_schema (events_wait%)   |
++-----------------------------------------------+
+| events_waits_current                          |
+| events_waits_history                          |
+| events_waits_history_long                     |
+| events_waits_summary_by_account_by_event_name |
+| events_waits_summary_by_host_by_event_name    |
+| events_waits_summary_by_instance              |
+| events_waits_summary_by_thread_by_event_name  |
+| events_waits_summary_by_user_by_event_name    |
+| events_waits_summary_global_by_event_name     |
++-----------------------------------------------+
+9 rows in set (0.00 sec)
+
+mysql>
+阶段事件记录表，记录语句执行的阶段事件的表，与语句事件类型的相关记录表类似：
+mysql> show tables like 'events_stage%';
++------------------------------------------------+
+| Tables_in_performance_schema (events_stage%)   |
++------------------------------------------------+
+| events_stages_current                          |
+| events_stages_history                          |
+| events_stages_history_long                     |
+| events_stages_summary_by_account_by_event_name |
+| events_stages_summary_by_host_by_event_name    |
+| events_stages_summary_by_thread_by_event_name  |
+| events_stages_summary_by_user_by_event_name    |
+| events_stages_summary_global_by_event_name     |
++------------------------------------------------+
+8 rows in set (0.00 sec)
+
+mysql>
+事务事件记录表，记录事务相关的事件的表，与语句事件类型的相关记录表类似：
+mysql> show tables like 'events_transaction%';
++------------------------------------------------------+
+| Tables_in_performance_schema (events_transaction%)   |
++------------------------------------------------------+
+| events_transactions_current                          |
+| events_transactions_history                          |
+| events_transactions_history_long                     |
+| events_transactions_summary_by_account_by_event_name |
+| events_transactions_summary_by_host_by_event_name    |
+| events_transactions_summary_by_thread_by_event_name  |
+| events_transactions_summary_by_user_by_event_name    |
+| events_transactions_summary_global_by_event_name     |
++------------------------------------------------------+
+8 rows in set (0.00 sec)
+
+mysql>
+mysql> show tables like 'events_transaction%';
++------------------------------------------------------+
+| Tables_in_performance_schema (events_transaction%)   |
++------------------------------------------------------+
+| events_transactions_current                          |
+| events_transactions_history                          |
+| events_transactions_history_long                     |
+| events_transactions_summary_by_account_by_event_name |
+| events_transactions_summary_by_host_by_event_name    |
+| events_transactions_summary_by_thread_by_event_name  |
+| events_transactions_summary_by_user_by_event_name    |
+| events_transactions_summary_global_by_event_name     |
++------------------------------------------------------+
+8 rows in set (0.00 sec)
+
+mysql> show tables like '%file%';
++---------------------------------------+
+| Tables_in_performance_schema (%file%) |
++---------------------------------------+
+| file_instances                        |
+| file_summary_by_event_name            |
+| file_summary_by_instance              |
++---------------------------------------+
+3 rows in set (0.00 sec)
+
+mysql> show tables like '%setup%';
++----------------------------------------+
+| Tables_in_performance_schema (%setup%) |
++----------------------------------------+
+| setup_actors                           |
+| setup_consumers                        |
+| setup_instruments                      |
+| setup_objects                          |
+| setup_threads                          |
++----------------------------------------+
+5 rows in set (0.00 sec)
+
+mysql>
+
