@@ -1,5 +1,6 @@
 参考 http://www.ywnds.com/?p=14089#comment-5724  MySQL performance_schema系列文章
-
+     https://dev.mysql.com/doc/refman/5.6/en/performance-schema-quick-start.html
+     
 MySQL performance_schema
 
 当前数据库版本是否支持
@@ -522,4 +523,58 @@ performance_schema 中的数据实际上主要是从performance_schema、informa
 “翻过这座山，你就可以看到一片海”，坚持阅读我们的performance_schema系列文章分享，你就可以系统地学完它。
 
 下期将为大家分享 "performance_schema之二(配置表详解)" ，谢谢你的阅读，我们下期不见不散！
+参考
 https://mp.weixin.qq.com/s/ELJhdttEo0q22bWlB8WveA
+https://dev.mysql.com/doc/refman/5.6/en/performance-schema-quick-start.html
+https://mysqlserverteam.com/category/mysql/performance-schema/
+
+mysql> SHOW VARIABLES LIKE 'performance_schema';
++--------------------+-------+
+| Variable_name      | Value |
++--------------------+-------+
+| performance_schema | ON    |
++--------------------+-------+
+1 row in set (0.00 sec)
+
+mysql>
+mysql> show tables like "%by_error%";
++-------------------------------------------+
+| Tables_in_performance_schema (%by_error%) |
++-------------------------------------------+
+| events_errors_summary_by_account_by_error |
+| events_errors_summary_by_host_by_error    |
+| events_errors_summary_by_thread_by_error  |
+| events_errors_summary_by_user_by_error    |
+| events_errors_summary_global_by_error     |
++-------------------------------------------+
+5 rows in set (0.00 sec)
+
+mysql>
+mysql>  SELECT EVENT_NAME, COUNT_STAR
+    ->        FROM performance_schema.events_waits_summary_global_by_event_name
+    ->        ORDER BY COUNT_STAR DESC LIMIT 10;
++--------------------------------------------------+------------+
+| EVENT_NAME                                       | COUNT_STAR |
++--------------------------------------------------+------------+
+| wait/synch/mutex/innodb/flush_list_mutex         |     345285 |
+| wait/synch/mutex/innodb/log_checkpointer_mutex   |     341678 |
+| wait/io/file/innodb/innodb_log_file              |     100318 |
+| wait/io/table/sql/handler                        |      99467 |
+| wait/synch/rwlock/sql/CRYPTO_dynlock_value::lock |      69484 |
+| wait/synch/rwlock/mysqlx/client_list_clients     |      45524 |
+| idle                                             |      42642 |
+| wait/io/file/csv/data                            |      38831 |
+| wait/synch/mutex/innodb/log_flusher_mutex        |      35901 |
+| wait/synch/mutex/innodb/log_write_notifier_mutex |      35901 |
++--------------------------------------------------+------------+
+10 rows in set (0.01 sec)
+
+mysql>
+https://dev.mysql.com/doc/refman/5.6/en/performance-schema-quick-start.html
+https://dev.mysql.com/doc/refman/5.7/en/performance-schema-quick-start.html
+
+
+
+
+
+
