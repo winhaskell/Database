@@ -1,0 +1,56 @@
+https://dev.mysql.com/doc/refman/8.0/en/system-database.html
+
+mysql System Database
+
+mysql> SELECT * FROM mysql.schemata;
+ERROR 3554 (HY000): Access to data dictionary table 'mysql.schemata' is rejected.
+
+mysql> SELECT * FROM INFORMATION_SCHEMA.SCHEMATA\G;
+*************************** 1. row ***************************
+              CATALOG_NAME: def
+               SCHEMA_NAME: mysql
+DEFAULT_CHARACTER_SET_NAME: utf8mb4
+    DEFAULT_COLLATION_NAME: utf8mb4_0900_ai_ci
+                  SQL_PATH: NULL
+*************************** 2. row ***************************
+              CATALOG_NAME: def
+               SCHEMA_NAME: information_schema
+DEFAULT_CHARACTER_SET_NAME: utf8
+    DEFAULT_COLLATION_NAME: utf8_general_ci
+                  SQL_PATH: NULL
+*************************** 3. row ***************************
+              CATALOG_NAME: def
+               SCHEMA_NAME: performance_schema
+DEFAULT_CHARACTER_SET_NAME: utf8mb4
+    DEFAULT_COLLATION_NAME: utf8mb4_0900_ai_ci
+                  SQL_PATH: NULL
+*************************** 4. row ***************************
+              CATALOG_NAME: def
+               SCHEMA_NAME: sys
+DEFAULT_CHARACTER_SET_NAME: utf8mb4
+    DEFAULT_COLLATION_NAME: utf8mb4_0900_ai_ci
+                  SQL_PATH: NULL
+*************************** 5. row ***************************
+              CATALOG_NAME: def
+               SCHEMA_NAME: sakila
+DEFAULT_CHARACTER_SET_NAME: utf8mb4
+    DEFAULT_COLLATION_NAME: utf8mb4_0900_ai_ci
+                  SQL_PATH: NULL
+*************************** 6. row ***************************
+              CATALOG_NAME: def
+               SCHEMA_NAME: world
+DEFAULT_CHARACTER_SET_NAME: utf8mb4
+    DEFAULT_COLLATION_NAME: utf8mb4_0900_ai_ci
+                  SQL_PATH: NULL
+*************************** 7. row ***************************
+              CATALOG_NAME: def
+               SCHEMA_NAME: southwind
+DEFAULT_CHARACTER_SET_NAME: utf8mb4
+    DEFAULT_COLLATION_NAME: utf8mb4_0900_ai_ci
+                  SQL_PATH: NULL
+7 rows in set (0.00 sec)
+
+ERROR:
+No query specified
+
+mysql>
