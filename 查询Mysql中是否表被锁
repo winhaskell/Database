@@ -236,3 +236,179 @@ mysql> show variables like "%slow%";
 | slow_query_log_file       | hhhhhhhhhhhhh-slow.log |
 +---------------------------+------------------------+
 5 rows in set (0.00 sec)
+
+
+
+
+show open tables;
+这条命令能够查看当前有那些表是打开的。
+In_use列表示有多少线程正在使用某张表，Name_locked表示表名是否被锁，这一般发生在Drop或Rename命令操作这张表时。
+所以这条命令不能帮助解答我们常见的问题：当前某张表是否有死锁，谁拥有表上的这个锁等。
+--------------------- 
+作者：天府云创 
+来源：CSDN 
+原文：https://blog.csdn.net/enweitech/article/details/52447006 
+版权声明：本文为博主原创文章，转载请附上博文链接！
+
+mysql> show open tables;
++--------------------+--------------------------------------------+--------+-------------+
+| Database           | Table                                      | In_use | Name_locked |
++--------------------+--------------------------------------------+--------+-------------+
+| performance_schema | events_statements_current                  |      0 |           0 |
+| performance_schema | session_variables                          |      0 |           0 |
+| mysql              | indexes                                    |      0 |           0 |
+| mysql              | view_routine_usage                         |      0 |           0 |
+| mysql              | column_statistics                          |      0 |           0 |
+| mysql              | columns                                    |      0 |           0 |
+| mysql              | foreign_keys                               |      0 |           0 |
+| world              | salesdetail                                |      0 |           0 |
+| information_schema | CHARACTER_SETS                             |      0 |           0 |
+| mysql              | column_type_elements                       |      0 |           0 |
+| world              | person                                     |      0 |           0 |
+| southwind          | accounts                                   |      0 |           0 |
+| southwind          | products                                   |      0 |           0 |
+| mysql              | index_column_usage                         |      0 |           0 |
+| mysql              | foreign_key_column_usage                   |      0 |           0 |
+| mysql              | index_stats                                |      0 |           0 |
+| mysql              | index_partitions                           |      0 |           0 |
+| mysql              | view_table_usage                           |      0 |           0 |
+| mysql              | schemata                                   |      0 |           0 |
+| mysql              | collations                                 |      0 |           0 |
+| mysql              | table_partition_values                     |      0 |           0 |
+| mysql              | table_partitions                           |      0 |           0 |
+| world              | city                                       |      0 |           0 |
+| world              | animals                                    |      0 |           0 |
+| mysql              | tables                                     |      0 |           0 |
+| mysql              | triggers                                   |      0 |           0 |
+| mysql              | role_edges                                 |      0 |           0 |
+| information_schema | ROUTINES                                   |      0 |           0 |
+| performance_schema | events_waits_history_long                  |      0 |           0 |
+| mysql              | gtid_executed                              |      0 |           0 |
+| world              | subjects                                   |      0 |           0 |
+| performance_schema | threads                                    |      0 |           0 |
+| performance_schema | events_stages_history_long                 |      0 |           0 |
+| mysql              | routines                                   |      0 |           0 |
+| information_schema | SHOW_STATISTICS                            |      0 |           0 |
+| world              | tcount_tbl                                 |      0 |           0 |
+| mysql              | catalogs                                   |      0 |           0 |
+| information_schema | SCHEMATA                                   |      0 |           0 |
+| performance_schema | global_variables                           |      0 |           0 |
+| information_schema | TABLES                                     |      0 |           0 |
+| mysql              | tablespaces                                |      0 |           0 |
+| world              | grades                                     |      0 |           0 |
+| mysql              | time_zone_name                             |      0 |           0 |
+| mysql              | table_stats                                |      0 |           0 |
+| information_schema | COLUMNS                                    |      0 |           0 |
+| mysql              | character_sets                             |      0 |           0 |
+| mysql              | animals                                    |      0 |           0 |
+| performance_schema | session_status                             |      0 |           0 |
+| mysql              | procs_priv                                 |      0 |           0 |
+| information_schema | COLLATIONS                                 |      0 |           0 |
+| performance_schema | global_status                              |      0 |           0 |
+| mysql              | proxies_priv                               |      0 |           0 |
+| mysql              | user                                       |      0 |           0 |
+| mysql              | db                                         |      0 |           0 |
+| mysql              | tables_priv                                |      0 |           0 |
+| mysql              | columns_priv                               |      0 |           0 |
+| mysql              | default_roles                              |      0 |           0 |
+| mysql              | global_grants                              |      0 |           0 |
+| mysql              | password_history                           |      0 |           0 |
+| mysql              | servers                                    |      0 |           0 |
+| mysql              | tablespace_files                           |      0 |           0 |
+| world              | shop                                       |      0 |           0 |
+| world              | user_account                               |      0 |           0 |
+| world              | teachers                                   |      0 |           0 |
+| mysql              | general_log                                |      0 |           0 |
+| world              | shirt                                      |      0 |           0 |
+| mysql              | parameter_type_elements                    |      0 |           0 |
+| mysql              | parameters                                 |      0 |           0 |
+| world              | user_login                                 |      0 |           0 |
+| world              | employee_tbl                               |      0 |           0 |
+| world              | entries2                                   |      0 |           0 |
+| mysql              | slow_log                                   |      0 |           0 |
+| information_schema | EVENTS                                     |      0 |           0 |
+| mysql              | events                                     |      0 |           0 |
+| performance_schema | events_waits_current                       |      0 |           0 |
+| performance_schema | setup_instruments                          |      0 |           0 |
+| performance_schema | setup_consumers                            |      0 |           0 |
+| performance_schema | events_waits_history                       |      0 |           0 |
+| performance_schema | events_waits_summary_global_by_event_name  |      0 |           0 |
+| performance_schema | file_instances                             |      0 |           0 |
+| sys                | version                                    |      0 |           0 |
+| sys                | host_summary_by_file_io                    |      0 |           0 |
+| performance_schema | events_waits_summary_by_host_by_event_name |      0 |           0 |
+| sys                | x$host_summary_by_file_io                  |      0 |           0 |
+| sys                | session                                    |      0 |           0 |
+| sys                | processlist                                |      0 |           0 |
+| performance_schema | events_stages_current                      |      0 |           0 |
+| performance_schema | events_transactions_current                |      0 |           0 |
+| sys                | x$memory_by_thread_by_current_bytes        |      0 |           0 |
+| performance_schema | memory_summary_by_thread_by_event_name     |      0 |           0 |
+| performance_schema | session_connect_attrs                      |      0 |           0 |
+| sys                | sys_config                                 |      0 |           0 |
+| world              | classes                                    |      0 |           0 |
+| world              | students                                   |      0 |           0 |
+| world              | absences                                   |      0 |           0 |
++--------------------+--------------------------------------------+--------+-------------+
+95 rows in set (0.00 sec)
+
+
+mysql> show status like '%lock%';
++------------------------------------------+-------+
+| Variable_name                            | Value |
++------------------------------------------+-------+
+| Com_lock_instance                        | 0     |
+| Com_lock_tables                          | 0     |
+| Com_unlock_instance                      | 0     |
+| Com_unlock_tables                        | 0     |
+| Handler_external_lock                    | 616   |
+| Innodb_row_lock_current_waits            | 0     |
+| Innodb_row_lock_time                     | 0     |
+| Innodb_row_lock_time_avg                 | 0     |
+| Innodb_row_lock_time_max                 | 0     |
+| Innodb_row_lock_waits                    | 0     |
+| Key_blocks_not_flushed                   | 0     |
+| Key_blocks_unused                        | 6698  |
+| Key_blocks_used                          | 0     |
+| Locked_connects                          | 0     |
+| Performance_schema_locker_lost           | 0     |
+| Performance_schema_metadata_lock_lost    | 0     |
+| Performance_schema_rwlock_classes_lost   | 0     |
+| Performance_schema_rwlock_instances_lost | 0     |
+| Performance_schema_table_lock_stat_lost  | 0     |
+| Table_locks_immediate                    | 42051 |
+| Table_locks_waited                       | 1     |
++------------------------------------------+-------+
+21 rows in set (0.00 sec)
+
+
+
+show variables like ‘%timeout%’;
+查看服务器配置参数。
+
+mysql> show variables like '%timeout%';
++-----------------------------------+----------+
+| Variable_name                     | Value    |
++-----------------------------------+----------+
+| connect_timeout                   | 10       |
+| delayed_insert_timeout            | 300      |
+| have_statement_timeout            | YES      |
+| innodb_flush_log_at_timeout       | 1        |
+| innodb_lock_wait_timeout          | 100      |
+| innodb_rollback_on_timeout        | OFF      |
+| interactive_timeout               | 28800    |
+| lock_wait_timeout                 | 31536000 |
+| mysqlx_connect_timeout            | 30       |
+| mysqlx_idle_worker_thread_timeout | 60       |
+| mysqlx_interactive_timeout        | 28800    |
+| mysqlx_port_open_timeout          | 0        |
+| mysqlx_read_timeout               | 30       |
+| mysqlx_wait_timeout               | 28800    |
+| mysqlx_write_timeout              | 60       |
+| net_read_timeout                  | 30       |
+| net_write_timeout                 | 60       |
+| rpl_stop_slave_timeout            | 31536000 |
+| slave_net_timeout                 | 60       |
+| wait_timeout                      | 28800    |
++-----------------------------------+----------+
+20 rows in set (0.00 sec)
