@@ -196,3 +196,27 @@ mysql> select * from world.classes;
 mysql>
 
 
+
+查看sleep的进程
+mysql>  show full processlist;
+mysql>  show processlist;
+
+mysql>  show processlist;
++----+-----------------+-----------------+-------+---------+------+-----------------------------+------------------+
+| Id | User            | Host            | db    | Command | Time | State                       | Info             |
++----+-----------------+-----------------+-------+---------+------+-----------------------------+------------------+
+|  4 | event_scheduler | localhost       | NULL  | Daemon  |  290 | Waiting for next activation | NULL             |
+| 44 | root            | localhost:64750 | world | Sleep   |  558 |                             | NULL             |
+| 45 | root            | localhost:64751 | world | Sleep   |  558 |                             | NULL             |
+| 53 | root            | localhost:64967 | world | Query   |    0 | starting                    | show processlist |
++----+-----------------+-----------------+-------+---------+------+-----------------------------+------------------+
+4 rows in set (0.00 sec)
+
+
+查询INNODB_TRX表，就没有阻塞的事务sleep线程存在了，如下所示：
+mysql> SELECT * FROM information_schema.INNODB_TRX\G;
+
+Empty set (0.00 sec)
+
+我们就会发现，现在可以正常执行 sql 语句了
+
