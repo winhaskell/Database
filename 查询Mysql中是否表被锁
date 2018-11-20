@@ -1,0 +1,180 @@
+如何查询mysql中是否表被锁
+
+mysql> show status like '%lock%';
++------------------------------------------+-------+
+| Variable_name                            | Value |
++------------------------------------------+-------+
+| Com_lock_instance                        | 0     |
+| Com_lock_tables                          | 0     |
+| Com_unlock_instance                      | 0     |
+| Com_unlock_tables                        | 0     |
+| Handler_external_lock                    | 578   |
+| Innodb_row_lock_current_waits            | 0     |
+| Innodb_row_lock_time                     | 0     |
+| Innodb_row_lock_time_avg                 | 0     |
+| Innodb_row_lock_time_max                 | 0     |
+| Innodb_row_lock_waits                    | 0     |
+| Key_blocks_not_flushed                   | 0     |
+| Key_blocks_unused                        | 6698  |
+| Key_blocks_used                          | 0     |
+| Locked_connects                          | 0     |
+| Performance_schema_locker_lost           | 0     |
+| Performance_schema_metadata_lock_lost    | 0     |
+| Performance_schema_rwlock_classes_lost   | 0     |
+| Performance_schema_rwlock_instances_lost | 0     |
+| Performance_schema_table_lock_stat_lost  | 0     |
+| Table_locks_immediate                    | 42028 |
+| Table_locks_waited                       | 1     |
++------------------------------------------+-------+
+21 rows in set (0.01 sec)
+
+mysql>
+
+mysql> show engine innodb status\G;
+*************************** 1. row ***************************
+  Type: InnoDB
+  Name:
+Status:
+=====================================
+2018-11-20 15:42:42 0x5030 INNODB MONITOR OUTPUT
+=====================================
+Per second averages calculated from the last 51 seconds
+-----------------
+BACKGROUND THREAD
+-----------------
+srv_master_thread loops: 177 srv_active, 0 srv_shutdown, 357245 srv_idle
+srv_master_thread log flush and writes: 0
+----------
+SEMAPHORES
+----------
+OS WAIT ARRAY INFO: reservation count 153
+OS WAIT ARRAY INFO: signal count 162
+RW-shared spins 49, rounds 74, OS waits 25
+RW-excl spins 23, rounds 178, OS waits 4
+RW-sx spins 11, rounds 62, OS waits 1
+Spin rounds per wait: 1.51 RW-shared, 7.74 RW-excl, 5.64 RW-sx
+------------
+TRANSACTIONS
+------------
+Trx id counter 2819
+Purge done for trx's n:o < 2819 undo n:o < 0 state: running but idle
+History list length 67
+LIST OF TRANSACTIONS FOR EACH SESSION:
+---TRANSACTION 284056253632032, not started
+0 lock struct(s), heap size 1136, 0 row lock(s)
+---TRANSACTION 284056253631152, not started
+0 lock struct(s), heap size 1136, 0 row lock(s)
+---TRANSACTION 284056253630272, not started
+0 lock struct(s), heap size 1136, 0 row lock(s)
+---TRANSACTION 284056253633792, not started
+0 lock struct(s), heap size 1136, 0 row lock(s)
+--------
+FILE I/O
+--------
+I/O thread 0 state: wait Windows aio (insert buffer thread)
+I/O thread 1 state: wait Windows aio (log thread)
+I/O thread 2 state: wait Windows aio (read thread)
+I/O thread 3 state: wait Windows aio (read thread)
+I/O thread 4 state: wait Windows aio (read thread)
+I/O thread 5 state: wait Windows aio (read thread)
+I/O thread 6 state: wait Windows aio (write thread)
+I/O thread 7 state: wait Windows aio (write thread)
+I/O thread 8 state: wait Windows aio (write thread)
+I/O thread 9 state: wait Windows aio (write thread)
+Pending normal aio reads: [0, 0, 0, 0] , aio writes: [0, 0, 0, 0] ,
+ ibuf aio reads:, log i/o's:, sync i/o's:
+Pending flushes (fsync) log: 0; buffer pool: 0
+5255 OS file reads, 102216 OS file writes, 6438 OS fsyncs
+0.00 reads/s, 0 avg bytes/read, 0.00 writes/s, 0.00 fsyncs/s
+-------------------------------------
+INSERT BUFFER AND ADAPTIVE HASH INDEX
+-------------------------------------
+Ibuf: size 1, free list len 0, seg size 2, 0 merges
+merged operations:
+ insert 0, delete mark 0, delete 0
+discarded operations:
+ insert 0, delete mark 0, delete 0
+Hash table size 2267, node heap has 1 buffer(s)
+Hash table size 2267, node heap has 1 buffer(s)
+Hash table size 2267, node heap has 2 buffer(s)
+Hash table size 2267, node heap has 1 buffer(s)
+Hash table size 2267, node heap has 2 buffer(s)
+Hash table size 2267, node heap has 1 buffer(s)
+Hash table size 2267, node heap has 1 buffer(s)
+Hash table size 2267, node heap has 1 buffer(s)
+0.00 hash searches/s, 0.00 non-hash searches/s
+---
+LOG
+---
+Log sequence number          29688311
+Log buffer assigned up to    29688311
+Log buffer completed up to   29688311
+Log written up to            29688311
+Log flushed up to            29688311
+Added dirty pages up to      29688311
+Pages flushed up to          29688311
+Last checkpoint at           29688311
+96208 log i/o's done, 0.00 log i/o's/second
+----------------------
+BUFFER POOL AND MEMORY
+----------------------
+Total large memory allocated 8585216
+Dictionary memory allocated 1148557
+Buffer pool size   512
+Free buffers       246
+Database pages     256
+Old database pages 0
+Modified db pages  0
+Pending reads      0
+Pending writes: LRU 0, flush list 0, single page 0
+Pages made young 0, not young 0
+0.00 youngs/s, 0.00 non-youngs/s
+Pages read 5232, created 1075, written 5087
+0.00 reads/s, 0.00 creates/s, 0.00 writes/s
+No buffer pool page gets since the last printout
+Pages read ahead 0.00/s, evicted without access 0.00/s, Random read ahead 0.00/s
+LRU len: 256, unzip_LRU len: 0
+I/O sum[0]:cur[0], unzip sum[0]:cur[0]
+--------------
+ROW OPERATIONS
+--------------
+0 queries inside InnoDB, 0 queries in queue
+0 read views open inside InnoDB
+Process ID=21616, Main thread ID=00000000000007C0 , state=sleeping
+Number of rows inserted 55785, updated 2722, deleted 297, read 107445
+0.00 inserts/s, 0.00 updates/s, 0.00 deletes/s, 0.00 reads/s
+----------------------------
+END OF INNODB MONITOR OUTPUT
+============================
+
+1 row in set (0.00 sec)
+
+ERROR:
+No query specified
+
+
+mysql> show processlist;
++----+-----------------+-----------------+-------+---------+------+-----------------------------+------------------+
+| Id | User            | Host            | db    | Command | Time | State                       | Info             |
++----+-----------------+-----------------+-------+---------+------+-----------------------------+------------------+
+|  4 | event_scheduler | localhost       | NULL  | Daemon  |  860 | Waiting for next activation | NULL             |
+| 44 | root            | localhost:64750 | world | Sleep   |  528 |                             | NULL             |
+| 45 | root            | localhost:64751 | world | Sleep   |  528 |                             | NULL             |
+| 53 | root            | localhost:64967 | world | Query   |    0 | starting                    | show processlist |
++----+-----------------+-----------------+-------+---------+------+-----------------------------+------------------+
+4 rows in set (0.00 sec)
+
+mysql> show OPEN TABLES where In_use > 0;
+Empty set (0.00 sec)
+
+
+// 查看慢查询时间 默认10s
+mysql> show variables like "long_query_time";
++-----------------+-----------+
+| Variable_name   | Value     |
++-----------------+-----------+
+| long_query_time | 10.000000 |
++-----------------+-----------+
+1 row in set (0.00 sec)
+
+mysql>
