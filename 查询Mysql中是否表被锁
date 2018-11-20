@@ -178,3 +178,61 @@ mysql> show variables like "long_query_time";
 1 row in set (0.00 sec)
 
 mysql>
+mysql> show variables like '%quer%';
++----------------------------------------+------------------------+
+| Variable_name                          | Value                  |
++----------------------------------------+------------------------+
+| binlog_rows_query_log_events           | OFF                    |
+| ft_query_expansion_limit               | 20                     |
+| have_query_cache                       | NO                     |
+| log_queries_not_using_indexes          | OFF                    |
+| log_throttle_queries_not_using_indexes | 0                      |
+| long_query_time                        | 10.000000              |
+| query_alloc_block_size                 | 8192                   |
+| query_prealloc_size                    | 8192                   |
+| slow_query_log                         | ON                     |
+| slow_query_log_file                    | aaaaaaaaaaaaaaaaaa.log |
++----------------------------------------+------------------------+
+10 rows in set (0.00 sec)
+
+----------------------------------------------------------------------------------------------------------
+//查看慢查询时间
+show variables like "long_query_time";默认10s
+//查看慢查询配置情况
+show status like "%slow_queries%";
+//查看慢查询日志路径
+ show variables like "%slow%";
+--------------------- 
+作者：天府云创 
+来源：CSDN 
+原文：https://blog.csdn.net/enweitech/article/details/52447006 
+版权声明：本文为博主原创文章，转载请附上博文链接！
+----------------------------------------------------------------------------------------------------------
+
+mysql> show variables like "long_query_time";
++-----------------+-----------+
+| Variable_name   | Value     |
++-----------------+-----------+
+| long_query_time | 10.000000 |
++-----------------+-----------+
+1 row in set (0.00 sec)
+
+mysql> show status like "%slow_queries%";
++---------------+-------+
+| Variable_name | Value |
++---------------+-------+
+| Slow_queries  | 0     |
++---------------+-------+
+1 row in set (0.00 sec)
+
+mysql> show variables like "%slow%";
++---------------------------+------------------------+
+| Variable_name             | Value                  |
++---------------------------+------------------------+
+| log_slow_admin_statements | OFF                    |
+| log_slow_slave_statements | OFF                    |
+| slow_launch_time          | 2                      |
+| slow_query_log            | ON                     |
+| slow_query_log_file       | hhhhhhhhhhhhh-slow.log |
++---------------------------+------------------------+
+5 rows in set (0.00 sec)
