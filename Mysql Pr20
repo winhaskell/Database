@@ -729,3 +729,45 @@ mysql> SELECT Name AS Customers, o.Id FROM Customers AS c left JOIN Orders AS o 
 +-----------+------+
 4 rows in set (0.00 sec)
 
+
+mysql> SELECT Name AS Customers, o.Id FROM Customers AS c left JOIN Orders AS o ON c.Id = o.CustomerId where o.ID is NULL;
++-----------+------+
+| Customers | Id   |
++-----------+------+
+| Henry     | NULL |
+| Max       | NULL |
++-----------+------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT Name AS Customers FROM Customers AS c left JOIN Orders AS o ON c.Id = o.CustomerId where o.ID is NULL;
++-----------+
+| Customers |
++-----------+
+| Henry     |
+| Max       |
++-----------+
+2 rows in set (0.00 sec)
+
+mysql>
+mysql> SELECT name,c.Id, o.CustomerId, o.Id AS Customers FROM Customers AS c left JOIN Orders AS o ON c.Id = o.CustomerId;
++-------+------+------------+-----------+
+| name  | Id   | CustomerId | Customers |
++-------+------+------------+-----------+
+| Sam   |    3 |          3 |         1 |
+| Joe   |    1 |          1 |         2 |
+| Henry |    2 |       NULL |      NULL |
+| Max   |    4 |       NULL |      NULL |
++-------+------+------------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT Name AS Customers FROM Customers AS c left JOIN Orders AS o ON c.Id = o.CustomerId where o.ID is NULL;
++-----------+
+| Customers |
++-----------+
+| Henry     |
+| Max       |
++-----------+
+2 rows in set (0.00 sec)
+
+mysql>
+
