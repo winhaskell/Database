@@ -29,3 +29,54 @@ Accepted
 Submissions
 172,879
 
+CREATE TABLE LIKES (NAME varchar(14), FRUITS varchar(14));
+
+
+   insert into LIKES values ('1','a@b.com');
+   insert into LIKES values ('2','c@d.com');
+   insert into LIKES values ('3','a@b.com');
+   
+   
+   insert into LIKES values ('Piglet','apple');
+   insert into LIKES values ('Piglet','pear');
+   insert into LIKES values ('Piglet','raspberry');
+   insert into LIKES values ('Winnie','apple');
+   insert into LIKES values ('Winnie','pear');
+   insert into LIKES values ('Kanga','apple');
+   insert into LIKES values ('Tiger','apple');
+   insert into LIKES values ('Tiger','pear');
+
+commit;
+-- grant select on LIKES to public;
+-- drop table LIKES; 
+
+
+mysql> UPDATE World.likesSET FRUITS = 'a@b.com' WHERE NAME = 3;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version
+for the right syntax to use near '= 'a@b.com' WHERE NAME = 3' at line 1
+
+mysql> UPDATE World.likes SET FRUITS = 'a@b.com' WHERE NAME = 3;
+Query OK, 1 row affected (0.12 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from world.likes;
++------+---------+
+| NAME | FRUITS  |
++------+---------+
+| 1    | a@b.com |
+| 2    | c@d.com |
+| 3    | a@b.com |
++------+---------+
+3 rows in set (0.00 sec)
+
+mysql>
+mysql> SELECT FRUITS FROM world.likes GROUP BY FRUITS HAVING (COUNT(*) > 1);
++---------+
+| FRUITS  |
++---------+
+| a@b.com |
++---------+
+1 row in set (0.00 sec)
+
+mysql>
+Duplicate Emails 查询出重复的邮件 
