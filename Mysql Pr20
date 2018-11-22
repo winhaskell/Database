@@ -188,8 +188,6 @@ mysql> SELECT a.Name FROM Employee2 a, Employee2 b WHERE a.ManagerId = b.Id AND 
 +------+
 1 row in set (0.00 sec)
 
-mysql>
-
 
 181. Employees Earning More Than Their Managers  Easy
 
@@ -295,4 +293,21 @@ mysql> SELECT a.name as 'employee name', b.name as 'manager name' FROM Employee2
 +---------------+--------------+
 | Joe           | Sam          |
 +---------------+--------------+
+1 row in set (0.00 sec)
+
+
+mysql> SELECT * FROM Employee2 a join Employee2 b WHERE a.ManagerId = b.Id and a.Salary > b.Salary;
++------+------+--------+-----------+------+------+--------+-----------+
+| Id   | Name | Salary | ManagerId | Id   | Name | Salary | ManagerId |
++------+------+--------+-----------+------+------+--------+-----------+
+|    1 | Joe  |  70000 |         3 |    3 | Sam  |  60000 |         0 |
++------+------+--------+-----------+------+------+--------+-----------+
+1 row in set (0.00 sec)
+
+mysql> SELECT * FROM Employee2 a, Employee2 b WHERE a.ManagerId = b.Id and a.Salary > b.Salary;
++------+------+--------+-----------+------+------+--------+-----------+
+| Id   | Name | Salary | ManagerId | Id   | Name | Salary | ManagerId |
++------+------+--------+-----------+------+------+--------+-----------+
+|    1 | Joe  |  70000 |         3 |    3 | Sam  |  60000 |         0 |
++------+------+--------+-----------+------+------+--------+-----------+
 1 row in set (0.00 sec)
