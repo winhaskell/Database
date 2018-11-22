@@ -326,3 +326,51 @@ mysql> SELECT a.Name FROM Employee2 a, Employee2 b WHERE a.ManagerId = b.Id AND 
 +------+
 1 row in set (0.00 sec)
 
+
+
+
+Create table If Not Exists Employee3 (Id int, Salary int);
+Truncate table Employee3;
+insert into Employee3 (Id, Salary) values ('1', '100');
+insert into Employee3 (Id, Salary) values ('2', '200');
+insert into Employee3 (Id, Salary) values ('3', '300');
+
+
+Second Highest Salary  Easy
+ 
+SQL Schema
+Write a SQL query to get the second highest salary from the Employee table.
+
++----+--------+
+| Id | Salary |
++----+--------+
+| 1  | 100    |
+| 2  | 200    |
+| 3  | 300    |
++----+--------+
+For example, given the above Employee table, the query should return 200 as the second highest salary. 
+If there is no second highest salary, then the query should return null.
+
++---------------------+
+| SecondHighestSalary |
++---------------------+
+| 200                 |
++---------------------+
+Accepted      96,113  
+Submissions  385,486
+
+# leetcode 176 Second Highest Salary
+
+SELECT MAX(Salary)
+FROM Employee3
+WHERE Salary < (SELECT MAX(Salary) FROM Employee3);
+
+# 比最大值小的所有值当中的最大值 
+mysql> SELECT MAX(Salary) FROM Employee3 WHERE Salary < (SELECT MAX(Salary) FROM Employee3);
++-------------+
+| MAX(Salary) |
++-------------+
+|         200 |
++-------------+
+1 row in set (0.01 sec)
+
