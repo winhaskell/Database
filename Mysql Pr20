@@ -130,3 +130,16 @@ mysql> describe world.classes;
 2 rows in set (0.01 sec)
 
 
+mysql> DELETE a FROM LIKES AS a INNER JOIN LIKES AS b WHERE a.FRUITS = b.FRUITS AND a.NAME > b.NAME;
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from world.likes;
++------+---------+
+| NAME | FRUITS  |
++------+---------+
+| 1    | a@b.com |
+| 2    | c@d.com |
++------+---------+
+2 rows in set (0.00 sec)
+
+mysql>
