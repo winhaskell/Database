@@ -80,3 +80,17 @@ mysql> SELECT FRUITS FROM world.likes GROUP BY FRUITS HAVING (COUNT(*) > 1);
 
 mysql>
 Duplicate Emails 查询出重复的邮件 
+
+https://www.w3schools.com/sql/sql_update.asp
+数据库的模式设计
+建立数据库
+插入数据到数据库
+基本查询语句
+分组查询
+Having语句使用
+
+
+
+
+
+
