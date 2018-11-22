@@ -771,3 +771,26 @@ mysql> SELECT Name AS Customers FROM Customers AS c left JOIN Orders AS o ON c.I
 
 mysql>
 
+左连接
+mysql> explain SELECT Name AS Customers FROM Customers AS c left JOIN Orders AS o ON c.Id = o.CustomerId where o.ID is NULL;
++----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+----------------------------------------------------+
+| id | select_type | table | partitions | type | possible_keys | key  | key_len | ref  | rows | filtered | Extra                                              |
++----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+----------------------------------------------------+
+|  1 | SIMPLE      | c     | NULL       | ALL  | NULL          | NULL | NULL    | NULL |    4 |   100.00 | NULL                                               |
+|  1 | SIMPLE      | o     | NULL       | ALL  | NULL          | NULL | NULL    | NULL |    2 |    50.00 | Using where; Using join buffer (Block Nested Loop) |
++----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+----------------------------------------------------+
+2 rows in set, 1 warning (0.00 sec)
+
+NOT IN WHERE 子查询
+mysql> explain SELECT Name AS Customers FROM Customers WHERE Id NOT IN
+    -> (SELECT CustomerId FROM Orders);
++----+--------------------+-----------+------------+------+---------------+------+---------+------+------+----------+-------------+
+| id | select_type        | table     | partitions | type | possible_keys | key  | key_len | ref  | rows | filtered | Extra       |
++----+--------------------+-----------+------------+------+---------------+------+---------+------+------+----------+-------------+
+|  1 | PRIMARY            | Customers | NULL       | ALL  | NULL          | NULL | NULL    | NULL |    4 |   100.00 | Using where |
+|  2 | DEPENDENT SUBQUERY | Orders    | NULL       | ALL  | NULL          | NULL | NULL    | NULL |    2 |   100.00 | Using where |
++----+--------------------+-----------+------------+------+---------------+------+---------+------+------+----------+-------------+
+2 rows in set, 1 warning (0.00 sec)
+
+
+
