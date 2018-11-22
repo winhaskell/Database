@@ -189,3 +189,110 @@ mysql> SELECT a.Name FROM Employee2 a, Employee2 b WHERE a.ManagerId = b.Id AND 
 1 row in set (0.00 sec)
 
 mysql>
+
+
+181. Employees Earning More Than Their Managers  Easy
+
+SQL Schema
+The Employee table holds all employees including their managers. Every employee has an Id, and there is also a column for the manager Id.
+
++----+-------+--------+-----------+
+| Id | Name  | Salary | ManagerId |
++----+-------+--------+-----------+
+| 1  | Joe   | 70000  | 3         |
+| 2  | Henry | 80000  | 4         |
+| 3  | Sam   | 60000  | NULL      |
+| 4  | Max   | 90000  | NULL      |
++----+-------+--------+-----------+
+Given the Employee table, write a SQL query that finds out employees who earn more than their managers. 
+For the above table, Joe is the only employee who earns more than his manager.
+
++----------+
+| Employee |
++----------+
+| Joe      |
++----------+
+
+Accepted      80,581
+Submissions  188,288
+
+
+
+mysql> SELECT * FROM Employee2 a natural join Employee2 b
+    -> ;
++------+-------+--------+-----------+
+| Id   | Name  | Salary | ManagerId |
++------+-------+--------+-----------+
+|    1 | Joe   |  70000 |         3 |
+|    2 | Henry |  80000 |         4 |
+|    3 | Sam   |  60000 |         0 |
+|    4 | Max   |  90000 |         0 |
++------+-------+--------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Employee2 a join Employee2 b
+    -> ;
++------+-------+--------+-----------+------+-------+--------+-----------+
+| Id   | Name  | Salary | ManagerId | Id   | Name  | Salary | ManagerId |
++------+-------+--------+-----------+------+-------+--------+-----------+
+|    1 | Joe   |  70000 |         3 |    1 | Joe   |  70000 |         3 |
+|    2 | Henry |  80000 |         4 |    1 | Joe   |  70000 |         3 |
+|    3 | Sam   |  60000 |         0 |    1 | Joe   |  70000 |         3 |
+|    4 | Max   |  90000 |         0 |    1 | Joe   |  70000 |         3 |
+|    1 | Joe   |  70000 |         3 |    2 | Henry |  80000 |         4 |
+|    2 | Henry |  80000 |         4 |    2 | Henry |  80000 |         4 |
+|    3 | Sam   |  60000 |         0 |    2 | Henry |  80000 |         4 |
+|    4 | Max   |  90000 |         0 |    2 | Henry |  80000 |         4 |
+|    1 | Joe   |  70000 |         3 |    3 | Sam   |  60000 |         0 |
+|    2 | Henry |  80000 |         4 |    3 | Sam   |  60000 |         0 |
+|    3 | Sam   |  60000 |         0 |    3 | Sam   |  60000 |         0 |
+|    4 | Max   |  90000 |         0 |    3 | Sam   |  60000 |         0 |
+|    1 | Joe   |  70000 |         3 |    4 | Max   |  90000 |         0 |
+|    2 | Henry |  80000 |         4 |    4 | Max   |  90000 |         0 |
+|    3 | Sam   |  60000 |         0 |    4 | Max   |  90000 |         0 |
+|    4 | Max   |  90000 |         0 |    4 | Max   |  90000 |         0 |
++------+-------+--------+-----------+------+-------+--------+-----------+
+16 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Employee2 a join Employee2 b WHERE a.ManagerId = b.Id AND a.Salary > b.Salary;
++------+------+--------+-----------+------+------+--------+-----------+
+| Id   | Name | Salary | ManagerId | Id   | Name | Salary | ManagerId |
++------+------+--------+-----------+------+------+--------+-----------+
+|    1 | Joe  |  70000 |         3 |    3 | Sam  |  60000 |         0 |
++------+------+--------+-----------+------+------+--------+-----------+
+1 row in set (0.00 sec)
+
+ 
+mysql> SELECT a.name FROM Employee2 a join Employee2 b WHERE a.ManagerId = b.Id AND a.Salary > b.Salary;
++------+
+| name |
++------+
+| Joe  |
++------+
+1 row in set (0.00 sec)
+
+mysql> SELECT a.name, b.name FROM Employee2 a join Employee2 b WHERE a.ManagerId = b.Id AND a.Salary > b.Salary;
++------+------+
+| name | name |
++------+------+
+| Joe  | Sam  |
++------+------+
+1 row in set (0.00 sec)
+
+mysql>
+mysql> SELECT a.name, b.name as 'manager name' FROM Employee2 a join Employee2 b WHERE a.ManagerId = b.Id AND a.Salary > b.Salary;
++------+--------------+
+| name | manager name |
++------+--------------+
+| Joe  | Sam          |
++------+--------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT a.name as 'employee name', b.name as 'manager name' FROM Employee2 a join Employee2 b 
+       WHERE a.ManagerId = b.Id AND a.Salary > b.Salary;
++---------------+--------------+
+| employee name | manager name |
++---------------+--------------+
+| Joe           | Sam          |
++---------------+--------------+
+1 row in set (0.00 sec)
