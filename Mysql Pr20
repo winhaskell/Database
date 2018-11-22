@@ -311,3 +311,18 @@ mysql> SELECT * FROM Employee2 a, Employee2 b WHERE a.ManagerId = b.Id and a.Sal
 |    1 | Joe  |  70000 |         3 |    3 | Sam  |  60000 |         0 |
 +------+------+--------+-----------+------+------+--------+-----------+
 1 row in set (0.00 sec)
+
+
+Workbench:
+SELECT a.Name
+FROM Employee2 a, Employee2 b
+WHERE a.ManagerId = b.Id AND a.Salary > b.Salary;
+
+mysql> SELECT a.Name FROM Employee2 a, Employee2 b WHERE a.ManagerId = b.Id AND a.Salary > b.Salary;
++------+
+| Name |
++------+
+| Joe  |
++------+
+1 row in set (0.00 sec)
+
