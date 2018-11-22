@@ -78,6 +78,28 @@ mysql> SELECT FRUITS FROM world.likes GROUP BY FRUITS HAVING (COUNT(*) > 1);
 +---------+
 1 row in set (0.00 sec)
 
+
+ SELECT FRUITS FROM world.likes GROUP BY FRUITS HAVING (COUNT(*) > 0);
+ mysql>  SELECT FRUITS FROM world.likes GROUP BY FRUITS HAVING (COUNT(*) > 0);
++---------+
+| FRUITS  |
++---------+
+| a@b.com |
+| c@d.com |
++---------+
+2 rows in set (0.00 sec)
+
+
+mysql> select distinct fruits from world.likes;
++---------+
+| fruits  |
++---------+
+| a@b.com |
+| c@d.com |
++---------+
+2 rows in set (0.00 sec)
+
+
 mysql>
 Duplicate Emails 查询出重复的邮件 
 
@@ -90,7 +112,21 @@ https://www.w3schools.com/sql/sql_update.asp
 Having语句使用
 
 
+mysql> select * from world.classes where name = 'English';
++---------+----------+
+| name    | class_id |
++---------+----------+
+| English |        1 |
++---------+----------+
+1 row in set (0.00 sec)
 
-
+mysql> describe world.classes;
++----------+------------------+------+-----+---------+----------------+
+| Field    | Type             | Null | Key | Default | Extra          |
++----------+------------------+------+-----+---------+----------------+
+| name     | varchar(30)      | NO   |     | NULL    |                |
+| class_id | int(10) unsigned | NO   | PRI | NULL    | auto_increment |
++----------+------------------+------+-----+---------+----------------+
+2 rows in set (0.01 sec)
 
 
