@@ -143,3 +143,49 @@ mysql> select * from world.likes;
 2 rows in set (0.00 sec)
 
 mysql>
+
+Create table If Not Exists Employee2 (Id int, Name varchar(255), Salary int, ManagerId int);
+Truncate table Employee2;
+insert into Employee2 (Id, Name, Salary, ManagerId) values ('1', 'Joe', '70000', '3');
+insert into Employee2 (Id, Name, Salary, ManagerId) values ('2', 'Henry', '80000', '4');
+insert into Employee2 (Id, Name, Salary, ManagerId) values ('3', 'Sam', '60000', 'None');
+insert into Employee2 (Id, Name, Salary, ManagerId) values ('4', 'Max', '90000', 'None');
+
+mysql>  select * from  world.Employee2 ;
++------+-------+--------+-----------+
+| Id   | Name  | Salary | ManagerId |
++------+-------+--------+-----------+
+|    1 | Joe   |  70000 |         3 |
+|    2 | Henry |  80000 |         4 |
++------+-------+--------+-----------+
+2 rows in set (0.00 sec)
+
+mysql>
+insert into Employee2 (Id, Name, Salary, ManagerId) values ('3', 'Sam', '60000', '0');
+insert into Employee2 (Id, Name, Salary, ManagerId) values ('4', 'Max', '90000', '0');
+
+mysql> select * from  world.Employee2 ;
++------+-------+--------+-----------+
+| Id   | Name  | Salary | ManagerId |
++------+-------+--------+-----------+
+|    1 | Joe   |  70000 |         3 |
+|    2 | Henry |  80000 |         4 |
+|    3 | Sam   |  60000 |         0 |
+|    4 | Max   |  90000 |         0 |
++------+-------+--------+-----------+
+4 rows in set (0.00 sec)
+
+
+SELECT a.Name
+FROM Employee2 a, Employee2 b
+WHERE a.ManagerId = b.Id AND a.Salary > b.Salary;
+
+mysql> SELECT a.Name FROM Employee2 a, Employee2 b WHERE a.ManagerId = b.Id AND a.Salary > b.Salary;
++------+
+| Name |
++------+
+| Joe  |
++------+
+1 row in set (0.00 sec)
+
+mysql>
