@@ -216,6 +216,15 @@ mysql> select count(*) from world.country;
 +----------+
 1 row in set (0.02 sec)
 
-mysql>
 
+mysql> SELECT DISTINCT User FROM mysql.user;
++------------------+
+| User             |
++------------------+
+| mysql.infoschema |
+| mysql.session    |
+| mysql.sys        |
+| root             |
++------------------+
+4 rows in set (0.00 sec)
 
