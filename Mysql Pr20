@@ -794,3 +794,57 @@ mysql> explain SELECT Name AS Customers FROM Customers WHERE Id NOT IN
 
 
 
+mysql> select * from Customers AS c LEFT JOIN Orders AS o ON  o.CustomerId = c.Id;
++------+-------+------+------------+
+| Id   | Name  | Id   | CustomerId |
++------+-------+------+------------+
+|    3 | Sam   |    1 |          3 |
+|    1 | Joe   |    2 |          1 |
+|    2 | Henry | NULL |       NULL |
+|    4 | Max   | NULL |       NULL |
++------+-------+------+------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from Customers AS c LEFT JOIN Orders AS o ON  o.CustomerId = c.Id where o.Id is NULL;
++------+-------+------+------------+
+| Id   | Name  | Id   | CustomerId |
++------+-------+------+------------+
+|    2 | Henry | NULL |       NULL |
+|    4 | Max   | NULL |       NULL |
++------+-------+------+------------+
+2 rows in set (0.00 sec)
+
+mysql> select C.Name from Customers AS c LEFT JOIN Orders AS o ON  o.CustomerId = c.Id where o.Id is NULL;
++-------+
+| Name  |
++-------+
+| Henry |
+| Max   |
++-------+
+2 rows in set (0.00 sec)
+
+
+mysql> SELECT Name, c.Id, o.CustomerId AS Customers, o.Id FROM Customers AS c LEFT JOIN Orders AS o ON o.CustomerId = c.Id;
+按select指定的顺序输出查询
++-------+------+-----------+------+
+| Name  | Id   | Customers | Id   |
++-------+------+-----------+------+
+| Sam   |    3 |         3 |    1 |
+| Joe   |    1 |         1 |    2 |
+| Henry |    2 |      NULL | NULL |
+| Max   |    4 |      NULL | NULL |
++-------+------+-----------+------+
+
+
+mysql> SELECT * FROM Customers AS c LEFT JOIN Orders AS o ON o.CustomerId = c.Id;  按原表的列顺序输出查询
++------+-------+------+------------+
+| Id   | Name  | Id   | CustomerId |
++------+-------+------+------------+
+|    3 | Sam   |    1 |          3 |
+|    1 | Joe   |    2 |          1 |
+|    2 | Henry | NULL |       NULL |
+|    4 | Max   | NULL |       NULL |
++------+-------+------+------------+
+4 rows in set (0.00 sec)
+
+mysql>
