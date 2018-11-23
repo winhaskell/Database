@@ -1,0 +1,19 @@
+mysql> select * from world.likes full join  world.likes;
++------+---------+------+---------+
+| NAME | FRUITS  | NAME | FRUITS  |
++------+---------+------+---------+
+| 1    | a@b.com | 1    | a@b.com |
+| 2    | c@d.com | 1    | a@b.com |
+| 1    | a@b.com | 2    | c@d.com |
+| 2    | c@d.com | 2    | c@d.com |
++------+---------+------+---------+
+4 rows in set (0.00 sec)
+
+mysql> select * from world.likes;
++------+---------+
+| NAME | FRUITS  |
++------+---------+
+| 1    | a@b.com |
+| 2    | c@d.com |
++------+---------+
+2 rows in set (0.00 sec)
