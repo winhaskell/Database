@@ -1,0 +1,14 @@
+MySQL Cluster 
+https://dev.mysql.com/downloads/cluster/
+
+MySQL Cluster is a write-scalable, real-time, ACID-compliant transactional database, designed to deliver 99.9999% availability. 
+With a distributed, multi-master architecture and no single point of failure, MySQL Cluster scales horizontally on commodity
+hardware with auto-sharding (partitioning) to serve read and write intensive workloads, accessed via SQL and NoSQL interfaces.
+
+It is available as both open source and commercial editions. The Community (OSS) Edition is available under the free software/opensource 
+GNU General Public License (commonly known as the "GPL"). MySQL Cluster is provided as a separate download so that users can have access
+to builds from the latest source releases of the MySQL Cluster Carrier Grade Edition (https://www.mysql.com/downloads/clustercge/).
+
+Get up and running fast. Download the Quick Start Guide for your platform below:
+MySQL Cluster Quick Start Guide: Windows, Linux & Solaris
+https://downloads.mysql.com/tutorials/cluster/mysql_wp_cluster_quickstart.pdf
