@@ -238,3 +238,26 @@ mysql> show global status like '%tmp%';
 | Created_tmp_tables      | 25751 |
 +-------------------------+-------+
 3 rows in set (0.02 sec)
+
+
+
+mysql> show global status like 'binlog_ca%';
++-----------------------+-------+
+| Variable_name         | Value |
++-----------------------+-------+
+| Binlog_cache_disk_use | 11    |
+| Binlog_cache_use      | 251   |
++-----------------------+-------+
+2 rows in set (0.00 sec)
+
+
+mysql> show global status like 'sort%';
++-------------------+-------+
+| Variable_name     | Value |
++-------------------+-------+
+| Sort_merge_passes | 1     |
+| Sort_range        | 0     |
+| Sort_rows         | 35854 |
+| Sort_scan         | 2167  |
++-------------------+-------+
+4 rows in set (0.00 sec)
