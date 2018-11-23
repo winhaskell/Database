@@ -261,3 +261,59 @@ mysql> show global status like 'sort%';
 | Sort_scan         | 2167  |
 +-------------------+-------+
 4 rows in set (0.00 sec)
+
+
+mysql> show global status like 'table_locks%';
++-----------------------+-------+
+| Variable_name         | Value |
++-----------------------+-------+
+| Table_locks_immediate | 43554 |
+| Table_locks_waited    | 2     |
++-----------------------+-------+
+2 rows in set (0.00 sec)
+
+
+mysql>  show global status like '%row_lock%';
++-------------------------------+-------+
+| Variable_name                 | Value |
++-------------------------------+-------+
+| Innodb_row_lock_current_waits | 0     |
+| Innodb_row_lock_time          | 0     |
+| Innodb_row_lock_time_avg      | 0     |
+| Innodb_row_lock_time_max      | 0     |
+| Innodb_row_lock_waits         | 0     |
++-------------------------------+-------+
+5 rows in set (0.00 sec)
+
+参考和感谢 
+http://www.cnblogs.com/gomysql/p/3833526.html
+
+Innodb 的行级锁定状态变量不仅记录了锁定等待次数，还记录了锁定总时长，每次平均时长，以及最大时长，
+此外还有一个非累积状态量显示了当前正在等待锁定的等待数量。
+
+Innodb_row_lock_current_waits
+当前正在等待锁定的数量
+
+Innodb_row_lock_time
+从系统启动到现在锁定总时间长度
+
+Innodb_row_lock_time_avg
+每次等待所花平均时间
+
+Innodb_row_lock_time_max
+从系统启动到现在等待最常的一次所花的时间；
+
+Innodb_row_lock_waits
+系统启动后到现在总共等待的次数
+
+
+
+mysql>  show global status like 'Open%tables';
++---------------+-------+
+| Variable_name | Value |
++---------------+-------+
+| Open_tables   | 496   |
+| Opened_tables | 982   |
++---------------+-------+
+2 rows in set (0.00 sec)
+
