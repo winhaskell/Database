@@ -158,3 +158,23 @@ mysql> SELECT table_schema, table_name, table_comment FROM
 
 mysql>
 
+mysql> status;
+--------------
+C:\xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxyyyyyyyyyyyxxxxxxxxxxx Ver 8.0.13 for Win64 on x86_64 (MySQL Community Server - GPL)
+
+Connection id:          62
+Current database:       world
+Current user:           root@localhost
+SSL:                    Cipher in use is DHE-RSA-AES128-GCM-SHA256
+Using delimiter:        ;
+Server version:         8.0.13 MySQL Community Server - GPL
+Protocol version:       10
+Connection:             localhost via TCP/IP
+Server characterset:    utf8mb4
+Db     characterset:     
+Client characterset:     
+Conn.  characterset:    cp852
+TCP port:               3306
+Uptime:                 a days a hour a min a sec
+
+Threads: 4  Questions: 39082  Slow queries: 0  Opens: 979  Flush tables: 3  Open tables: 493  Queries per second avg: 0.028
