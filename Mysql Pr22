@@ -17,3 +17,15 @@ mysql> select * from world.likes;
 | 2    | c@d.com |
 +------+---------+
 2 rows in set (0.00 sec)
+
+
+mysql> show global status like 'innodb_log_waits';
++------------------+-------+
+| Variable_name    | Value |
++------------------+-------+
+| Innodb_log_waits | 0     |
++------------------+-------+
+1 row in set (0.00 sec)
+
+mysql>
+
