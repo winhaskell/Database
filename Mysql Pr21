@@ -50,3 +50,107 @@ SELECT  *  FROM  information_schema.COLUMNS
 
 
 
+
+
+
+查看表信息：
+mysql> SELECT table_schema, table_name, table_comment FROM
+    -> information_schema.tables WHERE ENGINE LIKE 'InnoDB';
++--------------+---------------------------+-----------------------------------------+
+| TABLE_SCHEMA | TABLE_NAME                | TABLE_COMMENT                           |
++--------------+---------------------------+-----------------------------------------+
+| mysql        | innodb_table_stats        |                                         |
+| mysql        | innodb_index_stats        |                                         |
+| mysql        | db                        | Database privileges                     |
+| mysql        | user                      | Users and global privileges             |
+| mysql        | default_roles             | Default roles                           |
+| mysql        | role_edges                | Role hierarchy and role grants          |
+| mysql        | global_grants             | Extended global grants                  |
+| mysql        | password_history          | Password history for user accounts      |
+| mysql        | func                      | User defined functions                  |
+| mysql        | plugin                    | MySQL plugins                           |
+| mysql        | servers                   | MySQL Foreign Servers table             |
+| mysql        | tables_priv               | Table privileges                        |
+| mysql        | columns_priv              | Column privileges                       |
+| mysql        | help_topic                | help topics                             |
+| mysql        | help_category             | help categories                         |
+| mysql        | help_relation             | keyword-topic relation                  |
+| mysql        | help_keyword              | help keywords                           |
+| mysql        | time_zone_name            | Time zone names                         |
+| mysql        | time_zone                 | Time zones                              |
+| mysql        | time_zone_transition      | Time zone transitions                   |
+| mysql        | time_zone_transition_type | Time zone transition types              |
+| mysql        | time_zone_leap_second     | Leap seconds information for time zones |
+| mysql        | procs_priv                | Procedure privileges                    |
+| mysql        | component                 | Components                              |
+| mysql        | slave_relay_log_info      | Relay Log Information                   |
+| mysql        | slave_master_info         | Master Information                      |
+| mysql        | slave_worker_info         | Worker Information                      |
+| mysql        | gtid_executed             |                                         |
+| mysql        | server_cost               |                                         |
+| mysql        | engine_cost               |                                         |
+| mysql        | proxies_priv              | User proxy privileges                   |
+| sys          | sys_config                |                                         |
+| sakila       | actor                     |                                         |
+| sakila       | address                   |                                         |
+| sakila       | category                  |                                         |
+| sakila       | city                      |                                         |
+| sakila       | country                   |                                         |
+| sakila       | customer                  |                                         |
+| sakila       | film                      |                                         |
+| sakila       | film_actor                |                                         |
+| sakila       | film_category             |                                         |
+| sakila       | film_text                 |                                         |
+| sakila       | inventory                 |                                         |
+| sakila       | language                  |                                         |
+| sakila       | payment                   |                                         |
+| sakila       | rental                    |                                         |
+| sakila       | staff                     |                                         |
+| sakila       | store                     |                                         |
+| world        | city                      |                                         |
+| world        | country                   |                                         |
+| world        | countrylanguage           |                                         |
+| southwind    | products                  |                                         |
+| world        | products                  |                                         |
+| southwind    | suppliers                 |                                         |
+| southwind    | accounts                  |                                         |
+| southwind    | t1                        |                                         |
+| southwind    | t2                        |                                         |
+| southwind    | countries                 |                                         |
+| southwind    | departments               |                                         |
+| southwind    | employees                 |                                         |
+| southwind    | job_history               |                                         |
+| southwind    | jobs                      |                                         |
+| southwind    | locations                 |                                         |
+| southwind    | regions                   |                                         |
+| world        | teachers                  |                                         |
+| world        | subjects                  |                                         |
+| world        | grades                    |                                         |
+| world        | salesdetail               |                                         |
+| world        | salesdetail2              |                                         |
+| world        | tcount_tbl                |                                         |
+| world        | shop                      |                                         |
+| world        | person                    |                                         |
+| world        | shirt                     |                                         |
+| world        | animals                   |                                         |
+| mysql        | animals                   |                                         |
+| world        | user_login                |                                         |
+| world        | employee_tbl              |                                         |
+| world        | entries2                  |                                         |
+| world        | absences                  |                                         |
+| world        | classes                   |                                         |
+| world        | scores                    |                                         |
+| world        | students                  |                                         |
+| world        | tests                     |                                         |
+| world        | user_account              |                                         |
+| world        | likes                     |                                         |
+| world        | employee2                 |                                         |
+| world        | employee3                 |                                         |
+| world        | weather                   |                                         |
+| world        | customers                 |                                         |
+| world        | orders                    |                                         |
++--------------+---------------------------+-----------------------------------------+
+90 rows in set (0.00 sec)
+
+mysql>
+
