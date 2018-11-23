@@ -178,3 +178,44 @@ TCP port:               3306
 Uptime:                 a days a hour a min a sec
 
 Threads: 4  Questions: 39082  Slow queries: 0  Opens: 979  Flush tables: 3  Open tables: 493  Queries per second avg: 0.028
+
+
+mysql> use information_schema;
+Database changed
+
+mysql>  select * from PROCESSLIST where info is not null;
++----+------+-----------------+--------------------+---------+------+-----------+--------------------------------------------------+
+| ID | USER | HOST            | DB                 | COMMAND | TIME | STATE     | INFO                                             |
++----+------+-----------------+--------------------+---------+------+-----------+--------------------------------------------------+
+| 62 | root | localhost:62890 | information_schema | Query   |    0 | executing | select * from PROCESSLIST where info is not null |
++----+------+-----------------+--------------------+---------+------+-----------+--------------------------------------------------+
+1 row in set (0.01 sec)
+
+
+mysql> select count(*) from world.weather;
++----------+
+| count(*) |
++----------+
+|        8 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select count(*) from world.employee_tbl;
++----------+
+| count(*) |
++----------+
+|        6 |
++----------+
+1 row in set (0.01 sec)
+
+mysql> select count(*) from world.country;
++----------+
+| count(*) |
++----------+
+|      239 |
++----------+
+1 row in set (0.02 sec)
+
+mysql>
+
+
