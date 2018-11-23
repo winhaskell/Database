@@ -229,6 +229,12 @@ mysql> SELECT DISTINCT User FROM mysql.user;
 4 rows in set (0.00 sec)
 
 
-
-
-
+mysql> show global status like '%tmp%';
++-------------------------+-------+
+| Variable_name           | Value |
++-------------------------+-------+
+| Created_tmp_disk_tables | 20    |
+| Created_tmp_files       | 9     |
+| Created_tmp_tables      | 25751 |
++-------------------------+-------+
+3 rows in set (0.02 sec)
