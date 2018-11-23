@@ -317,3 +317,50 @@ mysql>  show global status like 'Open%tables';
 +---------------+-------+
 2 rows in set (0.00 sec)
 
+
+mysql>  show global status like 'threads%';
++-------------------+-------+
+| Variable_name     | Value |
++-------------------+-------+
+| Threads_cached    | 2     |
+| Threads_connected | 3     |
+| Threads_created   | 5     |
+| Threads_running   | 2     |
++-------------------+-------+
+4 rows in set (0.00 sec)
+
+Thread Cache 在MySQL中每个连接即一个线程。
+
+Threads_cached     线程缓存内的线程的数量
+
+Threads_connected  当前打开连接的数量
+
+Threads_created    创建用来处理连接的线程数。如果Threads_created较大，需要增加thread_cache_size的值。
+
+thread cache命中率计算方法：
+Thread_cache_hits = (1 - Threads_created / Connections) * 100%
+
+
+mysql> show variables like '%max_connections%';
++------------------------+-------+
+| Variable_name          | Value |
++------------------------+-------+
+| max_connections        | 151   |
+| mysqlx_max_connections | 100   |
++------------------------+-------+
+2 rows in set (0.00 sec)
+
+Max Connections
+观察max_used_connections是否等于max_connections，在某个时刻连接可能被拒绝，最大连接，超过极限停止服务。
+
+mysql> show global status like 'max%';
++-------------------------------+---------------------+
+| Variable_name                 | Value               |
++-------------------------------+---------------------+
+| Max_execution_time_exceeded   | 0                   |
+| Max_execution_time_set        | 0                   |
+| Max_execution_time_set_failed | 0                   |
+| Max_used_connections          | 5                   |
+| Max_used_connections_time     | 2018-11-07 12:39:40 |
++-------------------------------+---------------------+
+5 rows in set (0.00 sec)
