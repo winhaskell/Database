@@ -1,0 +1,52 @@
+
+索引 
+mysql> SHOW INDEX FROM sys.sys_config;
++------------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+| Table      | Non_unique | Key_name | Seq_in_index | Column_name | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment | Index_comment | Visible | Expression |
++------------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+| sys_config |          0 | PRIMARY  |            1 | variable    | A         |           6 |     NULL |   NULL |      | BTREE      |         |               | YES     | NULL       |
++------------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+1 row in set (0.09 sec)
+
+
+数据路连接数：
+mysql> SHOW STATUS LIKE 'Threads%';
++-------------------+-------+
+| Variable_name     | Value |
++-------------------+-------+
+| Threads_cached    | 2     |
+| Threads_connected | 3     |
+| Threads_created   | 5     |
+| Threads_running   | 2     |
++-------------------+-------+
+4 rows in set (0.00 sec)
+
+mysql>
+mysql> SHOW GLOBAL STATUS LIKE 'Thread%';
++-------------------+-------+
+| Variable_name     | Value |
++-------------------+-------+
+| Threads_cached    | 2     |
+| Threads_connected | 3     |
+| Threads_created   | 5     |
+| Threads_running   | 2     |
++-------------------+-------+
+4 rows in set (0.01 sec)
+
+
+系统设置最大连接数：
+mysql> SHOW VARIABLES LIKE '%max_connections%';
++------------------------+-------+
+| Variable_name          | Value |
++------------------------+-------+
+| max_connections        | 151   |
+| mysqlx_max_connections | 100   |
++------------------------+-------+
+2 rows in set (0.00 sec)
+
+
+每张表的每个字段
+SELECT  *  FROM  information_schema.COLUMNS
+
+
+
