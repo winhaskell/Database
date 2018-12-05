@@ -1,0 +1,28 @@
+Command Line Client 
+
+mysql> SELECT Name AS Customers, o.Id  FROM world.Customers AS c LEFT JOIN world.Orders AS o ON c.Id = o.CustomerId WHERE o.Id IS NULL;
++-----------+------+
+| Customers | Id   |
++-----------+------+
+| Henry     | NULL |
+| Max       | NULL |
++-----------+------+
+2 rows in set (0.00 sec)
+
+
+mysql> SELECT Name AS Customers, o.Id  FROM world.customers AS c LEFT JOIN world.orders AS o ON c.Id = o.CustomerId WHERE o.Id IS NULL;
++-----------+------+
+| Customers | Id   |
++-----------+------+
+| Henry     | NULL |
+| Max       | NULL |
++-----------+------+
+2 rows in set (0.00 sec)
+
+
+
+SELECT Name AS Customers, o.Id  FROM Customers AS c
+LEFT JOIN Orders AS o ON c.Id = o.CustomerId
+WHERE o.Id IS NULL;
+
+
