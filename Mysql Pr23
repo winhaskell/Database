@@ -26,3 +26,15 @@ LEFT JOIN Orders AS o ON c.Id = o.CustomerId
 WHERE o.Id IS NULL;
 
 
+mysql> SELECT Name AS Customers, o.Id  FROM world.customers AS c LEFT JOIN world.orders AS o ON c.Id = o.CustomerId;
++-----------+------+
+| Customers | Id   |
++-----------+------+
+| Sam       |    1 |
+| Joe       |    2 |
+| Henry     | NULL |
+| Max       | NULL |
++-----------+------+
+4 rows in set (0.00 sec)
+
+mysql>
