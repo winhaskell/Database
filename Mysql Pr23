@@ -93,5 +93,201 @@ mysql> SELECT Name AS Customers, o.Id  FROM world.customers AS c LEFT JOIN world
 mysql>
 
 
+mysql> SELECT Name AS Customers, o.Id  FROM world.customers AS c LEFT JOIN world.orders AS o ON c.Id = o.CustomerId WHERE o.Id IS NULL;
++-----------+------+
+| Customers | Id   |
++-----------+------+
+| Henry     | NULL |
+| Max       | NULL |
++-----------+------+
+2 rows in set (0.00 sec)
 
+mysql> SELECT Name AS Customers, o.Id  FROM world.customers AS c LEFT JOIN world.orders AS o ON c.Id = o.CustomerId
+    -> ;
++-----------+------+
+| Customers | Id   |
++-----------+------+
+| Sam       |    1 |
+| Joe       |    2 |
+| Henry     | NULL |
+| Max       | NULL |
++-----------+------+
+4 rows in set (0.00 sec)
 
+mysql> SELECT Name AS Customers, o.Id  FROM world.customers AS c LEFT JOIN world.orders AS o ON c.Id = o.CustomerId
+    -> ;
++-----------+------+
+| Customers | Id   |
++-----------+------+
+| Sam       |    1 |
+| Joe       |    2 |
+| Henry     | NULL |
+| Max       | NULL |
++-----------+------+
+4 rows in set (0.01 sec)
+
+mysql> SELECT Name AS Customers, o.Id  FROM world.customers AS c LEFT JOIN world.orders AS o ON c.Id = o.CustomerId
+    -> SELECT Name AS Customers, o.Id  FROM world.customers AS c LEFT JOIN world.orders AS o ON c.Id = o.CustomerId
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SELECT Name AS Customers, o.Id  FROM world.customers AS c LEFT JOIN world.orders' at line 2
+mysql> SELECT Name AS Customers, o.Id  FROM world.customers AS c LEFT JOIN world.orders AS o ON c.Id = o.CustomerId;
++-----------+------+
+| Customers | Id   |
++-----------+------+
+| Sam       |    1 |
+| Joe       |    2 |
+| Henry     | NULL |
+| Max       | NULL |
++-----------+------+
+4 rows in set (0.02 sec)
+
+mysql> SELECT Name AS Customers, o.Id  FROM world.customers AS c LEFT JOIN world.orders AS o ON c.Id != o.CustomerId;
++-----------+------+
+| Customers | Id   |
++-----------+------+
+| Joe       |    1 |
+| Henry     |    1 |
+| Max       |    1 |
+| Henry     |    2 |
+| Sam       |    2 |
+| Max       |    2 |
++-----------+------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT Name AS Customers, o.Id  FROM world.customers AS c LEFT JOIN world.orders AS o ON c.Id != o.CustomerId and  c.Id = o.CustomerId;
++-----------+------+
+| Customers | Id   |
++-----------+------+
+| Joe       | NULL |
+| Henry     | NULL |
+| Sam       | NULL |
+| Max       | NULL |
++-----------+------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT Name AS Customers, o.Id  FROM world.customers AS c LEFT JOIN world.orders AS o ON c.Id != o.CustomerId or  c.Id = o.CustomerId;
++-----------+------+
+| Customers | Id   |
++-----------+------+
+| Joe       |    1 |
+| Henry     |    1 |
+| Sam       |    1 |
+| Max       |    1 |
+| Joe       |    2 |
+| Henry     |    2 |
+| Sam       |    2 |
+| Max       |    2 |
++-----------+------+
+8 rows in set (0.00 sec)
+
+mysql> select * from world.customers;
++------+-------+
+| Id   | Name  |
++------+-------+
+|    1 | Joe   |
+|    2 | Henry |
+|    3 | Sam   |
+|    4 | Max   |
++------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select * from world.orders;
++------+------------+
+| Id   | CustomerId |
++------+------------+
+|    1 |          3 |
+|    2 |          1 |
++------+------------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT Name AS Customers, o.Id  FROM world.customers AS c LEFT JOIN world.orders AS o ON c.Id = o.CustomerId
+    -> ;
++-----------+------+
+| Customers | Id   |
++-----------+------+
+| Sam       |    1 |
+| Joe       |    2 |
+| Henry     | NULL |
+| Max       | NULL |
++-----------+------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT Name AS Customers, o.Id  FROM world.customers AS c Right JOIN world.orders AS o ON c.Id = o.CustomerId
+    -> ;
++-----------+------+
+| Customers | Id   |
++-----------+------+
+| Joe       |    2 |
+| Sam       |    1 |
++-----------+------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT Name AS Customers, o.Id  FROM world.customers AS c full JOIN world.orders AS o ON c.Id = o.CustomerId
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'full JOIN world.orders AS o ON c.Id = o.CustomerId' at line 1
+mysql> SELECT Name AS Customers, o.Id  FROM world.customers AS c outer JOIN world.orders AS o ON c.Id = o.CustomerId
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'outer JOIN world.orders AS o ON c.Id = o.CustomerId' at line 1
+mysql> SELECT Persons.LastName, Persons.FirstName, Orders.OrderNo
+    -> FROM Persons
+    -> FULL JOIN Orders
+    -> ON Persons.P_Id=Orders.P_Id
+    -> ORDER BY Persons.LastName;
+ERROR 1046 (3D000): No database selected
+mysql> SELECT Name AS Customers, o.Id  FROM world.customers AS c FULL OUTER JOIN world.orders AS o ON c.Id = o.CustomerId
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FULL OUTER JOIN world.orders AS o ON c.Id = o.CustomerId' at line 1
+ 
+mysql> SELECT Name AS Customers, o.Id  FROM world.customers AS c JOIN world.orders AS o ON c.Id = o.CustomerId
+    -> ;
++-----------+------+
+| Customers | Id   |
++-----------+------+
+| Joe       |    2 |
+| Sam       |    1 |
++-----------+------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT Name AS Customers, o.Id  FROM world.customers AS c cross JOIN world.orders AS o ON c.Id = o.CustomerId
+    -> ;
++-----------+------+
+| Customers | Id   |
++-----------+------+
+| Joe       |    2 |
+| Sam       |    1 |
++-----------+------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT Name AS Customers, o.Id  FROM world.customers AS c cross JOIN world.orders AS o
+    -> ;
++-----------+------+
+| Customers | Id   |
++-----------+------+
+| Joe       |    1 |
+| Joe       |    2 |
+| Henry     |    1 |
+| Henry     |    2 |
+| Sam       |    1 |
+| Sam       |    2 |
+| Max       |    1 |
+| Max       |    2 |
++-----------+------+
+8 rows in set (0.00 sec)
+
+mysql> SELECT Name AS Customers, o.Id  FROM world.customers AS c JOIN world.orders AS o
+    -> ;
++-----------+------+
+| Customers | Id   |
++-----------+------+
+| Joe       |    1 |
+| Joe       |    2 |
+| Henry     |    1 |
+| Henry     |    2 |
+| Sam       |    1 |
+| Sam       |    2 |
+| Max       |    1 |
+| Max       |    2 |
++-----------+------+
+8 rows in set (0.00 sec)
+
+mysql>
