@@ -347,3 +347,41 @@ SELECT * FROM Customers WHERE City LIKE '_a%';
 Select all records where the first letter of the City is an "a" or a "b" or a "c".
 SELECT * FROM Customers WHERE City LIKE '[abc]%';
 
+
+Select all records where the first letter of the City starts with anything from an "a" to an "f".
+SELECT * FROM Customers WHERE City LIKE '[a-f]%';
+
+Select all records where the first letter of the City is NOT an "a" or a "b" or a "c".
+SELECT * FROM Customers WHERE City LIKE '[!abc]%';
+
+
+
+SQL Wildcards
+SQL Wildcard Characters
+A wildcard character is used to substitute any other character(s) in a string.
+
+Wildcard characters are used with the SQL LIKE operator. The LIKE operator is used in a WHERE clause to search for a specified pattern in a column. 
+
+There are two wildcards used in conjunction with the LIKE operator:
+
+% - The percent sign represents zero, one, or multiple characters
+_ - The underscore represents a single character
+Note: MS Access uses a question mark (?) instead of the underscore (_).
+
+In MS Access and SQL Server you can also use:
+
+[charlist] - Defines sets and ranges of characters to match
+[^charlist] or [!charlist] - Defines sets and ranges of characters NOT to match
+The wildcards can also be used in combinations!
+
+Here are some examples showing different LIKE operators with '%' and '_' wildcards:
+
+LIKE Operator	Description
+WHERE CustomerName LIKE 'a%'	Finds any values that starts with "a"
+WHERE CustomerName LIKE '%a'	Finds any values that ends with "a"
+WHERE CustomerName LIKE '%or%'	Finds any values that have "or" in any position
+WHERE CustomerName LIKE '_r%'	Finds any values that have "r" in the second position
+WHERE CustomerName LIKE 'a_%_%'	Finds any values that starts with "a" and are at least 3 characters in length
+WHERE ContactName LIKE 'a%o'	Finds any values that starts with "a" and ends with "o"
+
+https://www.w3schools.com/sql/
