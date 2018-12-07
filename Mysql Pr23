@@ -38,3 +38,60 @@ mysql> SELECT Name AS Customers, o.Id  FROM world.customers AS c LEFT JOIN world
 4 rows in set (0.00 sec)
 
 mysql>
+
+
+mysql> SELECT Name AS Customers, o.Id  FROM world.customers AS c LEFT JOIN world.orders AS o ON c.Id = o.CustomerId;
++-----------+------+
+| Customers | Id   |
++-----------+------+
+| Sam       |    1 |
+| Joe       |    2 |
+| Henry     | NULL |
+| Max       | NULL |
++-----------+------+
+4 rows in set (0.02 sec)
+
+mysql> SELECT Name AS Customers, o.Id  FROM world.customers AS c LEFT JOIN world.orders AS o ON c.Id != o.CustomerId;
++-----------+------+
+| Customers | Id   |
++-----------+------+
+| Joe       |    1 |
+| Henry     |    1 |
+| Max       |    1 |
+| Henry     |    2 |
+| Sam       |    2 |
+| Max       |    2 |
++-----------+------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT Name AS Customers, o.Id  FROM world.customers AS c LEFT JOIN world.orders AS o ON c.Id != o.CustomerId and c.Id = o.CustomerId;
++-----------+------+
+| Customers | Id   |
++-----------+------+
+| Joe       | NULL |
+| Henry     | NULL |
+| Sam       | NULL |
+| Max       | NULL |
++-----------+------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT Name AS Customers, o.Id  FROM world.customers AS c LEFT JOIN world.orders AS o ON c.Id != o.CustomerId or c.Id = o.CustomerId;
++-----------+------+
+| Customers | Id   |
++-----------+------+
+| Joe       |    1 |
+| Henry     |    1 |
+| Sam       |    1 |
+| Max       |    1 |
+| Joe       |    2 |
+| Henry     |    2 |
+| Sam       |    2 |
+| Max       |    2 |
++-----------+------+
+8 rows in set (0.00 sec)
+
+mysql>
+
+
+
+
