@@ -291,3 +291,51 @@ mysql> SELECT Name AS Customers, o.Id  FROM world.customers AS c JOIN world.orde
 8 rows in set (0.00 sec)
 
 mysql>
+
+
+mysql> SELECT Name AS Customers, o.Id  FROM world.customers AS c right JOIN world.orders AS o on c.Id = o.CustomerId;
++-----------+------+
+| Customers | Id   |
++-----------+------+
+| Joe       |    2 |
+| Sam       |    1 |
++-----------+------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT Name AS Customers, o.Id  FROM world.customers AS c left JOIN world.orders AS o on c.Id = o.CustomerId;
++-----------+------+
+| Customers | Id   |
++-----------+------+
+| Sam       |    1 |
+| Joe       |    2 |
+| Henry     | NULL |
+| Max       | NULL |
++-----------+------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT Name, o.Id  FROM world.customers AS c left JOIN world.orders AS o on c.Id = o.CustomerId;
++-------+------+
+| Name  | Id   |
++-------+------+
+| Sam   |    1 |
+| Joe   |    2 |
+| Henry | NULL |
+| Max   | NULL |
++-------+------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT Name, o.Id  FROM world.customers AS cui left JOIN world.orders AS ouuu on cui.Id = ouuu.CustomerId;
+ERROR 1054 (42S22): Unknown column 'o.Id' in 'field list'
+
+mysql> SELECT Name, ouuu.Id  FROM world.customers AS cui left JOIN world.orders AS ouuu on cui.Id = ouuu.CustomerId;
++-------+------+
+| Name  | Id   |
++-------+------+
+| Sam   |    1 |
+| Joe   |    2 |
+| Henry | NULL |
+| Max   | NULL |
++-------+------+
+4 rows in set (0.00 sec)
+
+mysql>
