@@ -339,3 +339,11 @@ mysql> SELECT Name, ouuu.Id  FROM world.customers AS cui left JOIN world.orders 
 4 rows in set (0.00 sec)
 
 mysql>
+
+Select all records where the second letter of the City is an "a".
+SELECT * FROM Customers WHERE City LIKE '_a%';
+
+
+Select all records where the first letter of the City is an "a" or a "b" or a "c".
+SELECT * FROM Customers WHERE City LIKE '[abc]%';
+
