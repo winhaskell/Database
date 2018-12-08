@@ -385,3 +385,20 @@ WHERE CustomerName LIKE 'a_%_%'	Finds any values that starts with "a" and are at
 WHERE ContactName LIKE 'a%o'	Finds any values that starts with "a" and ends with "o"
 
 https://www.w3schools.com/sql/
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| southwind          |
+| sys                |
+| world              |
++--------------------+
+7 rows in set (0.07 sec)
+
+mysql>
+
