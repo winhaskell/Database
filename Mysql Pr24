@@ -33,3 +33,287 @@ mysql> select * from world.weather;
 5 rows in set (0.00 sec)
 
 mysql>
+
+
+
+mysql> CREATE TABLE customer (a INT, b CHAR (20), INDEX (a));
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> START TRANSACTION;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> INSERT INTO customer VALUES (10, 'Heikki');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO customer VALUES (20, 'Istvan');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO customer VALUES (30, 'Balint');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SET autocommit=0;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> INSERT INTO customer VALUES (15, 'John von numman');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO customer VALUES (20, 'Sandor');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> DELETE FROM customer WHERE b = 'Heikki';
+Query OK, 1 row affected (0.01 sec)
+
+mysql> ROLLBACK;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> select * from customer;
+Empty set (0.00 sec)
+
+mysql> SELECT * FROM customer;
+Empty set (0.00 sec)
+
+mysql> INSERT INTO customer VALUES (20, 'Sandor');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from customer;
++------+--------+
+| a    | b      |
++------+--------+
+|   20 | Sandor |
++------+--------+
+1 row in set (0.00 sec)
+
+mysql> INSERT INTO customer VALUES (15, 'John von numman');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO customer VALUES (20, 'Istvan');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO customer VALUES (30, 'Balint');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from customer;
++------+-----------------+
+| a    | b               |
++------+-----------------+
+|   20 | Sandor          |
+|   15 | John von numman |
+|   20 | Istvan          |
+|   30 | Balint          |
++------+-----------------+
+4 rows in set (0.00 sec)
+
+mysql> START TRANSACTION;
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> INSERT INTO customer VALUES (10, 'Heikki');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from customer;
++------+-----------------+
+| a    | b               |
++------+-----------------+
+|   20 | Sandor          |
+|   15 | John von numman |
+|   20 | Istvan          |
+|   30 | Balint          |
+|   10 | Heikki          |
++------+-----------------+
+5 rows in set (0.00 sec)
+
+mysql> COMMIT;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> select * from customer;
++------+-----------------+
+| a    | b               |
++------+-----------------+
+|   20 | Sandor          |
+|   15 | John von numman |
+|   20 | Istvan          |
+|   30 | Balint          |
+|   10 | Heikki          |
++------+-----------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from customer order by a;
++------+-----------------+
+| a    | b               |
++------+-----------------+
+|   10 | Heikki          |
+|   15 | John von numman |
+|   20 | Sandor          |
+|   20 | Istvan          |
+|   30 | Balint          |
++------+-----------------+
+5 rows in set (0.00 sec)
+
+mysql> SET autocommit=0;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> INSERT INTO customer VALUES (40, 'Lila');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> DELETE FROM customer WHERE b = 'Heikki';
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from customer;
++------+-----------------+
+| a    | b               |
++------+-----------------+
+|   20 | Sandor          |
+|   15 | John von numman |
+|   20 | Istvan          |
+|   30 | Balint          |
+|   40 | Lila            |
++------+-----------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from customer order by a;
++------+-----------------+
+| a    | b               |
++------+-----------------+
+|   15 | John von numman |
+|   20 | Sandor          |
+|   20 | Istvan          |
+|   30 | Balint          |
+|   40 | Lila            |
++------+-----------------+
+5 rows in set (0.00 sec)
+
+mysql> ROLLBACK;
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> SELECT * FROM customer;
++------+-----------------+
+| a    | b               |
++------+-----------------+
+|   20 | Sandor          |
+|   15 | John von numman |
+|   20 | Istvan          |
+|   30 | Balint          |
+|   10 | Heikki          |
++------+-----------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from customer order by a;
++------+-----------------+
+| a    | b               |
++------+-----------------+
+|   10 | Heikki          |
+|   15 | John von numman |
+|   20 | Sandor          |
+|   20 | Istvan          |
+|   30 | Balint          |
++------+-----------------+
+5 rows in set (0.00 sec)
+
+mysql> INSERT INTO customer VALUES (40, 'Lila');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from customer order by a;
++------+-----------------+
+| a    | b               |
++------+-----------------+
+|   10 | Heikki          |
+|   15 | John von numman |
+|   20 | Sandor          |
+|   20 | Istvan          |
+|   30 | Balint          |
+|   40 | Lila            |
++------+-----------------+
+6 rows in set (0.00 sec)
+
+mysql> ROLLBACK;
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> select * from customer order by a;
++------+-----------------+
+| a    | b               |
++------+-----------------+
+|   10 | Heikki          |
+|   15 | John von numman |
+|   20 | Sandor          |
+|   20 | Istvan          |
+|   30 | Balint          |
++------+-----------------+
+5 rows in set (0.00 sec)
+
+mysql> INSERT INTO customer VALUES (40, 'Lila');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO customer VALUES (40, 'Lila');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from customer order by a;
++------+-----------------+
+| a    | b               |
++------+-----------------+
+|   10 | Heikki          |
+|   15 | John von numman |
+|   20 | Sandor          |
+|   20 | Istvan          |
+|   30 | Balint          |
+|   40 | Lila            |
+|   40 | Lila            |
++------+-----------------+
+7 rows in set (0.00 sec)
+
+mysql> ROLLBACK;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> select * from customer order by a;
++------+-----------------+
+| a    | b               |
++------+-----------------+
+|   10 | Heikki          |
+|   15 | John von numman |
+|   20 | Sandor          |
+|   20 | Istvan          |
+|   30 | Balint          |
++------+-----------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from customer order by a;
++------+-----------------+
+| a    | b               |
++------+-----------------+
+|   10 | Heikki          |
+|   15 | John von numman |
+|   20 | Sandor          |
+|   20 | Istvan          |
+|   30 | Balint          |
++------+-----------------+
+5 rows in set (0.00 sec)
+
+mysql> COMMIT;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from customer order by a;
++------+-----------------+
+| a    | b               |
++------+-----------------+
+|   10 | Heikki          |
+|   15 | John von numman |
+|   20 | Sandor          |
+|   20 | Istvan          |
+|   30 | Balint          |
++------+-----------------+
+5 rows in set (0.00 sec)
+
+mysql> ROLLBACK;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from customer order by a;
++------+-----------------+
+| a    | b               |
++------+-----------------+
+|   10 | Heikki          |
+|   15 | John von numman |
+|   20 | Sandor          |
+|   20 | Istvan          |
+|   30 | Balint          |
++------+-----------------+
+5 rows in set (0.00 sec)
+
+mysql>
