@@ -1,3 +1,7 @@
+https://dev.mysql.com/doc/refman/8.0/en/innodb-autocommit-commit-rollback.html
+autocommit, Commit, and Rollback
+https://dev.mysql.com/doc/refman/8.0/en/commit.html
+
 mysql> delete from world.weather where Temperature = 20;
 Query OK, 2 rows affected (0.11 sec)
 
