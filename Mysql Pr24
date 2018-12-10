@@ -1,0 +1,35 @@
+mysql> delete from world.weather where Temperature = 20;
+Query OK, 2 rows affected (0.11 sec)
+
+mysql> select * from world.weather;
++------+------------+-------------+
+| Id   | RecordDate | Temperature |
++------+------------+-------------+
+|    1 | 2015-01-01 |          10 |
+|    2 | 2015-01-02 |          25 |
+|    4 | 2015-01-04 |          30 |
+|    5 | 2018-11-21 |          17 |
+|    6 | 2018-11-22 |          22 |
+|    8 | 2018-11-24 |          18 |
++------+------------+-------------+
+6 rows in set (0.00 sec)
+
+mysql> delete from world.weather where Temperature >30 and Temperature <11;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> delete from world.weather where Temperature >30 or Temperature <11;
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from world.weather;
++------+------------+-------------+
+| Id   | RecordDate | Temperature |
++------+------------+-------------+
+|    2 | 2015-01-02 |          25 |
+|    4 | 2015-01-04 |          30 |
+|    5 | 2018-11-21 |          17 |
+|    6 | 2018-11-22 |          22 |
+|    8 | 2018-11-24 |          18 |
++------+------------+-------------+
+5 rows in set (0.00 sec)
+
+mysql>
