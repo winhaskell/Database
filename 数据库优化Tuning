@@ -419,3 +419,57 @@ mysql>
 
 
 
+mysql> show global variables like '%innodb_stats%';
++--------------------------------------+-------------+
+| Variable_name                        | Value       |
++--------------------------------------+-------------+
+| innodb_stats_auto_recalc             | ON          |
+| innodb_stats_include_delete_marked   | OFF         |
+| innodb_stats_method                  | nulls_equal |
+| innodb_stats_on_metadata             | OFF         |
+| innodb_stats_persistent              | ON          |
+| innodb_stats_persistent_sample_pages | 20          |
+| innodb_stats_transient_sample_pages  | 8           |
++--------------------------------------+-------------+
+7 rows in set (0.01 sec)
+
+mysql>
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| southwind          |
+| sys                |
+| world              |
++--------------------+
+7 rows in set (0.00 sec)
+
+mysql> use information_schema;
+Database changed
+
+查询数据库总大小
+mysql>  select concat(round(sum(data_length/1024/1024),2),'MB') as data from tables;
++--------+
+| data   |
++--------+
+| 7.61MB |
++--------+
+1 row in set (0.30 sec)
+
+mysql>
+
+mysql> select concat(round(sum(data_length/1024/1024),2),'MB') as data from tables where table_schema='zabbix';
++------+
+| data |
++------+
+| NULL |
++------+
+1 row in set (0.01 sec)
+
+mysql>
+
+
