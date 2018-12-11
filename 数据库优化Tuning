@@ -316,3 +316,21 @@ mysql> explain select * from bank_account2t where money>0 order by id;
 
 mysql>
 
+
+查看索引使用情况
+mysql> show status like 'Handler_read%';
++-----------------------+-------+
+| Variable_name         | Value |
++-----------------------+-------+
+| Handler_read_first    | 62    |
+| Handler_read_key      | 216   |
+| Handler_read_last     | 0     |
+| Handler_read_next     | 99    |
+| Handler_read_prev     | 0     |
+| Handler_read_rnd      | 7     |
+| Handler_read_rnd_next | 324   |
++-----------------------+-------+
+7 rows in set (0.00 sec)
+
+
+
