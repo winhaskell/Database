@@ -13,3 +13,306 @@ sql调整最关心什么
 临时表空间的作用是什么 
 
 T(a,b,c,d,e) 根据d排序后，找出第90-101条记录，写出sql
+
+
+
+
+mysql> select * from bank_account2t where money>0 order by id;
++----+------------------+---------+---------+
+| id | cardno           | name    | money   |
++----+------------------+---------+---------+
+|  1 | 0000000000000001 | Charies | 7000.00 |
+|  2 | 0000000000000002 | Gavin   | 7000.00 |
+|  3 | 0000000000000003 | Charies | 5333.00 |
++----+------------------+---------+---------+
+3 rows in set (0.01 sec)
+
+Show status命令了解各种SQL的执行频率
+mysql> show status like 'Com_%';
++-------------------------------------+-------+
+| Variable_name                       | Value |
++-------------------------------------+-------+
+| Com_admin_commands                  | 0     |
+| Com_assign_to_keycache              | 0     |
+| Com_alter_db                        | 0     |
+| Com_alter_event                     | 0     |
+| Com_alter_function                  | 0     |
+| Com_alter_instance                  | 0     |
+| Com_alter_procedure                 | 0     |
+| Com_alter_resource_group            | 0     |
+| Com_alter_server                    | 0     |
+| Com_alter_table                     | 0     |
+| Com_alter_tablespace                | 0     |
+| Com_alter_user                      | 0     |
+| Com_alter_user_default_role         | 0     |
+| Com_analyze                         | 0     |
+| Com_begin                           | 5     |
+| Com_binlog                          | 0     |
+| Com_call_procedure                  | 0     |
+| Com_change_db                       | 0     |
+| Com_change_master                   | 0     |
+| Com_change_repl_filter              | 0     |
+| Com_check                           | 0     |
+| Com_checksum                        | 0     |
+| Com_clone                           | 0     |
+| Com_commit                          | 5     |
+| Com_create_db                       | 0     |
+| Com_create_event                    | 0     |
+| Com_create_function                 | 0     |
+| Com_create_index                    | 0     |
+| Com_create_procedure                | 0     |
+| Com_create_role                     | 0     |
+| Com_create_server                   | 0     |
+| Com_create_table                    | 5     |
+| Com_create_resource_group           | 0     |
+| Com_create_trigger                  | 0     |
+| Com_create_udf                      | 0     |
+| Com_create_user                     | 0     |
+| Com_create_view                     | 0     |
+| Com_create_spatial_reference_system | 0     |
+| Com_dealloc_sql                     | 0     |
+| Com_delete                          | 5     |
+| Com_delete_multi                    | 0     |
+| Com_do                              | 0     |
+| Com_drop_db                         | 0     |
+| Com_drop_event                      | 0     |
+| Com_drop_function                   | 0     |
+| Com_drop_index                      | 0     |
+| Com_drop_procedure                  | 0     |
+| Com_drop_resource_group             | 0     |
+| Com_drop_role                       | 0     |
+| Com_drop_server                     | 0     |
+| Com_drop_spatial_reference_system   | 0     |
+| Com_drop_table                      | 0     |
+| Com_drop_trigger                    | 0     |
+| Com_drop_user                       | 0     |
+| Com_drop_view                       | 0     |
+| Com_empty_query                     | 0     |
+| Com_execute_sql                     | 0     |
+| Com_explain_other                   | 0     |
+| Com_flush                           | 0     |
+| Com_get_diagnostics                 | 0     |
+| Com_grant                           | 0     |
+| Com_grant_roles                     | 0     |
+| Com_ha_close                        | 0     |
+| Com_ha_open                         | 0     |
+| Com_ha_read                         | 0     |
+| Com_help                            | 0     |
+| Com_import                          | 0     |
+| Com_insert                          | 16    |
+| Com_insert_select                   | 3     |
+| Com_install_component               | 0     |
+| Com_install_plugin                  | 0     |
+| Com_kill                            | 0     |
+| Com_load                            | 0     |
+| Com_lock_instance                   | 0     |
+| Com_lock_tables                     | 0     |
+| Com_optimize                        | 0     |
+| Com_preload_keys                    | 0     |
+| Com_prepare_sql                     | 0     |
+| Com_purge                           | 0     |
+| Com_purge_before_date               | 0     |
+| Com_release_savepoint               | 0     |
+| Com_rename_table                    | 0     |
+| Com_rename_user                     | 0     |
+| Com_repair                          | 0     |
+| Com_replace                         | 0     |
+| Com_replace_select                  | 0     |
+| Com_reset                           | 0     |
+| Com_resignal                        | 0     |
+| Com_restart                         | 0     |
+| Com_revoke                          | 0     |
+| Com_revoke_all                      | 0     |
+| Com_revoke_roles                    | 0     |
+| Com_rollback                        | 11    |
+| Com_rollback_to_savepoint           | 0     |
+| Com_savepoint                       | 0     |
+| Com_select                          | 51    |
+| Com_set_option                      | 3     |
+| Com_set_password                    | 0     |
+| Com_set_resource_group              | 0     |
+| Com_set_role                        | 0     |
+| Com_signal                          | 0     |
+| Com_show_binlog_events              | 0     |
+| Com_show_binlogs                    | 0     |
+| Com_show_charsets                   | 0     |
+| Com_show_collations                 | 0     |
+| Com_show_create_db                  | 0     |
+| Com_show_create_event               | 0     |
+| Com_show_create_func                | 0     |
+| Com_show_create_proc                | 0     |
+| Com_show_create_table               | 0     |
+| Com_show_create_trigger             | 0     |
+| Com_show_databases                  | 1     |
+| Com_show_engine_logs                | 0     |
+| Com_show_engine_mutex               | 0     |
+| Com_show_engine_status              | 0     |
+| Com_show_events                     | 0     |
+| Com_show_errors                     | 0     |
+| Com_show_fields                     | 0     |
+| Com_show_function_code              | 0     |
+| Com_show_function_status            | 0     |
+| Com_show_grants                     | 0     |
+| Com_show_keys                       | 0     |
+| Com_show_master_status              | 0     |
+| Com_show_open_tables                | 0     |
+| Com_show_plugins                    | 0     |
+| Com_show_privileges                 | 0     |
+| Com_show_procedure_code             | 0     |
+| Com_show_procedure_status           | 0     |
+| Com_show_processlist                | 0     |
+| Com_show_profile                    | 0     |
+| Com_show_profiles                   | 0     |
+| Com_show_relaylog_events            | 0     |
+| Com_show_slave_hosts                | 0     |
+| Com_show_slave_status               | 0     |
+| Com_show_status                     | 1     |
+| Com_show_storage_engines            | 0     |
+| Com_show_table_status               | 0     |
+| Com_show_tables                     | 0     |
+| Com_show_triggers                   | 0     |
+| Com_show_variables                  | 0     |
+| Com_show_warnings                   | 0     |
+| Com_show_create_user                | 0     |
+| Com_shutdown                        | 0     |
+| Com_slave_start                     | 0     |
+| Com_slave_stop                      | 0     |
+| Com_group_replication_start         | 0     |
+| Com_group_replication_stop          | 0     |
+| Com_stmt_execute                    | 0     |
+| Com_stmt_close                      | 0     |
+| Com_stmt_fetch                      | 0     |
+| Com_stmt_prepare                    | 0     |
+| Com_stmt_reset                      | 0     |
+| Com_stmt_send_long_data             | 0     |
+| Com_truncate                        | 0     |
+| Com_uninstall_component             | 0     |
+| Com_uninstall_plugin                | 0     |
+| Com_unlock_instance                 | 0     |
+| Com_unlock_tables                   | 0     |
+| Com_update                          | 7     |
+| Com_update_multi                    | 0     |
+| Com_xa_commit                       | 0     |
+| Com_xa_end                          | 0     |
+| Com_xa_prepare                      | 0     |
+| Com_xa_recover                      | 0     |
+| Com_xa_rollback                     | 0     |
+| Com_xa_start                        | 0     |
+| Com_stmt_reprepare                  | 0     |
+| Compression                         | OFF   |
++-------------------------------------+-------+
+168 rows in set (0.01 sec)
+
+
+查看针对InnoDB存储引擎状态的统计
+mysql> SHOW GLOBAL STATUS LIKE 'Innodb_%';
++---------------------------------------+--------------------------------------------------+
+| Variable_name                         | Value                                            |
++---------------------------------------+--------------------------------------------------+
+| Innodb_buffer_pool_dump_status        | Dumping of buffer pool not started               |
+| Innodb_buffer_pool_load_status        | Buffer pool(s) load completed at 181128 10:43:54 |
+| Innodb_buffer_pool_resize_status      |                                                  |
+| Innodb_buffer_pool_pages_data         | 263                                              |
+| Innodb_buffer_pool_bytes_data         | 4308992                                          |
+| Innodb_buffer_pool_pages_dirty        | 0                                                |
+| Innodb_buffer_pool_bytes_dirty        | 0                                                |
+| Innodb_buffer_pool_pages_flushed      | 581                                              |
+| Innodb_buffer_pool_pages_free         | 243                                              |
+| Innodb_buffer_pool_pages_misc         | 6                                                |
+| Innodb_buffer_pool_pages_total        | 512                                              |
+| Innodb_buffer_pool_read_ahead_rnd     | 0                                                |
+| Innodb_buffer_pool_read_ahead         | 14                                               |
+| Innodb_buffer_pool_read_ahead_evicted | 0                                                |
+| Innodb_buffer_pool_read_requests      | 27843                                            |
+| Innodb_buffer_pool_reads              | 1164                                             |
+| Innodb_buffer_pool_wait_free          | 0                                                |
+| Innodb_buffer_pool_write_requests     | 3274                                             |
+| Innodb_data_fsyncs                    | 471                                              |
+| Innodb_data_pending_fsyncs            | 0                                                |
+| Innodb_data_pending_reads             | 0                                                |
+| Innodb_data_pending_writes            | 0                                                |
+| Innodb_data_read                      | 19371008                                         |
+| Innodb_data_reads                     | 1207                                             |
+| Innodb_data_writes                    | 1312                                             |
+| Innodb_data_written                   | 17424384                                         |
+| Innodb_dblwr_pages_written            | 450                                              |
+| Innodb_dblwr_writes                   | 61                                               |
+| Innodb_log_waits                      | 0                                                |
+| Innodb_log_write_requests             | 1985                                             |
+| Innodb_log_writes                     | 557                                              |
+| Innodb_os_log_fsyncs                  | 219                                              |
+| Innodb_os_log_pending_fsyncs          | 0                                                |
+| Innodb_os_log_pending_writes          | 0                                                |
+| Innodb_os_log_written                 | 338432                                           |
+| Innodb_page_size                      | 16384                                            |
+| Innodb_pages_created                  | 173                                              |
+| Innodb_pages_read                     | 1178                                             |
+| Innodb_pages_written                  | 591                                              |
+| Innodb_row_lock_current_waits         | 0                                                |
+| Innodb_row_lock_time                  | 0                                                |
+| Innodb_row_lock_time_avg              | 0                                                |
+| Innodb_row_lock_time_max              | 0                                                |
+| Innodb_row_lock_waits                 | 0                                                |
+| Innodb_rows_deleted                   | 5                                                |
+| Innodb_rows_inserted                  | 93                                               |
+| Innodb_rows_read                      | 8862                                             |
+| Innodb_rows_updated                   | 382                                              |
+| Innodb_num_open_files                 | 24                                               |
+| Innodb_truncated_status_writes        | 0                                                |
++---------------------------------------+--------------------------------------------------+
+50 rows in set (0.02 sec)
+
+mysql> select sleep(5);
++----------+
+| sleep(5) |
++----------+
+|        0 |
++----------+
+1 row in set (5.01 sec)
+
+mysql>
+
+
+试图连接mySQL服务器的次数
+mysql> show global status like 'connections';
++---------------+-------+
+| Variable_name | Value |
++---------------+-------+
+| Connections   | 26    |
++---------------+-------+
+1 row in set (0.00 sec)
+
+mysql>
+
+服务器工作时间
+mysql> show global status like 'uptime';
++---------------+---------+
+| Variable_name | Value   |
++---------------+---------+
+| Uptime        | 1120622 |
++---------------+---------+
+1 row in set (0.00 sec)
+
+mysql>
+使用explain 分析SQL语句
+
+mysql> select * from bank_account2t where money>0 order by id;
++----+------------------+---------+---------+
+| id | cardno           | name    | money   |
++----+------------------+---------+---------+
+|  1 | 0000000000000001 | Charies | 7000.00 |
+|  2 | 0000000000000002 | Gavin   | 7000.00 |
+|  3 | 0000000000000003 | Charies | 5333.00 |
++----+------------------+---------+---------+
+3 rows in set (0.01 sec)
+
+mysql> explain select * from bank_account2t where money>0 order by id;
++----+-------------+----------------+------------+-------+---------------+---------+---------+------+------+----------+-------------+
+| id | select_type | table          | partitions | type  | possible_keys | key     | key_len | ref  | rows | filtered | Extra       |
++----+-------------+----------------+------------+-------+---------------+---------+---------+------+------+----------+-------------+
+|  1 | SIMPLE      | bank_account2t | NULL       | index | NULL          | PRIMARY | 4       | NULL |    4 |    33.33 | Using where |
++----+-------------+----------------+------------+-------+---------------+---------+---------+------+------+----------+-------------+
+1 row in set, 1 warning (0.01 sec)
+
+mysql>
+
