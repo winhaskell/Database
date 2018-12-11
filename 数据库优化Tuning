@@ -334,3 +334,88 @@ mysql> show status like 'Handler_read%';
 
 
 
+mysql> select * from world.bank_account2t;
++----+------------------+---------+---------+
+| id | cardno           | name    | money   |
++----+------------------+---------+---------+
+|  1 | 0000000000000001 | Charies | 7000.00 |
+|  2 | 0000000000000002 | Gavin   | 7000.00 |
+|  3 | 0000000000000003 | Charies | 5333.00 |
+|  4 | 0000000000000004 | Gavin   |   -1.00 |
++----+------------------+---------+---------+
+4 rows in set (0.00 sec)
+
+查询表级锁争用情况 -- Value值越大，说明表级锁争用情况越严重。
+mysql> show status like 'table%';
++----------------------------+-------+
+| Variable_name              | Value |
++----------------------------+-------+
+| Table_locks_immediate      | 64    |
+| Table_locks_waited         | 0     |
+| Table_open_cache_hits      | 428   |
+| Table_open_cache_misses    | 26    |
+| Table_open_cache_overflows | 0     |
++----------------------------+-------+
+5 rows in set (0.00 sec)
+
+
+
+查看锁
+当上面出现锁等待的情况下，使用putty连接输入以下命令  show global status like 'innodb_row_lock%'
+
+mysql> show global status like 'innodb_row_lock%';
++-------------------------------+-------+
+| Variable_name                 | Value |
++-------------------------------+-------+
+| Innodb_row_lock_current_waits | 0     |
+| Innodb_row_lock_time          | 0     |
+| Innodb_row_lock_time_avg      | 0     |
+| Innodb_row_lock_time_max      | 0     |
+| Innodb_row_lock_waits         | 0     |
++-------------------------------+-------+
+5 rows in set (0.00 sec)
+
+查看全局的表锁
+mysql> show global status like 'table%';
++----------------------------+-------+
+| Variable_name              | Value |
++----------------------------+-------+
+| Table_locks_immediate      | 67    |
+| Table_locks_waited         | 0     |
+| Table_open_cache_hits      | 4459  |
+| Table_open_cache_misses    | 267   |
+| Table_open_cache_overflows | 0     |
++----------------------------+-------+
+5 rows in set (0.00 sec)
+
+
+Innodb_row_lock_current_waits：当前正在等待锁定的数量；
+
+Innodb_row_lock_time：         从系统启动到现在锁定总时间长度；
+
+Innodb_row_lock_time_avg：     每次等待所花平均时间；
+
+Innodb_row_lock_time_max：     从系统启动到现在等待最常的一次所花的时间；
+
+Innodb_row_lock_waits：        系统启动后到现在总共等待的次数；
+
+
+mysql> show variables like '%query_cache%';
++------------------+-------+
+| Variable_name    | Value |
++------------------+-------+
+| have_query_cache | NO    |
++------------------+-------+
+1 row in set (0.00 sec)
+
+mysql>
+
+
+
+
+应用优化
+减少对mySQL的访问
+要想提高访问速度，能够一次连接就能取的所有结果，就不要分两步。这样能够大大减少对数据库无谓的重复访问。
+
+
+
