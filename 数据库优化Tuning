@@ -14,6 +14,7 @@ sql调整最关心什么
 
 T(a,b,c,d,e) 根据d排序后，找出第90-101条记录，写出sql
 
+SQL tuning, data validation, ETL process, dimensional and relational data modeling.
 
 
 
@@ -473,3 +474,4 @@ mysql> select concat(round(sum(data_length/1024/1024),2),'MB') as data from tabl
 mysql>
 
 
+ps查看进程信息并通过less分页  ps -ef |less 
