@@ -243,3 +243,13 @@ mysql>
 
 https://www.cnblogs.com/ggjucheng/archive/2012/01/08/2316661.html
 
+
+
+
+List the number of customers in each country, ordered by the country with the most customers first.
+
+
+SELECT COUNT(CustomerID),
+FROM Customers
+GROUP BY Country
+ORDER BY COUNT(CustomerID) DESC;
