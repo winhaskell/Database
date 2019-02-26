@@ -95,5 +95,6 @@ Apr 21, 2010
 pdf
 Apr 21, 2010
 
-
+An Introduction to Database Systems 
+https://www.amazon.com/Introduction-Database-Systems-C-Date/dp/0201385902
 Oracle DBA 
