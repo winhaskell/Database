@@ -33,7 +33,3 @@ select now(), day(last_day(now())) as days;
 
 select time_to_sec('01:00:05');
 3605
-
-select sec_to_time(6666); 
-01:51:06
-
