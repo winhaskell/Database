@@ -1,3 +1,5 @@
+https://dev.mysql.com/doc/
+
 select date_format('2008-08-08 22:23:01', '%Y%m%d%H%i%s');
 20080808222301
 
