@@ -1,0 +1,30 @@
+Query the names of all American cities in CITY with populations larger than 120000. The CountryCode for America is USA.
+
+Input Format
+The CITY table is described as follows: CITY.jpg
+
+Field         Type
+ID           NUMBER
+NAME         VARCHAR2(18)
+COUNTRYCODE  VARCHAR2(20)
+DISTRICT     VARCHAR2(20)
+POPULATION   NUMBER
+
+
+SELECT name FROM City WHERE population > 120000 AND CountryCode = 'USA';
+
+
+
+Compiler Message: Success
+
+Expected Output
+
+Scottsdale
+Corona
+Concord
+Cedar Rapids
+
+
+
+
+
