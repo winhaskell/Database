@@ -5,3 +5,11 @@ a few seconds ago	Accepted	202 ms	N/A	mysql
 a few seconds ago	Wrong Answer	N/A	N/A	mysql
 
 
+SELECT Name AS Employee 
+FROM Employee e 
+WHERE  e.ManagerId IS NOT NULL 
+   AND e.Salary > (SELECT Salary ROM Employee WHERE e.ManagerId = Id)
+
+a few seconds ago	Accepted	599 ms	N/A	mysql
+a year ago	      Accepted	1143 ms	N/A	mysql
+
