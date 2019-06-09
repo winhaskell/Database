@@ -1,0 +1,7 @@
+SELECT FirstName, LastName, City, State 
+FROM Person left JOIN Address ON Person.PersonId=Address.PersonId
+
+a few seconds ago	Accepted	202 ms	N/A	mysql
+a few seconds ago	Wrong Answer	N/A	N/A	mysql
+
+
