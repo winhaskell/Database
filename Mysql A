@@ -13,3 +13,11 @@ WHERE  e.ManagerId IS NOT NULL
 a few seconds ago	Accepted	599 ms	N/A	mysql
 a year ago	      Accepted	1143 ms	N/A	mysql
 
+SELECT a.Name AS 'Employee'
+from Employee AS a, Employee AS b
+WHERE a.ManagerId = b.Id AND a.Salary > b.Salary;
+
+a few seconds ago	Accepted	     296 ms N/A	mysql
+a few seconds ago	Runtime Error	N/A	N/A	mysql
+a minute ago	   Wrong Answer	N/A	N/A	mysql
+
