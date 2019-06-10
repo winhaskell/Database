@@ -32,3 +32,28 @@ GROUP BY class;
 SELECT class FROM courses GROUP BY class HAVING COUNT(distinct student) > 4;
 
 
+
+Write a SQL query to find all duplicate emails in a table named Person.
+
++----+---------+
+| Id | Email   |
++----+---------+
+| 1  | ta@b.com |
+| 2  | tc@d.com |
+| 3  | ta@b.com |
++----+---------+
+For example, your query should return the following for the above table:
+
++---------+
+| Email   |
++---------+
+| ta@b.com |
++---------+
+
+SELECT Email FROM Person GROUP BY Email 
+HAVING (COUNT(*) > 1);
+
+
+
+
+
