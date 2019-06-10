@@ -21,3 +21,14 @@ a few seconds ago	Accepted	     296 ms N/A	mysql
 a few seconds ago	Runtime Error	N/A	N/A	mysql
 a minute ago	   Wrong Answer	N/A	N/A	mysql
 
+
+There is a table courses with columns: student and class
+Please list out all classes which have more than or equal to 5 students.
+
+SELECT class, COUNT(DISTINCT student)
+FROM courses
+GROUP BY class;
+
+SELECT class FROM courses GROUP BY class HAVING COUNT(distinct student) > 4;
+
+
