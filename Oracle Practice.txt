@@ -1,3 +1,6 @@
 http://www.baskent.edu.tr/~tkaracay/etudio/ders/dbase/sql/htmSQL/OracleDers05.htm
 
 http://www.baskent.edu.tr/~tkaracay/etudio/ders/dbase/sql/htmSQL/OracleDers11.htm
+
+http://sql.standout-dev.com/
+
