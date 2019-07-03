@@ -33,3 +33,10 @@ select now(), day(last_day(now())) as days;
 
 select time_to_sec('01:00:05');
 3605
+
+
+
+http://dba.fyicenter.com/faq/mysql/index.html
+
+
+
