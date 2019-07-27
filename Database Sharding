@@ -1,0 +1,35 @@
+数据库分片（Database Sharding)
+
+sharding
+https://blog.csdn.net/bluishglc/article/details/6161475
+https://zhuanlan.zhihu.com/p/57185574
+https://www.educative.io/edpresso/what-is-database-sharding?affiliate_id=5082902844932096&utm_source=google&utm_medium=cpc&utm_campaign=platform2&utm_content=ad-1-dynamic&gclid=EAIaIQobChMIsNz9-pDW4wIVik0YCh2nsg8fEAAYASAAEgItdfD_BwE
+https://www.citusdata.com/blog/2018/01/10/sharding-in-plain-english/
+
+What is database sharding?
+
+Database sharding is the process of making partitions of data in a database or search engine, 
+such that the data is divided into various smaller distinct chunks, or shards.
+
+Each shard could be a table, a Postgres schema, or a different physical database held on a separate database server instance.
+
+Some data within the database remains present in all shards (vertical sharding), 
+but some appear only in single shards (horizontal sharding). 
+The following figure illustrates vertical sharding and horizontal sharding.
+
+To shard your data, you need to decide a key, called a sharding key, to partition your data on. 
+The shard key is either an indexed field or indexed compound fields that exist in every document in the collection.
+
+There is no general rule to select a sharding key; what key you choose depends on your application. 
+For instance, you may choose userID as the shard key in a social media app.
+
+Sharding allows your application to make fewer queries. When it receives a request, the application knows 
+where to route the request and thus it has to look through less data, rather than going through the whole database.
+
+It improves the performance of your application, and lets you rest easier, not having to worry about scalability issues.
+
+
+
+
+
+
