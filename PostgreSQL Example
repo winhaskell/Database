@@ -1,0 +1,28 @@
+PostgreSQL
+PostgreSQL CREATE DATABASE with Example
+
+https://www.guru99.com/postgresql-create-database.html
+https://docs.aws.amazon.com/zh_cn/dms/latest/userguide/CHAP_Target.PostgreSQL.html
+
+psql (11.4)
+Type "help" for help.
+
+postgres=# CREATE DATABASE guru99;
+CREATE DATABASE
+postgres=# \l 
+                             List of databases
+   Name    |  Owner   | Encoding | Collate | Ctype |   Access privileges   
+-----------+----------+----------+---------+-------+-----------------------
+ guru99    | postgres | UTF8     | C       | C     | 
+ postgres  | postgres | UTF8     | C       | C     | 
+ template0 | postgres | UTF8     | C       | C     | =c/postgres          +
+           |          |          |         |       | postgres=CTc/postgres
+ template1 | postgres | UTF8     | C       | C     | =c/postgres          +
+           |          |          |         |       | postgres=CTc/postgres
+(4 rows)
+
+postgres=# \c guru99
+You are now connected to database "guru99" as user "postgres".
+guru99=# 
+
+
