@@ -1,0 +1,10 @@
+Cloud SQL
+https://cloud.google.com/sql/
+
+全托管式关系型数据库服务
+Cloud SQL 是一种全托管式数据库服务，让您可以轻松在云端设置、维护、管理和控制关系型 PostgreSQL、MySQL 和 SQL Server 数据库。
+Cloud SQL 可提供出色的性能、扩容潜力和便利性，它托管在 Google Cloud Platform 上，能为在任何地方运行的应用提供数据库基础架构。
+
+
+
+
