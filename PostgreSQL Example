@@ -176,3 +176,45 @@ postgres-#     GROUP BY city;
  Hayward       |  37
  San Francisco |  46
 (2 rows)
+
+
+
+postgres=# select * from weather join cities on weather.city = cities.name;                              city      | temp_lo | temp_hi | prcp |    date    |     name      | location  
+---------------+---------+---------+------+------------+---------------+-----------
+ San Francisco |      46 |      50 | 0.25 | 2004-11-27 | San Francisco | (-194,53)
+ San Francisco |      43 |      57 |    0 | 1994-11-29 | San Francisco | (-194,53)
+(2 rows)
+
+postgres=# select * from weather inner join cities on weather.city = cities.name;
+     city      | temp_lo | temp_hi | prcp |    date    |     name      | location  
+---------------+---------+---------+------+------------+---------------+-----------
+ San Francisco |      46 |      50 | 0.25 | 2004-11-27 | San Francisco | (-194,53)
+ San Francisco |      43 |      57 |    0 | 1994-11-29 | San Francisco | (-194,53)
+(2 rows)
+
+        
+postgres=# select * from weather left join cities on weather.city = cities.name;
+     city      | temp_lo | temp_hi | prcp |    date    |     name      | location  
+---------------+---------+---------+------+------------+---------------+-----------
+ San Francisco |      46 |      50 | 0.25 | 2004-11-27 | San Francisco | (-194,53)
+ San Francisco |      43 |      57 |    0 | 1994-11-29 | San Francisco | (-194,53)
+ Hayward       |      37 |      54 |      | 1994-11-29 |               | 
+(3 rows)
+
+postgres=# select * from weather right join cities on weather.city = cities.name;
+     city      | temp_lo | temp_hi | prcp |    date    |     name      | location  
+---------------+---------+---------+------+------------+---------------+-----------
+ San Francisco |      43 |      57 |    0 | 1994-11-29 | San Francisco | (-194,53)
+ San Francisco |      46 |      50 | 0.25 | 2004-11-27 | San Francisco | (-194,53)
+(2 rows)
+
+postgres=# select * from weather full join cities on weather.city = cities.name;
+     city      | temp_lo | temp_hi | prcp |    date    |     name      | location  
+---------------+---------+---------+------+------------+---------------+-----------
+ San Francisco |      46 |      50 | 0.25 | 2004-11-27 | San Francisco | (-194,53)
+ San Francisco |      43 |      57 |    0 | 1994-11-29 | San Francisco | (-194,53)
+ Hayward       |      37 |      54 |      | 1994-11-29 |               | 
+(3 rows)
+
+postgres=# 
+
