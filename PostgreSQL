@@ -4,10 +4,18 @@ https://www.postgresql.org/
 https://www.postgresql.org/docs/8.3/static/intro-whatis.html
 http://db.cs.berkeley.edu
 
-
+history
 https://www.postgresql.org/docs/10/history.html
-
-
 
 The Internals of PostgreSQL for database administrators and system developers
 http://www.interdb.jp/pg/
+
+Introduction to PostgreSQL physical storage
+http://rachbelaid.com/introduction-to-postgres-physical-storage/
+
+
+
+
+
+
+
