@@ -3,6 +3,7 @@ PostgreSQL CREATE DATABASE with Example
 
 https://www.guru99.com/postgresql-create-database.html
 https://docs.aws.amazon.com/zh_cn/dms/latest/userguide/CHAP_Target.PostgreSQL.html
+http://www.postgresqltutorial.com/
 
 psql (11.4)
 Type "help" for help.
