@@ -412,3 +412,27 @@ mysql> show variables like '%timeout%';
 | wait_timeout                      | 28800    |
 +-----------------------------------+----------+
 20 rows in set (0.00 sec)
+
+
+MySQL查看锁表
+https://blog.csdn.net/fly910905/article/details/78628214
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
