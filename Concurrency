@@ -1,0 +1,20 @@
+Concurrency
+https://www.vividcortex.com/blog/what-is-concurrency-in-a-database
+
+What is Concurrency in a Database?
+ 
+Databases are confusing! Not only are they complicated bits of software, but database jargon is really complicated. 
+Part of this comes from the number of words that have multiple meanings: depending on which community you spend time in,
+there are multiple meanings for words like schema, cluster, and even database.
+
+Concurrency is one of those words! Concurrency comes from words that mean, roughly, “to run together.”
+
+
+https://docs.oracle.com/cd/B19306_01/server.102/b14220/consist.htm
+http://www.zw1840.com/oracle/translation/concepts/html/13.Data%20Concurrency%20and%20Consistency.htm
+
+
+
+
+
+
