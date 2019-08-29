@@ -44,7 +44,54 @@ The SHOW ENGINES command shows all available engines that the server supports.
 
 
 
+Mysql存储引擎与事务
+2016年11月22日 18:52:12 FreeeLinux 阅读数 1032更多
+分类专栏： 数据库
+版权声明：本文为博主原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接和本声明。
+本文链接：https://blog.csdn.net/FreeeLinux/article/details/53288813
 
+存储引擎：
+数据库对同样的数据，有着不同的存储方式和管理方式。在Mysql中，称为存储引擎。
+
+
+常用的表的引擎：Myism   InnoDB    BDB   Memory  Archive、
+
+常见存储引擎特点：
+
+
+Myisam：批量插入速度快，不支持事务
+Innodb：批量插入速度较慢，支持事务
+
+声明举例：
+mysql> create table account (
+    -> id int,
+    -> name varchar(10),
+    -> money int 
+    -> ) engine innodb;
+
+事务：
+把某些操作封装成一组操作。有四大特性简称 ACID 
+通俗的说事务，指一组操作，要么成功执行，要么不执行---->原子性（atomicity)
+事务发生前和发生后，数据的总额依然匹配  --->一致性  (consistency)
+在所有操作没有执行完毕之前，其他会话不能够看到中间改变的过程  ---->隔离性 (isolation)
+事务产生的影响不能够撤销 ---->持久性 (durability)
+
+如果出了错误只能通过补偿事务弥补。
+
+关于事务的搜索引擎：选用innodb  /  bdb
+
+开启事务:  start transaction;
+
+提交：commit     成功commit
+回滚：rollback    失败rollback
+
+注意：有一些语句会造成事务隐式的提交，比如start transaction。
+
+
+事务的基本原理简述：
+
+sql语句和表数据文件之间相当于有中间事务日志文件的存在，sql语句作用到事务日志文件，如果发生了commit，事务日志再集中的作用到表数据文件。
+如果发生了rollback，事务日志文件打上标志不提交，但也不会把日志删除。
 
 
 
