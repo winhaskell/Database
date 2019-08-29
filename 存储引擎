@@ -22,6 +22,31 @@ MEMORY存储引擎将表中的数据存储到内存中，未查询和引用其�
 MySQL storage engines
 http://zetcode.com/databases/mysqltutorial/storageengines/
 
+mysql> SHOW ENGINES\G
+*************************** 1. row ***************************
+      Engine: InnoDB
+     Support: DEFAULT
+     Comment: Supports transactions, row-level locking, and foreign keys
+Transactions: YES
+          XA: YES
+  Savepoints: YES
+*************************** 2. row ***************************
+      Engine: CSV
+     Support: YES
+     Comment: CSV storage engine
+Transactions: NO
+          XA: NO
+  Savepoints: NO
+...
+The SHOW ENGINES command shows all available engines that the server supports.
+
+
+
+
+
+
+
+
 
 
 
