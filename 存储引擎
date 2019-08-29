@@ -6,4 +6,23 @@ Jack__Frost
 版权声明：本文为博主原创文章，遵循 CC 4.0 by-sa 版权协议，转载请附上原文出处链接和本声明。
 本文链接：https://blog.csdn.net/Jack__Frost/article/details/72904318
 
+查看存储引擎
+SHOW ENGINES
+
+如果要想查看数据库默认使用哪个引擎 
+SHOW VARIABLES LIKE 'storage_engine';
+
+
+InnoDB是事务型数据库的首选引擎，支持事务安全表（ACID），支持行锁定和外键，上图也看到了，InnoDB是默认的MySQL引擎。
+
+MyISAM基于ISAM存储引擎，并对其进行扩展。它是在Web、数据仓储和其他应用环境下最常使用的存储引擎之一。MyISAM拥有较高的插入、查询速度，但不支持事物。
+
+MEMORY存储引擎将表中的数据存储到内存中，未查询和引用其他表数据提供快速访问。
+
+MySQL storage engines
+http://zetcode.com/databases/mysqltutorial/storageengines/
+
+
+
+
 
