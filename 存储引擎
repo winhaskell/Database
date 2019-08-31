@@ -94,6 +94,7 @@ sql语句和表数据文件之间相当于有中间事务日志文件的存在�
 如果发生了rollback，事务日志文件打上标志不提交，但也不会把日志删除。
 
 
+https://www.cnblogs.com/lina1006/archive/2011/04/29/2032894.html
 
 
 
