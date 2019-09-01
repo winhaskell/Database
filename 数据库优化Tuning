@@ -477,3 +477,7 @@ mysql>
 
 
 ps查看进程信息并通过less分页  ps -ef |less 
+
+
+参考
+https://blog.csdn.net/u010796790/article/details/52194850
