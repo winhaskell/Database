@@ -45,4 +45,11 @@ select time_to_sec('01:00:05');
 http://dba.fyicenter.com/faq/mysql/index.html
 
 
+Creating a Simple Web Application Using a MySQL Database
+https://netbeans.apache.org/kb/docs/web/mysql-webapp.html
+https://javapipe.com/blog/hosting-java-web-application-with-mysql/
+
+
+
+
 
