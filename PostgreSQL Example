@@ -219,3 +219,69 @@ postgres=# select * from weather full join cities on weather.city = cities.name;
 
 postgres=# 
 
+https://www.postgresql.org/docs/9.3/tutorial-select.html
+
+postgres=# SELECT * FROM weather;
+     city      | temp_lo | temp_hi | prcp |    date    
+---------------+---------+---------+------+------------
+ San Francisco |      46 |      50 | 0.25 | 2004-11-27
+ San Francisco |      43 |      57 |    0 | 1994-11-29
+ Hayward       |      37 |      54 |      | 1994-11-29
+(3 rows)
+
+
+postgres=# SELECT city, (temp_hi+temp_lo)/2 AS temp_avg, date FROM weather;
+     city      | temp_avg |    date    
+---------------+----------+------------
+ San Francisco |       48 | 2004-11-27
+ San Francisco |       50 | 1994-11-29
+ Hayward       |       45 | 1994-11-29
+(3 rows)
+
+postgres=# 
+postgres=# SELECT * FROM weather
+postgres-#     ORDER BY city;
+     city      | temp_lo | temp_hi | prcp |    date    
+---------------+---------+---------+------+------------
+ Hayward       |      37 |      54 |      | 1994-11-29
+ San Francisco |      46 |      50 | 0.25 | 2004-11-27
+ San Francisco |      43 |      57 |    0 | 1994-11-29
+(3 rows)
+
+postgres=# 
+postgres-#     FROM weather, cities
+postgres-#     WHERE city = name;
+     city      | temp_lo | temp_hi | prcp |    date    |     name      | location  
+---------------+---------+---------+------+------------+---------------+-----------
+ San Francisco |      46 |      50 | 0.25 | 2004-11-27 | San Francisco | (-194,53)
+ San Francisco |      43 |      57 |    0 | 1994-11-29 | San Francisco | (-194,53)
+(2 rows)
+
+postgres=# 
+
+
+postgres=# SELECT weather.city, weather.temp_lo, weather.temp_hi,
+postgres-#        weather.prcp, weather.date, cities.location
+postgres-#     FROM weather, cities
+postgres-#     WHERE cities.name = weather.city;
+     city      | temp_lo | temp_hi | prcp |    date    | location  
+---------------+---------+---------+------+------------+-----------
+ San Francisco |      46 |      50 | 0.25 | 2004-11-27 | (-194,53)
+ San Francisco |      43 |      57 |    0 | 1994-11-29 | (-194,53)
+(2 rows)
+
+postgres=# 
+
+postgres=# SELECT max(temp_lo) FROM weather;
+ max 
+-----
+  46
+(1 row)
+
+postgres=# 
+
+postgres=# 
+
+
+
+
