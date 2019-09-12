@@ -283,5 +283,39 @@ postgres=#
 postgres=# 
 
 
+postgres=# 
+postgres=# CREATE TABLE COMPANY(
+postgres(#    ID INT PRIMARY KEY     NOT NULL,
+postgres(#    NAME           TEXT    NOT NULL,
+postgres(#    AGE            INT     NOT NULL,
+postgres(#    ADDRESS        CHAR(50),
+postgres(#    SALARY         REAL
+postgres(# );
+CREATE TABLE
+postgres=# CREATE TABLE DEPARTMENT(
+postgres(#    ID INT PRIMARY KEY      NOT NULL,
+postgres(#    DEPT           CHAR(50) NOT NULL,
+postgres(#    EMP_ID         INT      NOT NULL
+postgres(# );
+CREATE TABLE
+postgres=# testdb-# \d
+               List of relations
+ Schema |        Name        | Type  |  Owner   
+--------+--------------------+-------+----------
+ public | cities             | table | postgres
+ public | company            | table | postgres
+ public | department         | table | postgres
+ public | employees          | table | postgres
+ public | employees2         | table | postgres
+ public | myview             | view  | postgres
+ public | tbl_course         | table | postgres
+ public | tbl_student        | table | postgres
+ public | tbl_student_course | table | postgres
+ public | weather            | table | postgres
+(10 rows)
+
+postgres-# 
+
+
 
 
