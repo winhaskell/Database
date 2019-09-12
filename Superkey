@@ -11,3 +11,25 @@ https://t4tutorials.com/database-keys-in-database-systems/
 Differences between key, superkey, minimal superkey, candidate key and primary key
 https://stackoverflow.com/questions/6951052/differences-between-key-superkey-minimal-superkey-candidate-key-and-primary-k
 
+https://www.studytonight.com/dbms/database-key.php
+
+版权声明：本文为博主原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接和本声明。
+本文链接：https://blog.csdn.net/crystal6918/article/details/77882871
+
+主键：对数据库表中的每一行数据进行唯一标识。
+
+任意两行的主键值都不同
+包含主键值的列从不修改或更新
+主键值不能重用
+使用PRIMARY KEY进行标识
+外键：是表中的一列，其值必须在另一个表的主键中。
+
+超键：在关系中能唯一标识元组的属性集称为关系模式的超键。 
+比如一张学生信息表，学生表中含有学号或者身份证号的任意组合都为此表的超键。如：（学号）、（学号，姓名）、（身份证号，性别）等。
+
+候选键：不含有多余属性的超键称为候选键，也称为最小超键 
+候选键属于超键，它是最小的超键，就是说如果再去掉候选键中的任何一个属性它就不再是超键了。学生表中的候选键为：（学号）、（身份证号）。
+————————————————
+版权声明：本文为CSDN博主「gigi就是我」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/crystal6918/article/details/77882871
+
