@@ -316,6 +316,26 @@ postgres=# testdb-# \d
 
 postgres-# 
 
+INSERT INTO DEPARTMENT (ID, DEPT, EMP_ID)
+VALUES (1, 'IT Billing', 1 );
+
+INSERT INTO DEPARTMENT (ID, DEPT, EMP_ID)
+VALUES (2, 'Engineering', 2 );
+
+INSERT INTO DEPARTMENT (ID, DEPT, EMP_ID)
+VALUES (3, 'Finance', 7 );
+
+postgres=# SELECT * FROM DEPARTMENT
+postgres-# ;
+ id |                        dept                        | emp_id 
+----+----------------------------------------------------+--------
+  1 | IT Billing                                         |      1
+  2 | Engineering                                        |      2
+  3 | Finance                                            |      7
+(3 rows)
+
+postgres=# 
+
 
 
 
