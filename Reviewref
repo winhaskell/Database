@@ -78,12 +78,15 @@ http://write.blog.csdn.net/postlist/1583151/all
 
 
 10  关于有丰富的备份经验的
-就问mysqldump中备份出来的sql，如果想sql文件中，一行只有一个insert .... value()的话，怎么办？如果备份需要带上master的复制点信息怎么办？或者xtrabackup中如何做到实时在线备份的？以及xtrabackup是如何做到带上master的复制点的信息的？ 当前xtrabackup做增量备份的时候有何缺陷？
+就问mysqldump中备份出来的sql，如果想sql文件中，一行只有一个insert .... value()的话，怎么办？如果备份需要带上master的复制点信息怎么办？
+或者xtrabackup中如何做到实时在线备份的？以及xtrabackup是如何做到带上master的复制点的信息的？ 当前xtrabackup做增量备份的时候有何缺陷？
 关于replace以及insert的一些小细节，请参考：http://blog.csdn.net/mchdba/article/details/8647560
         
 
 11 关于有丰富的线上恢复经验的
-就问你现在线上数据量有多大，如果是100G，你用mysqldump出来要多久，然后mysql进去又要多久，如果互联网不允许延时的话，你又怎么做到恢复单张表的时候保证nagios不报警。如果有人说mysqldump出来1个小时就ok了，那么我就要问问他db服务器是啥配置了，如果他说mysql进去50分钟搞定了，那么我也要问问他db机器啥配置了，如果是普通的吊丝pc server，那么真实性，大家懂得。
+就问你现在线上数据量有多大，如果是100G，你用mysqldump出来要多久，然后mysql进去又要多久，如果互联网不允许延时的话，
+你又怎么做到恢复单张表的时候保证nagios不报警。如果有人说mysqldump出来1个小时就ok了，那么我就要问问他db服务器是啥配置了，
+如果他说mysql进去50分钟搞定了，那么我也要问问他db机器啥配置了，如果是普通的吊丝pc server，那么真实性，大家懂得。
 然后如果你用xtrabackup备份要多久，恢复要多久，大家都知道copy-back这一步要很久，那么你有没有办法对这一块优化。
 
 
@@ -151,6 +154,16 @@ DBA候选人对这个问题的回答将会让你觉察哪些人更适合这项�
 
 超越云计算：对数据库管理系统未来的思考
 https://www.infoq.cn/article/MrCVHNFtHqt-VXYWisEd
+
+
+大师论道-数据库的未来
+https://www.ibm.com/developerworks/cn/data/library/techarticles/0403liujiang2/0403liujiang2.html
+
+
+ＳＱＬ之美學
+
+https://blog.csdn.net/u012129558/article/details/52005109
+
 
 
 
