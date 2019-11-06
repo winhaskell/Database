@@ -385,6 +385,30 @@ postgres=#
 
 https://www.ntchosting.com/encyclopedia/databases/postgresql/
 https://www.ntchosting.com/encyclopedia/frameworks/
+http://www.postgresqltutorial.com/postgresql-date/
+
+postgres=# CREATE TABLE documents (
+postgres(#    document_id serial PRIMARY KEY,
+postgres(#    header_text VARCHAR (255) NOT NULL,
+postgres(#    posting_date DATE NOT NULL DEFAULT CURRENT_DATE
+postgres(# );
+CREATE TABLE
+postgres=# INSERT INTO documents (header_text)
+postgres-# VALUES
+postgres-#    ('Billing to customer XYZ');
+INSERT 0 1
+postgres=# SELECT
+postgres-#    *
+postgres-# FROM
+postgres-#    documents;
+ document_id |       header_text       | posting_date 
+-------------+-------------------------+--------------
+           1 | Billing to customer XYZ | 2019-11-06
+(1 row)
+
+postgres=# 
+
+
 
 
 
