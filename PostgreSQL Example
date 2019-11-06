@@ -339,3 +339,56 @@ postgres=#
 
 
 
+postgres=# CREATE TABLE phonebook(phone VARCHAR(32), firstname VARCHAR(32), lastname VARCHAR(32), address VARCHAR(64));
+CREATE TABLE
+postgres=# INSERT INTO phonebook(phone, firstname, lastname, address) VALUES('+1 123 456 7890', 'John', 'Doe', 'North America'); 
+INSERT 0 1
+postgres=# SELECT * FROM phonebook ORDER BY lastname;
+      phone      | firstname | lastname |    address    
+-----------------+-----------+----------+---------------
+ +1 123 456 7890 | John      | Doe      | North America
+(1 row)
+
+postgres=# 
+
+postgres=# SELECT * FROM phonebook WHERE lastname = 'Doe'; 
+      phone      | firstname | lastname |    address    
+-----------------+-----------+----------+---------------
+ +1 123 456 7890 | John      | Doe      | North America
+(1 row)
+
+postgres=# SELECT * FROM phonebook WHERE firstname = 'John' AND lastname = 'Doe'; 
+      phone      | firstname | lastname |    address    
+-----------------+-----------+----------+---------------
+ +1 123 456 7890 | John      | Doe      | North America
+(1 row)
+
+postgres=# UPDATE phonebook SET address = 'North America', phone = '+1 123 456 7890' WHERE firstname = 'John' AND lastname = 'Doe'; 
+UPDATE 1
+postgres=# SELECT * FROM phonebook;
+
+phone      | firstname | lastname |    address    
+-----------------+-----------+----------+---------------
+ +1 123 456 7890 | John      | Doe      | North America
+(1 row)
+
+postgres=# UPDATE phonebook SET address = 'North America', phone = '+1 123 456 7899' WHERE firstname = 'John' AND lastname = 'Doe';
+UPDATE 1
+postgres=# SELECT * FROM phonebook;                                                   
+
+phone      | firstname | lastname |    address    
+-----------------+-----------+----------+---------------
+ +1 123 456 7899 | John      | Doe      | North America
+(1 row)
+
+postgres=# 
+
+https://www.ntchosting.com/encyclopedia/databases/postgresql/
+https://www.ntchosting.com/encyclopedia/frameworks/
+
+
+
+
+
+
+
