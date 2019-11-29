@@ -1,0 +1,137 @@
+https://www.cnblogs.com/Richardzhu/p/3318595.html
+https://blog.csdn.net/u010735147/article/details/81744002
+
+MySQL之权限管理
+一、MySQL权限简介
+
+    关于mysql的权限简单的理解就是mysql允许你做你全力以内的事情，不可以越界。比如只允许你执行select操作，那么你就不能执行update操作。只允许你从某台机器上连接mysql，那么你就不能从除那台机器以外的其他机器连接mysql。
+
+    那么Mysql的权限是如何实现的呢？这就要说到mysql的两阶段验证，下面详细介绍：第一阶段：服务器首先会检查你是否允许连接。因为创建用户的时候会加上主机限制，可以限制成本地、某个IP、某个IP段、以及任何地方等，只允许你从配置的指定地方登陆。第二阶段：如果你能连接，Mysql会检查你发出的每个请求，看你是否有足够的权限实施它。比如你要更新某个表、或者查询某个表，Mysql会查看你对哪个表或者某个列是否有权限。再比如，你要运行某个存储过程，Mysql会检查你对存储过程是否有执行权限等。
+
+    MYSQL到底都有哪些权限呢？从官网复制一个表来看看：
+
+ 
+
+    MYSQL的权限如何分布，就是针对表可以设置什么权限，针对列可以设置什么权限等等，这个可以从官方文档中的一个表来说明：
+
+权限分布
+
+可能的设置的权限
+
+表权限
+
+'Select', 'Insert', 'Update', 'Delete', 'Create', 'Drop', 'Grant', 'References', 'Index', 'Alter'
+
+列权限
+
+'Select', 'Insert', 'Update', 'References'
+
+过程权限
+
+'Execute', 'Alter Routine', 'Grant'
+
+ 二、MySQL权限经验原则：
+
+    权限控制主要是出于安全因素，因此需要遵循一下几个经验原则：
+
+    1、只授予能满足需要的最小权限，防止用户干坏事。比如用户只是需要查询，那就只给select权限就可以了，不要给用户赋予update、insert或者delete权限。
+
+    2、创建用户的时候限制用户的登录主机，一般是限制成指定IP或者内网IP段。
+
+    3、初始化数据库的时候删除没有密码的用户。安装完数据库的时候会自动创建一些用户，这些用户默认没有密码。
+
+    4、为每个用户设置满足密码复杂度的密码。
+
+    5、定期清理不需要的用户。回收权限或者删除用户。
+    
+    
+   三、MySQL权限实战：
+
+    1、GRANT命令使用说明：
+
+    先来看一个例子，创建一个只允许从本地登录的超级用户Toper，并允许将权限赋予别的用户，密码为：Toper.
+
+mysql> grant all privileges on *.* to Toper@'localhost' identified by "Toper" with grant option;
+Query OK, 0 rows affected (0.01 sec)
+    GRANT命令说明：
+    ALL PRIVILEGES 是表示所有权限，你也可以使用select、update等权限。
+
+    ON 用来指定权限针对哪些库和表。
+
+    *.* 中前面的*号用来指定数据库名，后面的*号用来指定表名。
+
+    TO 表示将权限赋予某个用户。
+
+    Toper@'localhost' 表示Toper用户，@后面接限制的主机，可以是IP、IP段、域名以及%，%表示任何地方。
+    注意：这里%有的版本不包括本地，以前碰到过给某个用户设置了%允许任何地方登录，但是在本地登录不了，
+    这个和版本有关系，遇到这个问题再加一个localhost的用户就可以了。
+
+    IDENTIFIED BY 指定用户的登录密码。
+
+    WITH GRANT OPTION 这个选项表示该用户可以将自己拥有的权限授权给别人。注意：经常有人在创建操作用户的时候不指定
+    WITH GRANT OPTION选项导致后来该用户不能使用GRANT命令创建用户或者给其它用户授权。
+
+备注：可以使用GRANT重复给用户添加权限，权限叠加，比如你先给用户添加一个select权限，然后又给用户添加一个insert权限，
+那么该用户就同时拥有了select和insert权限。
+
+    2、刷新权限
+
+    使用这个命令使权限生效，尤其是你对那些权限表user、db、host等做了update或者delete更新的时候。
+    以前遇到过使用grant后权限没有更新的情况，只要对权限做了更改就使用FLUSH PRIVILEGES命令来刷新权限。
+
+mysql> flush privileges;
+Query OK, 0 rows affected (0.01 sec)
+    3、查看权限
+
+复制代码
+查看当前用户的权限：
+mysql> show grants;
++---------------------------------------------------------------------+
+| Grants for root@localhost                                           |
++---------------------------------------------------------------------+
+| GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' WITH GRANT OPTION |
+| GRANT PROXY ON ''@'' TO 'root'@'localhost' WITH GRANT OPTION        |
++---------------------------------------------------------------------+
+2 rows in set (0.00 sec)
+
+查看某个用户的权限：
+mysql> show grants for 'Toper'@'%';
++-----------------------------------------------------------------------------------------------------+
+| Grants for Toper@%                                                                                   |
++-----------------------------------------------------------------------------------------------------+
+| GRANT USAGE ON *.* TO 'Toper'@'%' IDENTIFIED BY PASSWORD '*9BCDC990E611B8D852EFAF1E3919AB6AC8C8A9F0' |
++-----------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+复制代码
+    4、回收权限
+
+mysql> revoke delete on *.* from 'Toper'@'localhost';
+Query OK, 0 rows affected (0.01 sec)
+    5、删除用户
+
+复制代码
+mysql> select host,user,password from user;
++-----------+------+-------------------------------------------+
+| host      | user | password                                  |
++-----------+------+-------------------------------------------+
+| localhost | root |                                           |
+| rhel5.4   | root |                                           |
+| 127.0.0.1 | root |                                           |
+| ::1       | root |                                           |
+| localhost |      |                                           |
+| rhel5.4   |      |                                           |
+| localhost | Toper | *9BCDC990E611B8D852EFAF1E3919AB6AC8C8A9F0 |
++-----------+------+-------------------------------------------+
+7 rows in set (0.00 sec)
+
+mysql> drop user 'Toper'@'localhost';
+Query OK, 0 rows affected (0.01 sec)
+复制代码
+    6、对账户重命名
+
+mysql> rename user 'Toper'@'%' to 'jim'@'%';
+Query OK, 0 rows affected (0.00 sec)
+
+
+
+
