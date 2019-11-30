@@ -1,0 +1,30 @@
+select id from t1 union select id from t2;
++----+
+| id |
++----+
+|  1 |
+|  2 |
+|  3 |
+|  4 |
+|  5 |
++----+
+
+select id from t1 union all select id from t2;
++----+
+| id |
++----+
+|  1 |
+|  2 |
+|  3 |
+|  4 |
+|  5 |
+|  1 |
+|  2 |
+|  3 |
+|  4 |
++----+
+
+UNION在进行表链接后会无重复的记录
+Union All会有重复的记录
+
+https://dev.mysql.com/doc/refman/5.7/en/union.html
