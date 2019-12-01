@@ -1,0 +1,6 @@
+mysql> SELECT DISTINCT id, name, depa FROM  comptbl;
+
+在 MySQL 数据表中设置指定的字段为 PRIMARY KEY（主键） 或 UNIQUE（唯一） 索引来保证数据的唯一性。
+
+查询重复的值
+用COUNT(*), GROUP BY子句中列出的列,HAVING子句>于1。
