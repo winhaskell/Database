@@ -1,4 +1,13 @@
-2018.12.11 DBA SQL Mysql Oracle
+Ref:
+
+https://docs.oracle.com/middleware/12212/wls/PERFM/dbtune.htm#PERFM232
+https://blog.csdn.net/u010796790/article/details/52194850
+https://www.virtual-dba.com/professional-services/performance-tuning/
+https://www.toptal.com/sql-server/sql-database-tuning-for-developers
+https://haydenjames.io/mysql-performance-tuning-tips-scripts-tools/
+http://www.synametrics.com/SynametricsWebApp/WPTop10Tips.jsp
+
+
 
 表的连接方式
 
@@ -478,9 +487,5 @@ mysql>
 
 ps查看进程信息并通过less分页  ps -ef |less 
 
-
-参考
-https://blog.csdn.net/u010796790/article/details/52194850
-https://www.virtual-dba.com/professional-services/performance-tuning/
-
+ 
 
