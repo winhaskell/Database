@@ -1,0 +1,12 @@
+https://www.sqltutorial.org/sql-triggers/
+
+CREATE TRIGGER trigger_name [BEFORE|AFTER] event
+ON table_name trigger_type
+BEGIN
+  -- trigger_logic
+END;
+
+
+
+
+
