@@ -28,9 +28,11 @@ SELECT *
  ORDER BY date_column DESC
  LIMIT 1
 
-Bad fit: Changing the index or query could improve performance
+Good fit
 The statement can run as an indexed top-N query. 
 It performs just a B-tree traversal (log(n)) and a single table access.
+The Search Tree (B-Tree) Makes the Index Fast
+https://use-the-index-luke.com/sql/anatomy/the-tree
 
 
 
@@ -76,7 +78,8 @@ If the first index column is not in the where clause, the index is of little hel
 
 
 
-This question is different. First consider the following index and query:
+This question is different. 
+First consider the following index and query:
 
 CREATE INDEX tbl_idx ON tbl (a, date_column)
 SELECT date_column, count(*)
@@ -123,6 +126,7 @@ MySQL and PostgreSQL use the limit clause to restrict the number of rows to be f
        LIMIT 10
 
 The database can only optimize a query for a partial result if it knows this from the beginning.
+
 
 
 
