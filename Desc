@@ -1,0 +1,53 @@
+mysql> desc course;
+
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| c_id  | varchar(20) | NO   | PRI |         |       |
+| name  | varchar(30) | YES  |     | NULL    |       |
+| t_id  | varchar(20) | NO   |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.19 sec)
+
+
+
+mysql> describe course;
+
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| c_id  | varchar(20) | NO   | PRI |         |       |
+| name  | varchar(30) | YES  |     | NULL    |       |
+| t_id  | varchar(20) | NO   |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.04 sec)
+
+
+
+mysql> show create table course \G;
+
+*************************** 1. row ***************************
+       Table: course
+Create Table: CREATE TABLE `course` (
+  `c_id` varchar(20) NOT NULL DEFAULT '',
+  `name` varchar(30) DEFAULT NULL,
+  `t_id` varchar(20) NOT NULL,
+  PRIMARY KEY (`c_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+1 row in set (0.08 sec)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
