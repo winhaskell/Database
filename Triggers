@@ -1,3 +1,5 @@
+Trigger 
+
 https://www.sqltutorial.org/sql-triggers/
 
 CREATE TRIGGER trigger_name [BEFORE|AFTER] event
@@ -5,6 +7,38 @@ ON table_name trigger_type
 BEGIN
   -- trigger_logic
 END;
+
+
+https://www.linode.com/docs/databases/mysql/how-to-work-with-triggers-in-mysql-database/
+
+Trigger Syntax
+
+As indicated earlier, triggers are fired automatically either before or after an SQL command is run in the database. 
+The basic syntax for creating triggers is as follows:
+
+CREATE TRIGGER TRIGGER_NAME
+TRIGGER_TIME TRIGGER_EVENT
+ON TABLE_NAME FOR EACH ROW
+[TRIGGER BODY];
+
+TRIGGER_NAME: Each trigger must have a unique name and you should define it here.
+
+TRIGGER_TIME: Either BEFORE or AFTER.
+
+TRIGGER_EVENT: You need to specify the database event that will invoke the trigger: INSERT, UPDATE, or DELETE.
+
+TRIGGER BODY: This specifies the actual SQL command (or commands) that you want to be run by your trigger.
+
+
+https://www.geeksforgeeks.org/different-types-of-mysql-triggers-with-examples/
+https://www.essentialsql.com/what-is-a-database-trigger/
+
+
+
+
+
+
+
 
 
 
