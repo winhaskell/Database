@@ -1,0 +1,20 @@
+Jailer
+http://jailer.sourceforge.net/home.htm
+
+Jailer is a tool for database subsetting, schema and data browsing. 
+It exports consistent, referentially intact row-sets from relational databases. 
+removes obsolete data without violating integrity. It is DBMS agnostic (by using JDBC),
+platform independent, and generates DbUnit datasets, hierarchically structured XML, 
+and topologically sorted SQL-DML.
+
+http://jailer.sourceforge.net/quicktour.htm
+
+Jailer 是一个功能强大的智能型数据提取工具，可以支持DB2、Firebird、Derby等应用。
+使用方便，运行的环境需要Java jre的支持。
+
+
+
+
+
+
+
