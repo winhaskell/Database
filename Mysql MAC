@@ -1,0 +1,100 @@
+brew install mysql
+Error;
+brew update
+Error:The `brew link` step did not complete successfully
+
+
+#开启权限 
+$ sudo chown -R $(whoami) /usr/local/ 
+#重新link一次 
+$ brew link mysql
+
+------------------------------------------------------------------------------
+mysql -uroot -p
+Error: Can't connect to local MySQL server through socket '/tmp/mysql.sock' 
+
+mysql.server start
+
+------------------------------------------------------------------------------
+
+mysql_secure_installation
+
+1
+VALIDATE PASSWORD PLUGIN can be used to test passwords
+and improve security. It checks the strength of password
+and allows the users to set only those passwords which are
+secure enough. Would you like to setup VALIDATE PASSWORD plugin?
+Press y|Y for Yes, any other key for No:
+Please set the password for root here.
+New password:
+Re-enter new password:
+
+
+
+2
+By default, a MySQL installation has an anonymous user,
+allowing anyone to log into MySQL without having to have
+a user account created for them. This is intended only for
+testing, and to make the installation go a bit smoother.
+You should remove them before moving into a production
+environment.
+Remove anonymous users? (Press y|Y for Yes, any other key for No) :
+y
+
+
+
+3
+Normally, root should only be allowed to connect from
+'localhost'. This ensures that someone cannot guess at
+the root password from the network.
+Disallow root login remotely? (Press y|Y for Yes, any other key for No) :
+y
+
+
+
+4
+By default, MySQL comes with a database named 'test' that
+anyone can access. This is also intended only for testing,
+and should be removed before moving into a production
+environment.
+Remove test database and access to it? (Press y|Y for Yes, any other key for No) :
+y
+
+
+
+5
+eloading the privilege tables will ensure that all changes
+made so far will take effect immediately.
+Reload privilege tables now? (Press y|Y for Yes, any other key for No) :
+y
+
+
+------------------------------------------------------------------------------
+
+mysql -uroot -p
+mysql -uroot -p
+
+
+
+成功完成了 MySQL 的安装
+******
+
+
+
+以Service方式启动/停止/重启MySQL命令：
+
+service mysqld start
+
+service mysqld stop
+
+service mysqld restart
+
+
+
+
+
+
+
+
+
+
