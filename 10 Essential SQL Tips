@@ -1,0 +1,277 @@
+10 Essential SQL Tips
+
+10 Essential SQL Tips for Developers
+ 
+Last updated Jun 4, 2009
+Read Time: 14 min
+ 
+English
+
+Web DevelopmentSQL
+SQL is yet another essential language for developers wishing to create data-driven websites. 
+However, many developers are unfamiliar with various aspects of SQL; so in this article, we'll analyze ten essential tips.
+
+1. Use The Right Language
+Web developers often have a plethora of languages at their disposal. It is crucial for developers to use the proper language for the job.
+
+Let's review the following code. In the first example, the developer is selecting all columns and all rows from the customer table. 
+In the second example, the developer is selecting only the first name, last name and address from the customer table for a single customer 
+with ID 1001. Not only does the second query limit the columns that are returned, it will also perform better.
+
+SELECT * FROM customer;
+SELECT firstName, lastName, shippingAddress FROM customer WHERE customerID = 1001;
+When you are writing code, make sure that it works efficiently.
+
+Too many developers are satisfied with code that performs adequately on 100 rows of data, with little thought ahead to when 
+the database will have 10,000 rows.
+
+
+2. Secure Your Code
+Databases store valuable information. Because of this fact, databases are often prime targets for attack. Many developers 
+are unaware that their code has critical security vulnerabilities, which is a very scary fact not only for clients, but also for you. 
+Currently, developers can be held legally accountable if their own personal negligence results in a database security risk that is then exploited.
+
+In case you aren't convinced about the seriousness of database security, these two articles should help drive the point home:
+
+"The FBI and Virginia State Police are searching for hackers who demanded that the state pay them a $10 million ransom by Thursday
+for the return of millions of personal pharmaceutical records they say they stole from the state's prescription drug database."
+Read the Washington Post article
+
+"Kaspersky Lab, a Moscow-based security company, admitted today that a database containing customer information had been exposed 
+for almost 11 days and that it only learned of the breach when Romanian hackers told the firm about it last Saturday."
+Read the ComputerWorld article
+
+Let's review another example using pseudo-code.
+
+// Theoretical code
+txtUserName.setText("eshafer' OR 1=1");
+query = "SELECT username, password FROM users WHERE username = '" + txtUserName.getText() + "';";
+// Final statement
+query = "SELECT username, password FROM users WHERE username = eshafer OR 1=1;"
+Hopefully you looked at that code above and noticed the vulnerability. The query will end up selecting all username and password 
+records from the table, because 1 always is equal to 1. Now, this particular example doesn't accomplish much for the would-be hacker. 
+However, there are nearly limitless possibilities for additional malicious code that can be added with catastrophic results.
+
+How Can You Write Secure Code?
+The solution is often DBMS specific; that is, it varies between MySQL, Oracle or SQL Server. In PHP with MySQL, for example, it is
+usual to escape parameters using the function mysql_real_escape_string before sending the SQL query. Alternatively, you can utilize 
+prepared statements to "prepare" your queries. Make it your mission to understand the DBMS with which you are working and the inherent security issues.
+
+SQL injection isn't the only security vulnerability for databases and developers to worry about, however, it is one of the most common 
+methods of attack. It is important to test your code and be familiar with the latest security issues for your DBMS in order to protect against attacks.
+
+
+3. Understand Joins
+Single table SQL select statements are rather easy to write. However, business requirements often dictate that more complex queries
+must be written. For example, "find all orders for each customer, and display the products for each order". Now, in this particular situation, 
+it would be likely that there is a customer table, an order table, and an order_line table (the last would be to resolve a possible
+many-to-many record relationship). For those who are slightly more familiar with SQL, it is readily apparent that a table join, actually, 
+two table joins will be required for this query. Let's look at some sample code.
+
+SELECT customer.customerID, order.order_id, order_line.order_item
+FROM customer
+	INNER JOIN order
+		ON customer.customerID = order.customerID
+	INNER JOIN order_line
+		ON order.orderID = order_line.orderID;
+Alright, simple enough. For those who don't know, the code above is an inner join. More specifically, the code above is an equi-join.
+Let's define the various types of joins.
+
+Inner Joins: The basic purpose of inner joins is to return matching records.
+
+Outer Joins: Outer joins do not require each record to have a matching record.
+
+Left outer join: A left outer join of tables A and B will return all matching records of A and B, as well as any non-matched records 
+from the left table, in this case, A.
+
+Right outer join: A right outer join of tables A and B will return all matching records of A and B, as well as any non-matched records 
+from the right table, in this case, B.
+
+Full outer join: A full outer join of tables A and B will return all matching records of A and B, as well as any non-matched records 
+from both tables.
+
+
+
+
+Special thanks to Ronald Erdei for the images.
+
+Self Joins
+There is one last type of join that must be considered, which is a self join. A self join is merely a join from a table to itself.
+
+EMPLOYEE TABLE
+-EmployeeName
+-SupervisorID
+In this situation, in order to find which employees are supervised by a given employee, a self join would be required.
+
+Hopefully this clarifies the basic tenets of joins, as they are one of the primary features of SQL that makes it such a powerful
+database language. Make sure you use the proper join for your given situation.
+
+
+4. Know Your Data Types
+In SQL, typically each table column has an associated data type. Text, Integer, VarChar, Date, and more, are typically available
+types for developers to choose from.
+
+MySQL Data Types
+Oracle Data Types
+SQL Server Data Types
+
+When developing, make sure you choose the proper data type for the column. Dates should be DATE variables, numbers should be a numeric type, etc. 
+This becomes especially important when we deal with a later topic: indexing; but I'll demonstrate an example of poor knowledge of data types below:
+
+SELECT employeeID, employeeName
+FROM employee
+WHERE employeeID = 112457891;
+Looks fine based on what we currently know, correct? 
+
+However, what if employeeID is actually a string. Now we've got a problem, because the DBMS might not find a match
+(because string data types and integers are different types).
+
+Therefore, if you're using indexing, you'll probably be perplexed as to why your query is taking forever, when it should 
+be a simple index scan. This is the reason that developers need to pay special attention to data types and their applications. 
+Non-key attributes which are IDs are often string types, as opposed to integers, because of the increased flexibility that is granted.
+However, this is also a trouble area for junior developers, who assume that ID fields will be integers.
+
+Properly utilizing data types is essential to proper database programming, as they directly lead to query efficiency.
+Efficient queries are essential to creating quality, scalable applications.
+
+5. Write Compliant Code
+All programming languages have standards which web developers should be aware, and SQL isn't any different. 
+SQL was standardized by ANSI and then ISO, with new revisions to the language being occasionally submitted. 
+The latest revision is SQL:2008, although the most important revision that developers should be aware of is SQL:1999. 
+The 1999 revision introduced recursive queries, triggers, support for PL/SQL and T-SQL, and a few newer features. 
+It also defined that the JOIN statements be done in the FROM clause, as opposed to the WHERE clause.
+
+When writing code, it is important to keep in mind why standards-compliant code is useful. There are two primary reasons 
+why standards are used. The first is maintainability, and the second is cross-platform standardization. As with desktop
+applications, it is assumed that websites will have long lifespans, and will go through various updates to add new 
+functionality and repair problems. As any systems analyst will tell you, systems spend a majority of their lifespan in
+the maintenance phase. When a different programmer accesses your code in 2, 5 or 10 years, will they still be able to 
+understand what your code is doing? Standards and comments are designed to promote maintainability.
+
+The other reason is cross-platform functionality. With CSS, there is currently an ongoing standards battle between Firefox, 
+Internet Explorer, Chrome, and other browsers about the interpretation of code. The reason for the SQL standards is to prevent
+a similar situation between Oracle, Microsoft and other SQL variants such as MySQL.
+
+6. Normalize Your Data
+Database normalization is a technique to organize the contents of databases. Without normalization, database systems can be inaccurate,
+slow, and inefficient. The community of database professionals developed a series of guidelines for the normalization of databases.
+Each 'level' of normalization is referred to as a form, and there are 5 forms, total. First normal form is the lowest level of 
+normalization, up to fifth normal form, which is the highest level of normalization.
+
+First Normal Form (1NF): The most basic level of data normalization, first normal form requires the elimination of
+all duplicate columns in a table, and also requires the creation of separate tables for related data, and identification of
+each table with a primary key attribute.
+
+Second Normal Form (2NF): Meets all the requirements of first normal form, and creates relationships between tables using foreign keys.
+
+Third Normal Form (3NF): Meets all the requirements of second and first normal forms, and removes all columns that are not dependent 
+upon the primary key. Third normal form also removes all derived attributes, such as age.
+
+Fourth Normal Form (4NF): Fourth normal form adds one additional requirement, which is the removal of any multi-valued dependencies in relationships.
+
+Fifth Normal Form (5NF): Fifth normal form is a rarer form of normalization, in which case join dependencies are implied by
+candidate keys (possibly primary key values).
+
+In the reality of database development, getting to 3NF is the most important jump. 4NF and 5NF are a bit more of 
+a luxury (and sometimes a nuisance) in database development, and are rarely seen in practice. If you're struggling
+with the concepts, or remembering the first three forms, there is a simple relation. "The key, the whole key, and 
+nothing but the key.", which relates to 1NF, 2NF, and 3NF.
+
+The Benefits of Normalization
+Now, without venturing too far into database theory, let's simply focus on the benefits of normalization.
+As the data progresses through the normalization forms, it becomes cleaner, better organized, and faster.
+Now, with a small database that has only 5 tables and 100 rows of data, this won't be readily apparent. 
+However, as the database grows, the effects of normalization will become much more apparent with regards
+to speed and maintaining data integrity. However, there are some situations in which normalization doesn't make sense, 
+such as when normalizing the data will create excessively complex queries required to return the data.
+
+7. Fully Qualify Your Database Object Names
+Now, this is a commonly ignored point; in fact, all the sample code I've demonstrated in this tutorial has essentially 
+violated this tip. In terms of database development, a fully qualified object name looks as follows: DATABASE.schema.TABLE. 
+Now, let's look at why fully qualified names are important, and in what situations they are necessary. The purpose of a fully
+qualified object name is to eliminate ambiguity. Beginning developers rarely have access to multiple databases and schemas, 
+which complicates the issues in the future. When a given user has access to multiple databases, multiple schemas, and the 
+tables therein, it becomes crucial to directly specify what the user is attempting to access. If you have an employee table, 
+your boss has an employee table, and the schema that your web application is running on has an employee table, which are you
+really attempting to access?
+
+Logically, the fully qualified name would look like DATABASE.SCHEMA.OBJECTNAME, however, syntactically (ie, in executable statements),
+it would simply be SCHEMA.OBJECTNAME. Although various DBMSes do have various syntax differences, the above style is generally applicable.
+
+-- Not ''SELECT * FROM table'' 
+SELECT * FROM schema.TABLE
+Fully qualifying your database names is important when working with databases that are larger and are used by multiple users 
+and contain multiple schemas. However, it is a good habit to get into.
+
+8. Understand Indexing
+A database index is a data structure that improves the speed of operations on a database table. Indexes can be created using one
+or more columns of a database table, providing the basis for both rapid random look ups and efficient access of ordered records.
+Indexing is incredibly important when working with large tables, however, occasionally smaller tables should be indexed, if they 
+are expected to grow. Small tables that will remain small, however, should not be indexed (for example, if your book is 1 page, 
+does it make sense to turn to the index?)
+
+Many developers write their code and test it on a table with 10, or 100 rows, and are satisfied when their code performs adequately. 
+However, as the table grows to 10,000, or 1,000,000 rows, the code slows to a snail's pace, and the client might as well go out to 
+lunch waiting for the code to execute.
+
+When a query searches a database for a matching record, there are two ways in which the search can be performed.
+
+The first, and the slowest way is a table scan. In a table scan, the query searches every record in the table looking for a match.
+The second, and the faster way is an index scan. In an index scan, the query searches the index to find the record. 
+
+In non-database terms, a table scan would be the equivalent to reading every page in a book looking for a word, while an index 
+scan would be the equivalent of flipping to the back of the book, finding the word, flipping to the specified page, and then 
+reading the words on the page to find the word.
+
+It is important to remember that indexes need to be rebuilt occasionally, as data is added to the table. Additionally, while
+indexes increase data access performance, it slows the modification of data. Because of this, most DBMSes have an option to
+temporarily disable an index to facilitate mass data modification, and then allow it to be re-enabled and rebuilt later.
+
+
+9. Properly Use Database Permissions
+When working with a database that has multiple users, it is important to properly handle various database permissions. 
+Obviously, most databases have an administrator user, but does it always make sense to run your queries as the administrator? 
+Additionally, would you want to provide all your junior developers and users with your administrator credentials in order to 
+write their queries? Most likely not. The various possible permissions for your database depend on your DBMS, but there are 
+common themes between them.
+
+In MySQL, for example, typing "SHOW TABLES" will reveal a list of tables on your database, of which you will likely 
+notice a 'user' table. Typing 'DESC user' will reveal that there are various fields on the user table. Along with a host, 
+username and password, there is also a list of privileges that can be set for a user. Additionally, there is a 'db' table 
+that governs more privileges for a specific database.
+
+SQL Server provides the GRANT, DENY, and REVOKE statements to give or take away permissions from a user or role. 
+Additionally, SQL Server provides roles such as db_writer, db_reader. Often, unknowledgeable developers grant these
+roles (as opposed to creating their own, custom roles) to other users, resulting in overall lowered database security,
+as well as the possibility of a user performing an unwanted operation.
+
+Properly managing your database user permissions is essential to managing not only security, but also providing a foundation 
+for faster development and protecting data integrity.
+
+10. Know Your DBMS Limitations
+Databases are powerful tools, however, they aren't without limitations. Oracle, SQL Server, and MySQL all have unique limitations
+on things such as maximum database sizes, maximum number of tables, and others. Many developers unknowingly choose a DBMS solution
+for their project without planning or considering the later requirements of their database.
+
+Refer to your DBMS manual for the various limitations, for example, SQL Server limitations are located on the 
+MSDN Website: http://msdn.microsoft.com/en-us/library/ms143432.aspx
+
+
+
+https://code.tutsplus.com/tutorials/10-essential-sql-tips-for-developers--net-5274
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
