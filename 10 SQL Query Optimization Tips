@@ -1,0 +1,39 @@
+10 SQL Query Optimization Tips
+
+SQL Query optimization is a process of writing thoughtful SQL queries to improve database performance. During development, 
+the amount of data accessed and tested is less. Hence, developers get a quick response to the queries they write.
+But the problem starts when the project goes live and enormous data starts flooding the database. Such instances slow 
+down SQL queries response drastically and create performance issues.
+
+When working with large-scale data, even the most minor change can have a dramatic impact on performance.
+
+SQL performance tuning can be an incredibly difficult task. Even a minor change can have a dramatic impact on performance. 
+Here are the 10 most effective ways to optimize your SQL queries. 
+
+Indexing: Ensure proper indexing for quick access to the database.
+Select query: Specify the columns in SELECT query instead of SELECT* to avoid extra fetching load on the database.
+Running queries: Loops in query structure slows the sequence. Thus, avoid them.
+Matching records: Use EXITS() for matching if the record exists.
+Subqueries: Avoid correlated sub queries as it searches row by row, impacting the speed of SQL query processing.
+Wildcards: Use wildcards (e.g. %xx%) wisely as they search the entire database for matching results.
+Operators: Avoid using function at RHS of the operator.
+Fetching data: Always fetch limited data.
+Loading: Use a temporary table to handle bulk data.
+Selecting Rows: Use the clause WHERE instead of HAVING for primary filters.
+
+
+
+
+Top 10 SQL Query Optimization Tips to Improve Database Performance
+By : Avishek Singh
+5 minutes, 18 seconds read
+Published on Dec 30, 2019
+Updated on Feb 19, 2020
+
+https://www.mantralabsglobal.com/blog/sql-query-optimization-tips/
+
+
+
+
+
+
