@@ -1,0 +1,40 @@
+2023Spring Course
+
+Description
+This course relies on primary readings from the database community to introduce graduate students to the foundations 
+of database systems, focusing on basics such as the relational algebra and data model, schema normalization, 
+query optimization, and transactions.  
+
+For more information about the readings and assignments, use the links at the top of the page.
+
+Quizzes are typically short answer / multiple choice, and contain questions that will test your knowledge of the readings, 
+as well as questions on specific technical topics. Sample quizzes from previous years will be posted before the first exam.
+
+Lectures, quizzes, and homework assignments will be the same. 
+
+In the class' lab assignments, you will be using Java to write a basic database management system called SimpleDB, 
+which includes modules for data access, query processing, transaction management, and more. To do these assignments, 
+you will be building on a Java codebase with at least 1.6k lines of code by implementing classes, methods, and interfaces, 
+and then testing your system by further writing unit tests. Since some (prospective) students have asked us about the 
+level of comfort in Java required to succeed in this class, we are including this Java tutorial to help you get familiar 
+with the language features you'll need to work on the lab assignments. The tutorial is geared towards Python programmers. 
+We recommend taking a look at this tutorial and seeing the code in the first lab in order to determine if this class is right for you. 
+
+
+
+exam: (choose 1)  
+2023.06.07 | 2023.06.11
+2023.06.15 | 2023.06.19
+
+90+   excellent
+75-89 good 
+60-74 pass
+60-   retake
+
+
+
+
+
+
+
+
