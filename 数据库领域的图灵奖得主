@@ -1,0 +1,100 @@
+数据库界的图灵奖得主
+
+由图灵冠名的概念有 “图灵机” 和 “图灵测试”，最有名的是 “图灵奖”。
+
+从 1966 年到 2014 年，49 届，共 62 名得主，按国籍分，美国学者最多，欧洲学者偶见之，华人学者目前仅有 2000 年图灵奖得主姚期智（现在清华大学）。
+
+62 名得主分布在几十个小领域，排在前六的领域有：编译原理、程序设计语言，计算复杂性理论，人工智能，密码学，以及数据库（4 名）。
+在某种意义上，可大致认为，前三个领域与计算机科学本身更密切一些，后三个领域与军民应用更密切一些。 　　　
+
+一看就知是聪明人。下图是数据库界的四位得主。本来，以貌取人是根据不足的，但这四位得主，都有一股学者范（“范儿” 是一种感觉，很难严格定义），
+几位学者，虽近髦耋，眉宇中有一股英气，目光坚定自信，相信在年轻时，叫人一看，就知是聪明人。
+
+按获奖时间排序 ，本文先介绍最早的一位。续篇再介绍后面的三位，争取在篇末议论一下得主们给我们的启迪。
+
+实践出真知 — 网状数据库，时势造英雄 - 巴赫曼
+查尔斯・威廉・“查理”・巴赫曼（Charles William “Charlie” Bachman），数据库之父，2017 年 7 月 13 日逝世，享年 92 岁。在 49 岁时候（1973 年）获得了的图灵奖，是数据库界的第一枚图灵奖。
+
+生逢其时，有文无库。上世纪 60 年代，计算机系统还是有文（文件系统）无库（数据库）。数据处理比较艰难，那是一个正需要英雄，就出了英雄的时代；当世界正呼唤数据处理新技术时，年富力强（30 多岁）的巴赫曼来了。
+
+他从基层干起，曾在穿孔卡片机上开发程序，在第一线获得了丰富经验，后到通用电气公司，作程序设计部门经理，体验过文件系统处理数据的蹉跎、繁琐和低效，催生了他的数据库梦。
+　　
+一代很爽的数据库。他主持设计与开发了最早的网状数据库管理系统 IDS（Integrated Data Store），在不惑之年（1964 年）正式推出 IDS。以今天的目光看，
+IDS 是建立在虚拟内存系统上（实际在磁盘上），如果当时有如今的闪存盘 SSD，不用改代码，就会爽的发飙 ；不过那时的人要求低，认为 IDS 已经很爽了。所以，他被称为网状数据库之父。
+　　　　
+格式化 VS 非格式化，磁盘 VS 磁带。数据库带来的观念是革命性的。此前，计算机以文件为最小处理单位，处理非结构化的、粒度较大的数据；而数据库中是格式化的、粒度较小的数据（记录或字段）。
+
+有格式和无格式数据的在查、插、删、改的速度方面有天渊之别，作为科普，只好用磁盘与磁带的差别来比喻：
+
+非格式化数据中，查询某一数据项，有如在磁带上搜寻某首歌曲，从头搜索到尾，平均每次搜索磁带长度的一半；而在磁盘或光盘上，从目录（索引）找到那首歌曲的开始扇区，
+磁头在三维空间中跨界运动，磁带是线性带子固定的磁头，磁盘是极坐标的平面，三维的臂，直达目标，快多了。对插、删、改操作，由于数据库缩小了处理粒度，提高处理效率，更是令文件系统望尘莫及。
+
+网状数据库概念不太容易科普，当年。笔者讲网状数据库课程时，在黑板上画若干记录方块，若干指针链接，大方小方大小方，虚线实现虚实线，两个学时讲完；真的不像关系数据库那样容易科普。
+
+记忆大师们说，要想记忆好，检索快，就要设法把知识点连成网状，建立联想，这就是网状数据库的思想，就这样简单，当然，从思想到设计，再到实现，就需要图灵奖得主的水平了。 　　
+
+报告也能占高地
+IDS 的成功，使巴赫曼有资格成为 DBTG 的核心人物之一，DBTG 即数据库任务组，隶属于 CODASYL（美国数据系统语言委员）。
+
+为了数据库之梦，巴赫曼试图占领美国国家标准这一学术和技术高地，积极推动了 DBTG 报告。由于各种原因，这个报告，最后没有成为美国国家标准，
+DBTG 任务组坚忍不拔，相继推出一系列版本，如 1971,1973、1978、1981 年和 1984 年的修改版本。
+
+尽管 DBTG 不是国家标准，也不是具体的数据库产品，而只是一个方案，但它提出的观念深入人心，所提出的三级模式，以及把数据库语言分成数据定义语言 DDL 和数据操纵语言 DML 的思路， 
+影响了几代数据库人和数据库产品，如 IDMS、PRIME DBMS、DMSl70、DMSⅡ 和 DMS 1100，甚至，如今的关系数据库中，也能隐约见到它的影子。
+
+这些成果确立了数据库的观念，在 IT 发展历程中，人们常常见到，被新技术 “宠坏 “了的用户，再也不愿回到旧技术的怀抱，在这个意义上，有人笼统地说，巴赫曼是（没有定语）数据库之父。
+
+一点思考：需要多少论文才能得到图灵奖？下面有个清单，列出了巴赫曼的重要论文 16 篇，因为他是 1973 年的的图灵奖，只列出了 1962-1983 中的一部分，平均每年不到 1 篇。
+
+也许多年前 ，计算机界对论文级别，杂志级别的观念与现在不同；单从从数量上看，好像我们现在的杰青、优青、千人、百人快赶上或已经超过了巴赫曼，
+但是，能做出像 IDS 这样的货真价实、人用人爱的系统吗？能提出像《DBTG 报告》这样改变观念、深入人心，能在数据库发展的几十年历程中留下影子的的 “报告 “吗？
+
+也许，这种观念的不同，是图灵奖得主心中的那份灵犀。
+
+参考文献 
+巴赫曼 1962-1983 的部分论文
+
+‘Precedence Diagrams: The Key to Production Planning, Scheduling and Control.’ In: ProCo Features. Supplement No 24, August 24. 1962．.
+
+‘Integrated Data Store.’ in: DPMA Quarterly, January 1965.
+
+‘Software for Random Access Processing.’ in: Datamation April 1965.
+
+‘Data Structure Diagrams.’ in: DataBase: A Quarterly Newsletter of SIGBDP. vol. 1, no. 2, Summer 1969.
+
+‘Architecture Definition Technique: Its Objectives, Theory, Process, Facilities, and Practice.’ coauthored with 
+J. Bouvard. in: Data Description, Access and Control: Proceedings of the 1972 ACM-SIGFIDET Workshop, November 29-December 1, 1972.
+
+‘The Evolution of Storage Structures.’ In: Communications of the ACM vol. 15, no. 7, July 1972.
+
+‘Set Concept for Data Structure.’ In: Encyclopedia of Computer Science, 1972-1973.
+
+‘The Programmer as Navigator.’ In: Communications of the ACM vol. 16, no. 11, November 1973.
+1974．’Implementation Techniques for Data Structure Sets.’ In: Data Base Management Systems
+
+‘Why Restrict the Modeling Capability of Codasyl Data Structure Sets?’ In: National Computer Conference vol. 46, 1977.
+
+‘Commentary on the CODASYL Systems Committee’s Interim Report on Distributed Database Technology.’ National Computer Conference vol. 47, 1978.
+
+‘DDP Will Be Infinitely Affected, So Managers Beware!’ in: DM, March 1978.
+
+‘The Impact of Structured Data Throughout Computer-Based Information Systems.’ In: Information Processing 80, 1980.
+
+‘The Role Data Model Approach to Data Structures.’ In; International Conference on Data Bases, March 24, 1980.
+
+‘Toward a More Complete Reference Model of Computer-Based Information Systems.’ Co-authored with Ronald G. Ross. In: Computers and Standards 1, 1982.
+
+‘The Structuring Capabilities of the Molecular Data Model.’ In; Entity-Relationship Approach to 
+Software Engineering. C. G. Davis, S. Jajodia, and R. T. Yeh. eds. June 1983.
+
+
+
+
+
+
+
+
+
+
+
+
