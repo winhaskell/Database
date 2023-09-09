@@ -1,0 +1,11 @@
+ChatSQL
+https://www.bytebase.com/docs/sql-editor/chatsql/
+
+ChatSQL
+Input your natural language and Bytebase will convert it into SQL.
+
+Prerequisites
+Before starting, make sure you have sign up for an account on the OpenAI platform and obtain a confidential key.
+
+Add the API key
+Go to Bytebase console, click Settings > General. Scroll down to AI Augmentation, and fill in OpenAI API Key field.
