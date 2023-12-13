@@ -1,0 +1,33 @@
+Logic and Algorithms in Database Theory and AI
+Wednesday, Aug. 16 – Friday, Dec. 15, 2023
+
+https://simons.berkeley.edu/programs/logic-algorithms-database-theory-ai
+
+About
+
+The last decade has brought a series of new theoretical results in database theory that 
+lead to novel query evaluation and optimization algorithms, new information theoretic approaches
+to cardinality estimation, dichotomy results for incomplete and for probabilistic databases,
+tight bounds for the answer enumeration problem, new optimization techniques for tensor algebras, 
+and extensions of logic semantics from the Boolean to arbitrary semirings. The common denominator 
+of these results is their reliance on Logic, in that they apply to queries expressed in some logic.
+During the same time period, the complexity community on one hand, and the knowledge representation 
+community on the other hand have produced results that inform and strengthen the developments in 
+database theory. They include results in fine-grained complexity that establish sharp bounds for
+the model checking problem of first order formulas, with immediate application to the query evaluation
+problem in databases; results on polytope fooling that have potential to lead to improved algorithms 
+for query evaluation on probabilistic databases; novel implementations of probabilistic logic programs 
+based on circuits (e.g., problog); novel approaches to knowledge inference such as new statistical 
+relational learning (e.g., PSL), and novel circuit-based knowledge compilation techniques (decision
+diagrams such as SDDs, Sum-Product Networks).
+
+The program on Logic and Algorithms in Database Theory and AI brings together researchers from all 
+three communities: database theory, complexity, and knowledge representation. The explicit goal of
+the program is to study the subtle interaction between logics and the algorithms that they inspire.
+The program will have four themes: Aspects of logical query evaluation; Fine-grained complexity through 
+the lens of Logic; Logic-based aspects of circuit complexity and model counting; and Extensions of
+logics to semirings and aggregation.
+
+
+
+
