@@ -1,0 +1,16 @@
+MongoDB 6.0
+https://www.mongodb.com/blog/post/announces-new-time-series-capabilities-coming-mongodb-6-0
+
+MongoDB
+June 7, 2022 | Updated: November 22, 2022
+
+#Time Series
+#MongoDB World
+
+MongoDB 6.0 will come with a wealth of exciting new features for customers, including new capabilities 
+for managing time series data. Notable improvements include support for secondary indexes on time series measurements, 
+which makes it easier for users to index data that varies over time. 
+We’ve also made read performance improvements for sort operations.
+
+
+
