@@ -1,0 +1,26 @@
+Db2
+
+https://www.ibm.com/in-en/products/db2
+https://www.ibm.com/analytics/us/en/db2/
+https://www.ibm.com/developerworks/community/blogs/ff78a96f-bf23-457e-befa-77f266844cbb/entry/db2_tips_n_tricks_part_50_how_to_monitor_index_reorganization?lang=en
+http://mainframewizard.com/content/db2-tips
+
+
+https://www.ibm.com/support/knowledgecenter/en/SSEPEK_11.0.0/intro/src/tpc/db2z_availabilityandscalabilitylargebusiness.html
+https://console.bluemix.net/catalog/services/db2
+https://console.bluemix.net
+https://triton.co.uk/SAPCoreBanking/
+
+
+
+DB2（IBM Db2）是一种关系型数据库管理系统（RDBMS），由IBM开发。
+DB2广泛用于企业环境中，包括银行和金融领域。DB2的使用范围很广泛，它支持复杂的事务处理、数据仓库和分析，同时具有高度的可靠性和性能。
+
+DB2的代码编写难度与个体经验和项目的要求有关。对于熟悉SQL和数据库设计的开发人员来说，学习和使用DB2可能相对较容易。
+在银行等领域，DB2被广泛用于处理大量的交易数据和确保数据的安全性和一致性。
+
+总体而言，DB2是一个强大的数据库管理系统，它提供了许多功能和工具，适用于大型企业和复杂的数据管理需求。
+
+
+
+
