@@ -1,0 +1,46 @@
+employees
+
+CREATE TABLE employees (
+    employee_id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    email VARCHAR(100) UNIQUE,
+    phone_number VARCHAR(20),
+    hire_date DATE,
+    job_title VARCHAR(100),
+    department VARCHAR(100),
+    salary DECIMAL(10, 2)
+);
+
+
+TABLE employees 包含了以下字段：
+
+employee_id: 员工编号，主键，自动增长
+first_name: 员工名字
+last_name: 员工姓氏
+email: 员工邮箱，唯一性约束
+phone_number: 员工电话号码
+hire_date: 入职日期
+job_title: 员工职位
+department: 员工所在部门
+salary: 员工薪水
+
+
+INSERT INTO employees (first_name, last_name, email, phone_number, hire_date, job_title, department, salary) VALUES 
+('John', 'Doe', 'john.doe@example.com', '123-456-7890', '2023-01-15', 'Software Engineer', 'Engineering', 75000.00),
+('Jane', 'Smith', 'jane.smith@example.com', '234-567-8901', '2023-02-20', 'Data Analyst', 'Analytics', 60000.00),
+('Alice', 'Johnson', 'alice.johnson@example.com', '345-678-9012', '2022-12-10', 'Project Manager', 'Management', 90000.00),
+('Bob', 'Williams', 'bob.williams@example.com', '456-789-0123', '2023-03-25', 'Marketing Specialist', 'Marketing', 65000.00),
+('Emily', 'Brown', 'emily.brown@example.com', '567-890-1234', '2023-04-30', 'Human Resources Assistant', 'Human Resources', 50000.00),
+('Michael', 'Jones', 'michael.jones@example.com', '678-901-2345', '2023-05-15', 'Financial Analyst', 'Finance', 70000.00),
+('Jessica', 'Miller', 'jessica.miller@example.com', '789-012-3456', '2023-06-20', 'Sales Representative', 'Sales', 60000.00),
+('David', 'Taylor', 'david.taylor@example.com', '890-123-4567', '2023-07-25', 'Customer Service Representative', 'Customer Service', 55000.00),
+('Olivia', 'Anderson', 'olivia.anderson@example.com', '901-234-5678', '2023-08-30', 'Research Scientist', 'Research & Development', 80000.00),
+('Daniel', 'Wilson', 'daniel.wilson@example.com', '012-345-6789', '2023-09-15', 'Quality Assurance Specialist', 'Quality Assurance', 65000.00);
+
+
+
+
+
+
+
