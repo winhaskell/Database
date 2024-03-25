@@ -39,7 +39,7 @@ INSERT INTO employees (first_name, last_name, email, phone_number, hire_date, jo
 ('Daniel', 'Wilson', 'daniel.wilson@example.com', '012-345-6789', '2023-09-15', 'Quality Assurance Specialist', 'Quality Assurance', 65000.00);
 
 
-
+在MySQL中，假设id字段是表的主键，如果表的主键是自动递增的，因此不需要在INSERT语句中指定它的值。
 
 
 
