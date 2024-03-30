@@ -1,0 +1,35 @@
+事件调度器(event_scheduler)简称事件。
+
+MySQL事件是指在MySQL数据库中定期执行的一系列SQL语句集合。通过事件，可以定期执行诸如数据备份、数据清理等任务，提高数据库的管理效率。
+
+要查看MySQL中是否开启了事件调度器，可以使用以下SQL语句：
+SHOW VARIABLES LIKE 'event_scheduler';
+
+如果返回的值为ON，则表示事件调度器已经开启；如果为OFF，则表示事件调度器尚未开启。
+
+创建、修改和删除事件，可以使用以下SQL语句：
+
+创建事件：
+CREATE EVENT event_name
+ON SCHEDULE schedule
+DO
+BEGIN
+    -- 事件执行的SQL语句集合
+END;
+其中，event_name为事件的名称，schedule为事件的执行计划，可以是一次性执行、每天执行、每月执行等。
+
+
+修改事件：
+ALTER EVENT event_name
+ON SCHEDULE schedule
+DO
+BEGIN
+    -- 修改后的事件执行的SQL语句集合
+END;
+
+
+删除事件：
+DROP EVENT event_name;
+
+
+
