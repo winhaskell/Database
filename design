@@ -1,3 +1,85 @@
 https://www.vertabelo.com/blog/notes-from-the-lab/9-tips-for-better-database-design
+
+
 https://www.zentut.com/sql-tutorial/sql-sample-database/
+
+
+Beautiful database diagrams
+Design, visualize and collaborate on entity relationship diagrams for your databases
+https://drawsql.app/
+
+
+Design, Document & Manage Your Database Schema Visually
+Design ER diagrams, build queries, explore data, generate interactive documentation, and
+track schema changes in Git - all from one powerful desktop tool. With support for over 70 SQL, 
+NoSQL, and Cloud databases, DbSchema helps you design and manage any database visually.
+https://dbschema.com/
+
+
+
+What is good database design?
+Certain principles guide the database design process. 
+The first principle is that duplicate information (also called redundant data) is bad, because it wastes
+space and increases the likelihood of errors and inconsistencies. The second principle is that the 
+correctness and completeness of information is important. If your database contains incorrect information, 
+any reports that pull information from the database will also contain incorrect information. 
+As a result, any decisions you make that are based on those reports will then be misinformed.
+
+A good database design is, therefore, one that:
+
+Divides your information into subject-based tables to reduce redundant data.
+
+Provides Access with the information it requires to join the information in the tables together as needed.
+
+Helps support and ensure the accuracy and integrity of your information.
+
+Accommodates your data processing and reporting needs.
+
+
+
+The design process
+The design process consists of the following steps:
+
+Determine the purpose of your database    
+
+This helps prepare you for the remaining steps.
+
+Find and organize the information required     
+
+Gather all of the types of information you might want to record in the database, such as product name and order number.
+
+Divide the information into tables    
+
+Divide your information items into major entities or subjects, such as Products or Orders. Each subject then becomes a table.
+
+Turn information items into columns    
+
+Decide what information you want to store in each table. Each item becomes a field, and is displayed as a column in the table. 
+For example, an Employees table might include fields such as Last Name and Hire Date.
+
+Specify primary keys    
+
+Choose each table’s primary key. The primary key is a column that is used to uniquely identify each row. An example might be Product ID or Order ID.
+
+Set up the table relationships    
+
+Look at each table and decide how the data in one table is related to the data in other tables. 
+Add fields to tables or create new tables to clarify the relationships, as necessary.
+
+Refine your design    
+
+Analyze your design for errors. Create the tables and add a few records of sample data. 
+See if you can get the results you want from your tables. Make adjustments to the design, as needed.
+
+Apply the normalization rules    
+
+Apply the data normalization rules to see if your tables are structured correctly. Make adjustments to the tables, as needed.
+
+
+SQL Database Design Basics With Examples
+https://blog.devart.com/sql-database-design-basics-with-example.html
+
+
+
+
 
