@@ -1,0 +1,28 @@
+Advanced Database Systems
+https://15721.courses.cs.cmu.edu/spring2020/
+
+This course is a comprehensive study of the internals of modern database management systems. 
+It will cover the core concepts and fundamentals of the components that are used in both 
+high-performance transaction processing systems (OLTP) and large-scale analytical systems (OLAP). 
+The class will stress both efficiency and correctness of the implementation of these ideas. 
+All class projects will be in the context of a real in-memory, multi-core database system. 
+The course is appropriate for graduate students in software systems and for advanced undergraduates 
+with dirty systems programming skills.
+
+Course Info  
+
+Time: Mon/Wed 12:00 - 1:20
+Location: Newell Simon Hall 3002
+On-line Discussion: Piazza
+
+
+
+Course Staff
+Name	                        Office Hours	     Location
+Prof. Andy Pavlo Instructor  	Monday 1:30-2:30	 GHC 9019
+Matt Butrovich Head TA        TBA	               TBA
+
+
+Acknowledgements
+Thanks to the following organizations for equipment donations and/or support for course development.
+
