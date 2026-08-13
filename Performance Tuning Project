@@ -1,0 +1,25 @@
+Performance Tuning Project
+
+Oracle Database Performance Tuning Project
+
+自己建立一个包含 100万～1000万条订单数据的数据库，然后进行如下操作：
+
+全表扫描
+慢 SQL
+索引失效
+SQL 执行计划问题
+大分页查询
+并发查询
+CPU/IO压力
+
+然后使用：
+
+EXPLAIN PLAN
+DBMS_XPLAN
+Oracle AWR/ASH（如果环境允许）
+索引分析
+SQL 优化
+JMeter 压测
+
+做出一套：优化前 → 定位问题 → 修改 SQL/索引 → 优化后 的完整案例。
+
